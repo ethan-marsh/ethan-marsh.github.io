@@ -12,7 +12,7 @@ import About from "./About";
 // import Footer from "./Footer";
 
 //* STYLES *//
-import "../styles/main.scss";
+import "../sass/main.scss";
 
 // Don't import after here
 
