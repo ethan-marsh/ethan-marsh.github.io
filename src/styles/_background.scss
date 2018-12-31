@@ -1,0 +1,72 @@
+.background {
+  background-color: $white;
+  color: #555;
+  padding: 6rem 0 2rem;
+
+  &-left {
+    grid-column: 2 / 6;
+  }
+
+  &-right {
+    grid-column: 6 / -2;
+  }
+
+  &__title-h4 {
+    font-family: $font-display;
+    font-size: 2rem;
+    font-weight: 100;
+    text-transform: uppercase;
+  }
+
+  &__text {
+    & > p {
+      font-size: 1.2rem;
+      line-height: 2rem;
+      margin-bottom: 3rem;
+      font-weight: light;
+    }
+  }
+}
+
+.bars {
+  margin: 2rem auto;
+
+  &__bar {
+    width: 100%;
+    background-color: #eee;
+    border-radius: 20rem;
+    line-height: 0.5rem;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      border-top-left-radius: 20rem;
+      border-bottom-left-radius: 20rem;
+      background-color: #27ccc0;
+      height: 0.4rem;
+
+      animation: moveInRight 1s loop;
+      -moz-animation: moveInRight 1s loop;
+    }
+
+    @include fill-bar(70);
+    @include fill-bar(80);
+    @include fill-bar(90);
+
+    &-label {
+      display: flex;
+      padding-bottom: 0.4rem;
+      align-content: center;
+      justify-content: space-between;
+
+      &--text {
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+      &--pct {
+      }
+    }
+  }
+}

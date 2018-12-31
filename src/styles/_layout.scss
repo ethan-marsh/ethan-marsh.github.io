@@ -1,0 +1,90 @@
+.app {
+  position: absolute;
+  top: 100vh;
+  left: 0;
+  z-index: 10;
+  background-color: $white;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: minmax(1rem, max-content) repeat(10, 1fr) minmax(
+      1rem,
+      max-content
+    );
+  grid-template-rows: repeat(3, 50rem) 10vh;
+  grid-template-areas:
+    "bckg bckg bckg bckg bckg bckg bckg bckg bckg bckg bckg bckg"
+    "expr expr expr expr expr expr expr expr expr expr expr expr"
+    "work work work work work work work work work work work work"
+    "foot foot foot foot foot foot foot foot foot foot foot foot";
+  grid-gap: 2rem;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.header,
+.home,
+.background,
+.experience,
+.folio {
+  display: grid;
+  grid-template-columns: minmax(1.5rem, 0.5fr) repeat(10, 1fr) minmax(
+      1.5rem,
+      0.5fr
+    );
+  grid-gap: 2rem;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  grid-template-areas: "pad-left logo logo .... center nav nav nav nav nav nav pad-right";
+  align-items: center;
+
+  &__logo {
+    grid-area: logo;
+  }
+
+  .nav {
+    grid-area: nav;
+  }
+}
+
+.home {
+  position: absolute;
+  //top: 0;
+  //left: 0;
+  height: 100vh;
+
+  width: 100%;
+  z-index: -10;
+}
+
+.--is-fixed {
+  position: fixed !important;
+}
+
+.--is-absolute {
+  position: absolute !important;
+}
+
+.background {
+  grid-area: bckg;
+}
+
+.experience {
+  grid-area: expr;
+}
+
+.folio {
+  grid-area: work;
+}
+
+.footer {
+  grid-area: foot;
+}

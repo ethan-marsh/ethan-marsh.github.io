@@ -1,0 +1,26 @@
+.header {
+  padding-top: 3rem;
+  max-height: 8rem;
+  background-color: transparent;
+
+  &__logo {
+    &-inner {
+      display: flex;
+      align-content: center;
+    }
+
+    &-link {
+    }
+
+    &-img {
+      display: block;
+      width: 15rem;
+      height: auto;
+      max-height: 100%;
+
+      &--dark {
+        display: none;
+      }
+    }
+  }
+}

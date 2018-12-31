@@ -1,0 +1,29 @@
+$white: #fff;
+$black: #000;
+
+$font-primary: "Open Sans", sans-serif;
+$font-display: "Raleway", sans-serif;
+
+@mixin fill-bar($pct-no) {
+  &--pct-#{$pct-no} {
+    &::before {
+      width: calc(1% * #{$pct-no});
+    }
+  }
+}
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+
+  80% {
+    transform: translateX(10%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
