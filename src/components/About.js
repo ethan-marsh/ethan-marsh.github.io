@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 
 export default class About extends Component {
   render() {
     return (
-      <section id="about" className="background">
+      <Fragment>
         <div className="background-left">
           <h4 className="background__title-h4">Background.</h4>
         </div>
@@ -44,7 +44,7 @@ export default class About extends Component {
             <div className="bars__bar bars__bar--pct-90">&nbsp;</div>
           </div>
         </div>
-      </section>
+        </Fragment>
     );
   }
 }

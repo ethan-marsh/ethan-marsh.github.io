@@ -7,14 +7,12 @@ import Header from "./Header";
 import Nav from "./Nav";
 import Home from "./Home";
 import About from "./About";
-// import Experience from "./Experience";
+import Experience from "./Experience";
 // import Portfolio from "./Portfolio";
 // import Footer from "./Footer";
 
 //* STYLES *//
 import "../sass/main.scss";
-
-// Don't import after here
 
 // --- APP START --- //
 class App extends Component {
@@ -44,9 +42,11 @@ class App extends Component {
 
         <div className="app">
           <div className="content">
+          <section id="about" className="background">
             <About />
+          </section>
             <section id="experience" className="experience">
-              EXPERIENCE
+              <Experience />
             </section>
             <section id="folio" className="folio">
               PORTFOLIO
