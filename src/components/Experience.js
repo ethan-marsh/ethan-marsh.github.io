@@ -54,12 +54,8 @@ export default class Experience extends Component {
         ))}
         {Object.keys(certifications).map(key => (
           <li className="experience__item experience__item--certs" key={key}>
-            <div className="experience-time time">
-              <h5 className="time__title">{certifications[key].years}</h5>
-            </div>
-            <div className="experience-description description">
+              <h5 className="time__title">{certifications[key].time}</h5>
               <h5 className="description__title">{certifications[key].title}</h5>
-            </div>
           </li>
         ))}
         </ul>
