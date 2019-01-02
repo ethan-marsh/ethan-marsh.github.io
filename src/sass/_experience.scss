@@ -1,0 +1,58 @@
+.experience {
+    &-left {
+        grid-column: 2 / 5;
+    }
+
+    &__title-h4 {
+        font-family: $font-display;
+        font-size: 2rem;
+        font-weight: 100;
+        text-transform: uppercase;
+    }
+
+    &-right {
+        grid-column: 5 / -2;
+    }
+
+    &__list {
+        list-style: none;
+        font-size: 1.3rem;
+        line-height: 2rem;
+    }
+
+    &__item {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: max-content 1fr;
+
+        column-gap: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .time {
+        &__title {
+            grid-row: 1 / span 1;
+            grid-column: 1 / span 1;
+        }
+
+        &__sub {
+            grid-row: 2 / span 1;
+            grid-column: 1 / span 1;
+        }
+    }
+
+    .description {
+        &__title {
+            grid-row: 1 / span 1;
+            grid-column: 2 / span 2;
+        }
+
+        &__sub {
+            grid-row: 2 / span 1;
+            grid-column: 2 / span 2;
+        }
+
+    }
+
+}
+

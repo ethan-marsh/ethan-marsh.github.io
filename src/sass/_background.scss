@@ -4,11 +4,11 @@
   padding: 6rem 0 2rem;
 
   &-left {
-    grid-column: 2 / 6;
+    grid-column: 2 / 5;
   }
 
   &-right {
-    grid-column: 6 / -2;
+    grid-column: 5 / -2;
   }
 
   &__title-h4 {
@@ -20,8 +20,8 @@
 
   &__text {
     & > p {
-      font-size: 1.2rem;
-      line-height: 2rem;
+      font-size: 1.4rem;
+      line-height: 3rem;
       margin-bottom: 3rem;
       font-weight: light;
     }
