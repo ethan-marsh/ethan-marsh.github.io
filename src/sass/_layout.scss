@@ -30,7 +30,7 @@
 .home,
 .background,
 .experience,
-.folio {
+.portfolio {
   display: grid;
   grid-template-columns: minmax(1.5rem, 1fr) repeat(10, 1fr) minmax(
       1.5rem,
@@ -83,7 +83,7 @@
   grid-area: expr;
 }
 
-.folio {
+.portfolio {
   grid-area: work;
 }
 

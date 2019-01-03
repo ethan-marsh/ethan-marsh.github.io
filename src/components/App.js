@@ -8,7 +8,7 @@ import Nav from "./Nav";
 import Home from "./Home";
 import About from "./About";
 import Experience from "./Experience";
-// import Portfolio from "./Portfolio";
+import Portfolio from "./Portfolio";
 // import Footer from "./Footer";
 
 //* STYLES *//
@@ -48,8 +48,8 @@ class App extends Component {
             <section id="experience" className="experience">
               <Experience />
             </section>
-            <section id="folio" className="folio">
-              PORTFOLIO
+            <section id="portfolio" className="portfolio">
+              <Portfolio />
             </section>
             <footer id="footer" className="footer">
               FOOTER
