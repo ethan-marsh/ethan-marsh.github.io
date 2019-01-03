@@ -1,60 +1,56 @@
 .portfolio {
-    padding: 6rem 0;
+  padding: 6rem 0;
 
-    // Titles and project categories
-    &__categories {
-        grid-column: 2 / span 4;
-        display: flex;
-        justify-content: space-between;
-        list-style: none;
-    }
+  // Titles and project categories
+  &__categories {
+    grid-column: 2 / span 4;
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+  }
 
-    &__link:link,
-    &__link:visited {
-        font-family: $font-display;
-        font-size: 1.4rem;
-        text-decoration: none;
-        color: $black;
-        opacity: .5;
-        transition: opacity .5s ease-in-out;
-    }
+  &__link:link,
+  &__link:visited {
+    font-family: $font-display;
+    font-size: 1.4rem;
+    text-decoration: none;
+    color: $black;
+    opacity: 0.5;
+    transition: opacity 0.5s ease-in-out;
+  }
 
-    &__link:hover,
-    &__link:active {
-        opacity: .9;
-    }
+  &__link:hover,
+  &__link:active {
+    opacity: 0.9;
+  }
 
-    // Project grid
-    &__projects {
-        grid-column: 2 / 10;
-        max-width: 100%;
-    }
-
+  // Project grid
+  &__projects {
+    grid-column: 2 / 10;
+    max-width: 100%;
+  }
 }
-    .projects {
-        display: flex;
-        flex-wrap: wrap;
+.projects {
+  display: flex;
+  flex-wrap: wrap;
 
+  &-link:link,
+  &-link:visited {
+    filter: brightness(60%);
+    transition: all 0.5s ease-in-out;
+    flex: 0 0 25%;
+  }
 
+  &-link:hover,
+  &-link:active {
+    filter: brightness(100%);
+  }
 
-        &-link:link,
-        &-link:visited {
-            filter: brightness(60%);
-            transition: all .5s ease-in-out;
-            flex: 0 0 25%;
-        }
+  &-figure {
+    width: 20vw;
+    height: auto;
 
-        &-link:hover,
-        &-link:active {
-            filter: brightness(100%)
-        }
-
-        &-figure {
-            width: 20vw;
-            height: auto;
-
-            & > img {
-
-            }
-        }
+    & > img {
     }
+  }
+}

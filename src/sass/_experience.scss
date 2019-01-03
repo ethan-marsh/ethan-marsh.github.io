@@ -1,103 +1,98 @@
 .experience {
-    background-image: linear-gradient(rgba($white, 0.2), rgba($white, 0.2)),
-    url("/images/bg-keyboard.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
+  background-image: linear-gradient(rgba($white, 0), rgba($white, 0)),
+    url("/images/experience-bg.jpg");
+  background-size: auto 100%;
+  background-position: -20% center;
+  background-repeat: no-repeat;
 
-    position: relative;
-    color: #ddd;
-    font-weight: 300;
-    padding: 8rem 0;
-    z-index: -2;
+  position: relative;
+  color: #ddd;
+  font-weight: 300;
+  padding: 8rem 0;
+  z-index: -2;
 
-    &::before{
-        content:"";
-        background-color: #292929;
-        position: absolute;
-        top: 0;
-        left: 45%;
-        height: 100%;
-        width: 55%;
-        z-index: -1;
+  &::before {
+    content: "";
+    background-color: #292929;
+    position: absolute;
+    top: 0;
+    left: 45%;
+    height: 100%;
+    width: 55%;
+    z-index: -1;
+  }
+
+  &-left {
+    grid-column: 2 / 5;
+  }
+
+  &__title-h4 {
+    font-family: $font-display;
+    font-size: 2rem;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  &-right {
+    grid-column: 5 / -2;
+  }
+
+  &__list {
+    list-style: none;
+    font-size: 1.3rem;
+    line-height: 2.5rem;
+  }
+
+  &__item {
+    display: grid;
+    grid-template-columns: 1fr auto 3fr;
+    grid-template-rows: max-content 1fr;
+
+    margin-bottom: 5rem;
+    letter-spacing: 0.5px;
+
+    &--certs {
+      margin-bottom: 0.5rem;
+
+      &:first-child {
+        margin-top: 2rem;
+      }
+    }
+  }
+
+  .time {
+    &__title {
+      grid-row: 1 / span 1;
+      grid-column: 1 / span 1;
+
+      font-size: 1.4rem;
+      font-weight: 400;
+      font-family: $font-display;
+      margin-bottom: 1rem;
     }
 
-    &-left {
-        grid-column: 2 / 5;
+    &__sub {
+      grid-row: 2 / span 1;
+      grid-column: 1 / span 1;
+
+      transform: translateY(-1rem);
+      font-size: 1.4rem;
+    }
+  }
+
+  .description {
+    &__title {
+      grid-row: 1 / span 1;
+      grid-column: 2 / -1;
+
+      font-family: $font-display;
+      font-weight: 400;
+      font-size: 1.4rem;
     }
 
-    &__title-h4 {
-        font-family: $font-display;
-        font-size: 2rem;
-        font-weight: 400;
-        text-transform: uppercase;
+    &__sub {
+      grid-row: 2 / span 1;
+      grid-column: 2 / -1;
     }
-
-    &-right {
-        grid-column: 5 / -2;
-    }
-
-    &__list {
-        list-style: none;
-        font-size: 1.3rem;
-        line-height: 2.5rem;
-    }
-
-    &__item {
-        display: grid;
-        grid-template-columns: 1fr auto 3fr;
-        grid-template-rows: max-content 1fr;
-
-
-        margin-bottom: 5rem;
-        letter-spacing: .5px;
-
-
-        &--certs {
-            margin-bottom: .5rem;
-
-            &:first-child {
-                margin-top: 2rem;
-            }
-        }
-    }
-
-    .time {
-        &__title {
-            grid-row: 1 / span 1;
-            grid-column: 1 / span 1;
-
-            font-size: 1.4rem;
-            font-weight: 400;
-            font-family: $font-display;
-            margin-bottom: 1rem;
-        }
-
-        &__sub {
-            grid-row: 2 / span 1;
-            grid-column: 1 / span 1;
-
-            transform: translateY(-1rem);
-            font-size: 1.4rem;
-
-        }
-    }
-
-    .description {
-        &__title {
-            grid-row: 1 / span 1;
-            grid-column: 2 / -1;
-
-            font-family: $font-display;
-            font-weight: 400;
-            font-size: 1.4rem;
-        }
-
-        &__sub {
-            grid-row: 2 / span 1;
-            grid-column: 2 / -1;
-        }
-
-    }
-
+  }
 }
-
