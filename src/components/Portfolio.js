@@ -1,6 +1,19 @@
 import React, { Component, Fragment } from "react";
 
 export default class Portfolio extends Component {
+  handleProjectClick = e => {
+    const project = e.currentTarget.parentNode;
+
+    // make the selection active
+    project.classList.toggle("project--is-active");
+
+    // remove the active class from others
+    Array.from(project.parentNode.children).forEach(
+      project =>
+        !e.currentTarget && project.classList.remove("project--is-active")
+    );
+  };
+
   render() {
     return (
       <Fragment>
@@ -13,26 +26,30 @@ export default class Portfolio extends Component {
             </li>
           ))}
         </ul>
-        <div className="portfolio__projects projects">
+        <div className="portfolio__projects">
           {[1, 2, 3, 4, 5, 6].map(projectNum => (
-            <a
+            <figure
+              className={`project project--${projectNum}`}
               key={projectNum}
-              href={`#project-${projectNum}`}
-              className="projects-link"
             >
-              <figure className="projects-figure">
-                <img
-                  src={`images/project-${projectNum}.jpg`}
-                  alt={`Project ${projectNum}`}
-                />
-                <figcaption>
-                  <h5>{`Project ${projectNum}`}</h5>
-                  <p>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  </p>
-                </figcaption>
-              </figure>
-            </a>
+              <img
+                src={`images/project-${projectNum}.jpg`}
+                alt={`Project ${projectNum}`}
+                className="project__image"
+              />
+              <button
+                className="project__button"
+                onClick={this.handleProjectClick}
+              >
+                Learn More
+              </button>
+              <figcaption className="project__text">
+                <h5 className="project__title">{`Project ${projectNum}`}</h5>
+                <p className="project__description">
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                </p>
+              </figcaption>
+            </figure>
           ))}
         </div>
       </Fragment>

@@ -26,31 +26,109 @@
 
   // Project grid
   &__projects {
-    grid-column: 2 / 10;
+    grid-column: 2 / 12;
     max-width: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(6, minmax(auto, 60rem));
+    grid-template-rows: 70rem;
+    column-gap: 2rem;
+    overflow-x: scroll;
   }
 }
-.projects {
-  display: flex;
-  flex-wrap: wrap;
 
-  &-link:link,
-  &-link:visited {
-    filter: brightness(60%);
-    transition: all 0.5s ease-in-out;
-    flex: 0 0 25%;
+.project {
+  position: relative;
+  margin: 5rem auto;
+  height: 60vh;
+  max-height: 60rem;
+  width: 20rem;
+  box-shadow: -1px 5px 2rem rgba($black, 0.5);
+  transition: all 0.5s ease-in;
+
+  &--is-active {
+    width: 60rem;
   }
 
-  &-link:hover,
-  &-link:active {
+  &__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(60%);
+    transition: all 0.5s ease-in-out;
+  }
+
+  &:hover &__image,
+  &:active &__image {
     filter: brightness(100%);
   }
 
-  &-figure {
-    width: 20vw;
-    height: auto;
+  &__text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-left: 1rem;
+    background: rgba($white, 0.8);
+    height: 100%;
+    width: 40%;
 
-    & > img {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: left;
+
+    visibility: hidden;
+  }
+
+  &--is-active &__text {
+    visibility: visible;
+  }
+
+  &__title {
+    font-family: $font-display;
+    font-weight: 300;
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: $black;
+  }
+
+  &__description {
+    text-decoration: none !important;
+    color: $black;
+  }
+
+  &__button {
+    background-image: linear-gradient(
+      to-bottom,
+      rgba($white, 0) 10%,
+      rgba($white, 0.8) 90%,
+      rgba($white, 0)
+    );
+    color: #555;
+    border: none;
+    padding: 1rem 0.5rem;
+    text-align: center;
+    width: 80%;
+    margin-top: 1rem;
+
+    position: absolute;
+    top: 30%;
+    right: 0;
+    width: 100%;
+    display: none;
+
+    &:hover {
+      cursor: pointer;
     }
+  }
+
+  &:hover &__button {
+    display: block;
+  }
+
+  &--is-active &__button {
+    width: 10%;
+    top: 0;
   }
 }
