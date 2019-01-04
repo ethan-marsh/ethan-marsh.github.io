@@ -1,5 +1,5 @@
 .portfolio {
-  padding: 6rem 0;
+  padding: 5rem 0 3rem;
 
   // Titles and project categories
   &__categories {
@@ -31,7 +31,7 @@
 
     display: grid;
     grid-template-columns: repeat(6, minmax(auto, 60rem));
-    grid-template-rows: 70rem;
+
     column-gap: 2rem;
     overflow-x: scroll;
   }
@@ -99,12 +99,7 @@
   }
 
   &__button {
-    background-image: linear-gradient(
-      to-bottom,
-      rgba($white, 0) 10%,
-      rgba($white, 0.8) 90%,
-      rgba($white, 0)
-    );
+    background-color: rgba($white, 0.8);
     color: #555;
     border: none;
     padding: 1rem 0.5rem;
