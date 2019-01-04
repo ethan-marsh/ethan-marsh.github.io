@@ -46,14 +46,10 @@ export default class Experience extends Component {
           <ul className="experience__list">
             {Object.keys(jobs).map(key => (
               <li className="experience__item" key={key}>
-                <div className="experience-time time">
-                  <h5 className="time__title">{jobs[key].years} Years</h5>
-                  <p className="time__sub">{jobs[key].yearSpan}</p>
-                </div>
-                <div className="experience-description description">
-                  <h5 className="description__title">{jobs[key].title}</h5>
-                  <p className="description__sub">{jobs[key].description}</p>
-                </div>
+                <h5 className="time__title">{jobs[key].years} Years</h5>
+                <p className="time__sub">{jobs[key].yearSpan}</p>
+                <h5 className="description__title">{jobs[key].title}</h5>
+                <p className="description__sub">{jobs[key].description}</p>
               </li>
             ))}
             {Object.keys(certifications).map(key => (
@@ -61,14 +57,10 @@ export default class Experience extends Component {
                 className="experience__item experience__item--certs"
                 key={key}
               >
-                <div className="experience-time time">
-                  <h5 className="time__title">{certifications[key].years}</h5>
-                </div>
-                <div className="experience-description description">
-                  <h5 className="description__title">
-                    {certifications[key].title}
-                  </h5>
-                </div>
+                <h5 className="time__title">{certifications[key].time}</h5>
+                <h5 className="description__title">
+                  {certifications[key].title}
+                </h5>
               </li>
             ))}
           </ul>
