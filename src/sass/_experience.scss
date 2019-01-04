@@ -1,10 +1,5 @@
 .experience {
-  background-image: linear-gradient(rgba($white, 0), rgba($white, 0)),
-    url("/images/experience-bg.jpg");
-  background-size: auto 100%;
-  background-position: -20% center;
-  background-repeat: no-repeat;
-
+  background-color: #292929;
   position: relative;
   color: #ddd;
   font-weight: 300;
@@ -13,12 +8,15 @@
 
   &::before {
     content: "";
-    background-color: #292929;
+    background-image: url("/images/experience-bg.jpg");
+    background-size: auto 100%;
+    background-position: -10rem center;
+    background-repeat: no-repeat;
     position: absolute;
     top: 0;
-    left: 45%;
+    left: 0;
     height: 100%;
-    width: 55%;
+    width: 45%;
     z-index: -1;
   }
 
@@ -68,6 +66,7 @@
       font-size: 1.4rem;
       font-weight: 400;
       font-family: $font-display;
+      color: $white;
       margin-bottom: 1rem;
     }
 
@@ -86,6 +85,8 @@
       grid-column: 2 / -1;
 
       font-family: $font-display;
+      color: $white;
+
       font-weight: 400;
       font-size: 1.4rem;
     }
