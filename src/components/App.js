@@ -9,7 +9,7 @@ import Home from "./Home";
 import About from "./About";
 import Experience from "./Experience";
 import Portfolio from "./Portfolio";
-// import Footer from "./Footer";
+import Footer from "./Footer";
 
 //* STYLES *//
 import "../sass/main.scss";
@@ -42,9 +42,9 @@ class App extends Component {
 
         <div className="app">
           <div className="content">
-          <section id="about" className="background">
-            <About />
-          </section>
+            <section id="about" className="background">
+              <About />
+            </section>
             <section id="experience" className="experience">
               <Experience />
             </section>
@@ -52,7 +52,7 @@ class App extends Component {
               <Portfolio />
             </section>
             <footer id="footer" className="footer">
-              FOOTER
+              <Footer />
             </footer>
           </div>
         </div>
