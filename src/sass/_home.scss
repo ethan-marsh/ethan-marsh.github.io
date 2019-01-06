@@ -1,11 +1,12 @@
 .home {
   background-image: linear-gradient(rgba(#000, 0.4), rgba(#000,0.4)),
     url("/images/hero-3.png");
-  background-attachment: fixed;
+  background-attachment: scroll;
   filter: contrast(125%);
 
   color: $white;
   background-size: cover;
+  height: 110%;
 
   &-content {
     position: absolute;
