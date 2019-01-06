@@ -8,7 +8,7 @@
 
   &::before {
     content: "";
-    background-image: linear-gradient(rgba(#333, .7), rgba(#333,.7)), url("/images/professional-bg.png");
+    background-image: linear-gradient(rgba(#020813, .6), rgba(#020813,.6)), url("/images/professional-bg.png");
     background-size: cover;
     background-position: right center;
     background-repeat: no-repeat;
@@ -16,7 +16,7 @@
     top: 0;
     left: 0;
     height: 100%;
-    width: 50%;
+    width: 45%;
     z-index: -1;
     transform: rotateY(180deg);
   }
@@ -28,7 +28,7 @@
   &__title-h4 {
     font-family: $font-display;
     font-size: 2rem;
-    font-weight: 400;
+    font-weight: 300;
     text-transform: uppercase;
   }
 
@@ -63,7 +63,7 @@
   .time {
     &__title {
       grid-row: 1 / span 1;
-      grid-column: 2 / span 1;
+      grid-column: 1 / span 2;
 
       font-size: 1.4rem;
       font-family: $font-display;
@@ -74,7 +74,7 @@
 
     &__sub {
       grid-row: 2 / span 1;
-      grid-column: 2 / span 1;
+      grid-column: 1 / span 2;
 
       transform: translateY(-1rem);
       font-size: 1.3rem;
@@ -84,9 +84,10 @@
   }
 
   .description {
+    padding: 0 1rem;
     &__title {
       grid-row: 1 / span 1;
-      grid-column: 5 / -1;
+      grid-column: 4 / -1;
 
       font-family: $font-display;
       color: $white;
@@ -96,7 +97,7 @@
 
     &__sub {
       grid-row: 2 / span 1;
-      grid-column: 5 / -1;
+      grid-column: 4 / -1;
       color: #999;
       font-size: 1.4rem;
       line-height: 2rem;
