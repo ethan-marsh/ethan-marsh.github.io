@@ -1,14 +1,14 @@
 .background {
   background-color: $white;
   color: #555;
-  padding: 8rem 0 6rem;
+  padding: 11rem 0;
 
   &-left {
     grid-column: 2 / 5;
   }
 
   &-right {
-    grid-column: 5 / -2;
+    grid-column: 6 / -2;
   }
 
   &__title-h4 {
@@ -34,9 +34,6 @@
 
 .bars {
   margin: 2rem auto;
-
-
-
 
   &__bar {
     width: 100%;

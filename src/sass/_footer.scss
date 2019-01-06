@@ -2,6 +2,7 @@
   background-color: #292929;
   color: #ddd;
   font-size: 1.3rem;
+  line-height: 2.5rem;
   padding: 3rem 0;
 
   hr {
@@ -11,6 +12,7 @@
   &__inner {
     grid-column: 2/ -2;
   }
+
   &__content {
     display: flex;
     justify-content: space-between;
