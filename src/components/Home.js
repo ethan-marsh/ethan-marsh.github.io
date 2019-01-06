@@ -1,32 +1,14 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import styled from "styled-components";
 import {Transition, animated, config} from "react-spring";
 
 import Social from "./Social";
 
 export default class Home extends Component {
-  componentDidUpdate() {
-    const homeHght = document.querySelector("#home").offsetHeight + 1;
-    const percentOf = (window.scrollY + 1) / homeHght;
-    this.homeHeight = `${Math.floor(percentOf * 100)}%`;
-
-    window.addEventListener("scroll", this.cdm());
-  }
-
-  cdm = () => {
-    console.log(this.homeHeight);
-  };
-
   scrollToAbout = el => {
     const start = el.getBoundingClientRect(),
-      target = document.querySelector("#about").getBoundingClientRect(),
-      scrollNeeded = target.top - start.top;
-
-    const pos = scrollNeeded === 0 ? "--is-absolute" : "--is-fixed";
-    const home = document.querySelector(".home");
-
-    //make div fixed
-    home.classList.add(pos);
+          target = document.querySelector("#about").getBoundingClientRect(),
+          scrollNeeded = target.top - start.top;
 
     window.scrollBy({
       top: scrollNeeded,
@@ -37,14 +19,8 @@ export default class Home extends Component {
 
 
   render() {
-  const divider = [<hr/>];
     return (
-      <Content
-        className="home-content"
-        onClick={this.cdm}
-        height={this.homeHeight || "100%"}
-      >
-
+      <Fragment>
        <div className="home__title">
           <Transition
             native
@@ -64,14 +40,13 @@ export default class Home extends Component {
 
         <Transition
           native
-          items={divider}
           from={{ transform: 'translate3d(-100%,0,0)', opacity: 0 }}
           enter={{ transform: 'translate3d(0,0,0)', opacity: 1 }}
           leave={{ transform: 'translate3d(100%,0,0)', opacity: 0 }}
           config={{ ...config.molasses, duration: 800 }}
         >
-          {divider => (props =>
-            <animated.div style={props} className="home__divider" children={divider} />
+          {() => (props =>
+            <animated.div style={props} className="home__divider" children={<hr/>} />
           )}
         </Transition>
 
@@ -84,6 +59,7 @@ export default class Home extends Component {
           delay={800}>
           {() => (props =>
             <animated.div className="home__bottom" style={props}>
+            <div className="home__bottom-row">
               <h2 className="home__bottom-subtitle" >
                 Front-End Web Developer / San Francisco
               </h2>
@@ -93,6 +69,7 @@ export default class Home extends Component {
               >
                 &or;
               </ButtonMore>
+              </div>
               <div className="home__bottom__links" >
                 <Social />
               </div>
@@ -100,7 +77,7 @@ export default class Home extends Component {
           )}
         </Transition>
 
-      </Content>
+      </Fragment>
     );
   }
 }
@@ -113,9 +90,4 @@ const ButtonMore = styled.button`
     cursor: pointer;
     color: #6bf;
   }
-`;
-
-
-const Content = styled.div`
-  height: ${props => props.height};
 `;

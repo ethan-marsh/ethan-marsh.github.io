@@ -36,12 +36,11 @@ class App extends Component {
             activateLink={this.activateLink}
           />
         </header>
-        <section id="home" className="home">
-          <Home />
-        </section>
-
         <div className="app">
           <div className="content">
+            <section id="home" className="home">
+              <Home />
+            </section>
 
             <section id="about" className="background">
               <About />
