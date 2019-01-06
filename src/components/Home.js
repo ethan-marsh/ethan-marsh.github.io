@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import {Transition, animated, config} from "react-spring";
 
 import Social from "./Social";
 
@@ -34,45 +35,69 @@ export default class Home extends Component {
     });
   };
 
+
   render() {
+  const divider = [<hr/>];
     return (
       <Content
         className="home-content"
         onClick={this.cdm}
         height={this.homeHeight || "100%"}
       >
-        '
-        <div className="home__title">
-          <h1
-            className="home__title-h1 tms-caption color-white weight-light mb-0"
-            data-animate-in="preset:fadeIn;duration:1000ms;delay:100ms;"
-            data-no-scale
-          >
-            Ethan Marsh
-          </h1>
+       <div className="home__title">
+       <Transition
+        native
+        items={{item:true}}
+        from={{ opacity: 0}}
+        enter={{opacity: 1}}
+        leave={{opacity: 0}}
+        config={{...config.molasses }}>
+        {() =>
+          props =>
+            <animated.h1
+              className="home__title-h1" style={props} children={'Ethan Marsh'}
+            />
+        }
+        </Transition>
         </div>
-        <div className="home__divider">
-          <hr className="opacity-05" />
-        </div>
-        <div className="home__bottom">
-          <h2
-            className="home__bottom-subtitle tms-caption color-grey-light weight-light mb-20 mb-mobile-20"
-            data-animate-in="preset:slideInDownShort;duration:1000ms;delay:1000ms;"
-            data-no-scale
-          >
-            Front-End Web Developer / San Francisco
-          </h2>
-          <ButtonMore
-            href="/"
-            className="home__bottom-more"
-            onClick={e => this.scrollToAbout(e.currentTarget)}
-          >
-            &or;
-          </ButtonMore>
-          <div className="home__bottom__links">
-            <Social />
-          </div>
-        </div>
+        <Transition
+        native
+        items={divider}
+        from={{ transform: 'translate3d(-100%,0,0)', opacity: 0}}
+        enter={{ transform: 'translate3d(0,0,0)', opacity: 1}}
+        leave={{ transform: 'translate3d(100%,0,0)', opacity: 0}}
+        config={{...config.molasses, duration: 800}}
+        >
+        {divider => (props =>
+            <animated.div style={props}className="home__divider" children={divider}/>
+          )}
+        </Transition>
+
+        <Transition
+        native
+        from={{ transform: 'translate3d(0,-2rem,0)', opacity: 0}}
+        enter={{transform: 'translate3d(0,0,0)', opacity: 1}}
+        leave={{opacity: 0}}
+        config={{...config.molasses}}
+        delay={800}>
+
+        {() => (props =>
+            <animated.div className="home__bottom" style={props}>
+              <h2 className="home__bottom-subtitle" >
+                Front-End Web Developer / San Francisco
+              </h2>
+
+              <ButtonMore
+                className="home__bottom-more"
+                onClick={e => this.scrollToAbout(e.currentTarget)}
+              >
+                &or;
+              </ButtonMore>
+
+              <div className="home__bottom__links" ><Social/></div>
+            </animated.div>
+        )}
+           </Transition>
       </Content>
     );
   }
@@ -87,6 +112,7 @@ const ButtonMore = styled.button`
     color: #6bf;
   }
 `;
+
 
 const Content = styled.div`
   height: ${props => props.height};

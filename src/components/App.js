@@ -42,12 +42,15 @@ class App extends Component {
 
         <div className="app">
           <div className="content">
+
             <section id="about" className="background">
               <About />
             </section>
+
             <section id="experience" className="experience">
               <Experience />
             </section>
+
             <section id="portfolio" className="portfolio">
               <Portfolio />
             </section>
