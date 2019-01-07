@@ -1,20 +1,62 @@
 .header {
   background-color: transparent;
+  height: 8rem;
+  max-height: 8rem;
+  align-items: center;
+  border-bottom: 1px solid transparent;
 
   .logo {
+    position: relative;
+
     &__link {
       display: inline-block;
     }
 
     &__img {
-      display: block;
       width: 12vw;
       height: auto;
-      max-height: 100%;
+
+      &--light {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 1;
+        transform: translateY(0);
+        transition: all .3s ease-out;
+      }
 
       &--dark {
-        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 100;
+        opacity: 0;
+        transform: translateY(4rem);
+        transition: all .3s ease-out;
       }
+    }
+  }
+
+  &--scrolled {
+    background-color: $white;
+    border-color: #ccc;
+
+    .logo__img {
+      &--light {
+        transform: translateY(-4rem);
+        opacity: 0;
+      }
+
+      &--dark {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    // make styled components that read props
+    .nav__link:link,
+    .nav__link:visited {
+      color: $black;
     }
   }
 }

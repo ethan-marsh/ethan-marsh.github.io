@@ -16,16 +16,37 @@ import "../sass/main.scss";
 class App extends Component {
   state = {
     nav: ["home", "about", "experience", "folio"],
-    activeLink: "home"
+    activeLink: "home",
+    bgPos: 0
   };
+
+  componentDidMount = () => {
+    window.addEventListener('scroll', this.handleScroll);
+  }
+
+  componentWillUnmount = () => {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
 
   activateLink = activeLink => {
     this.setState({ activeLink });
   };
 
+  handleScroll = (e) => {
+   const scrollY = e.currentTarget.scrollY;
+   const innerHeight = e.currentTarget.innerHeight;
+
+   if (scrollY >= (innerHeight - 81)) {
+  // Home is 100vh minus headerHeight w/ border
+    document.querySelector('header').classList.add('header--scrolled');
+   } else {
+     document.querySelector('header').classList.remove('header--scrolled');
+   }
+  }
+
   render() {
     return (
-      <div className="app">
+      <div className="app" >
         <header id="header" className="header">
           <Logo />
           <Nav
@@ -36,7 +57,6 @@ class App extends Component {
         </header>
 
         <div className="content">
-
           <section id="home" className="home">
             <Home />
           </section>
@@ -56,9 +76,8 @@ class App extends Component {
           <footer id="footer" className="footer">
             <Footer />
           </footer>
-
-          </div>
         </div>
+      </div>
     );
   }
 }

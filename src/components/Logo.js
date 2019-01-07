@@ -15,7 +15,7 @@ const Logo = () => (
         src="images/logo.png"
         alt="Ethan Marsh"
         title="ethanmarsh.com"
-        className="logo__img"
+        className="logo__img logo__img--light"
       />
     </a>
   </div>
