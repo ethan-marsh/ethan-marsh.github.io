@@ -1,16 +1,15 @@
 .experience {
-  background-color: #292929;
+  background-color: rgba($black, .85);
   position: relative;
   color: #ddd;
-  font-weight: 300;
   padding: 11rem 0;
   z-index: -2;
 
   &::before {
     content: "";
-    background-image: linear-gradient(rgba(#020813, .6), rgba(#020813,.6)), url("/images/professional-bg.png");
+    background-image: linear-gradient(to right, rgba(#000, .5) , rgba(#000,.65)), url("/images/experience-bg.png");
     background-size: cover;
-    background-position: right center;
+    background-position: left center;
     background-repeat: no-repeat;
     position: absolute;
     top: 0;
@@ -18,18 +17,10 @@
     height: 100%;
     width: 45%;
     z-index: -1;
-    transform: rotateY(180deg);
   }
 
   &-left {
     grid-column: 2 / 5;
-  }
-
-  &__title-h4 {
-    font-family: $font-display;
-    font-size: 2rem;
-    font-weight: 300;
-    text-transform: uppercase;
   }
 
   &-right {
@@ -46,7 +37,7 @@
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: repeat(2, max-content);
     column-gap: 2rem;
-    row-gap: 1rem;
+    row-gap: .25rem;
 
     margin-bottom: 5rem;
     letter-spacing: 0.5px;
@@ -61,13 +52,9 @@
   }
 
   .time {
-    &__title {
+    &__title-h5 {
       grid-row: 1 / span 1;
       grid-column: 1 / span 2;
-
-      font-size: 1.4rem;
-      font-family: $font-display;
-      font-weight: 400;
       margin-bottom: 1rem;
       color: #ccc;
     }
@@ -75,8 +62,7 @@
     &__sub {
       grid-row: 2 / span 1;
       grid-column: 1 / span 2;
-
-      transform: translateY(-1rem);
+      transform: translateY(-.5em);
       font-size: 1.3rem;
       color: $white;
       font-weight: 300;
@@ -85,23 +71,15 @@
 
   .description {
     padding: 0 1rem;
-    &__title {
+    &__title-h5 {
       grid-row: 1 / span 1;
       grid-column: 4 / -1;
-
-      font-family: $font-display;
-      color: $white;
-      font-weight: 300;
-      font-size: 1.4rem;
     }
 
     &__sub {
       grid-row: 2 / span 1;
       grid-column: 4 / -1;
       color: #999;
-      font-size: 1.4rem;
-      line-height: 2rem;
-      font-weight: 300;
     }
   }
 }

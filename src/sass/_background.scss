@@ -9,23 +9,11 @@
 
   &-right {
     grid-column: 5 / -2;
-
-  }
-
-  &__title-h4 {
-    font-family: $font-display;
-    font-size: 2rem;
-    font-weight: 300;
-    text-transform: uppercase;
   }
 
   &__text {
     & > p {
-      font-size: 1.4rem;
-      line-height: 3rem;
       margin-bottom: 3rem;
-      font-weight: light;
-
       &:last-child {
         margin-bottom: 9rem;
       }
@@ -65,14 +53,6 @@
       padding-bottom: 0.4rem;
       align-content: center;
       justify-content: space-between;
-
-      &--text {
-        font-weight: 400;
-        text-transform: uppercase;
-        font-size: 1.4rem;
-      }
-      &--pct {
-      }
     }
   }
 }

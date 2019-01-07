@@ -11,9 +11,6 @@
 
   &__link:link,
   &__link:visited {
-    font-family: $font-display;
-    font-size: 1.4rem;
-    text-decoration: none;
     color: $black;
     opacity: 0.5;
     transition: opacity 0.5s ease-in-out;
@@ -85,17 +82,12 @@
     visibility: visible;
   }
 
-  &__title {
-    font-family: $font-display;
-    font-weight: 300;
-    font-size: 1.2rem;
-    text-decoration: none;
-    color: $black;
+  &__title-h5 {
+    // used to be a link
   }
 
   &__description {
-    text-decoration: none !important;
-    color: $black;
+   // used to be a link
   }
 
   &__button {

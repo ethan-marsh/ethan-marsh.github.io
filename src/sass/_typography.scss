@@ -5,6 +5,85 @@
 }
 
 h1,
-h2 {
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
+  padding: 0;
   font-family: $font-display;
+  font-weight: 300;
 }
+
+.nav {
+  &__link {
+    &:link,
+    &:visited {
+      font-family: $font-primary;
+      font-size: 1.1rem;
+      line-height: 1.5em;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      text-decoration: none;
+    }
+  }
+}
+
+.portfolio {
+  &__link {
+    &:link,
+    &:visited {
+      font-family: $font-display;
+      font-size: 1.4rem;
+      text-decoration: none;
+    }
+  }
+}
+
+
+[class$="-h1"] {
+  font-size: 4.5rem;
+  letter-spacing: 2px;
+}
+
+[class$="-h2"] {
+  font-size: 3.3rem;
+  letter-spacing: 1px;
+}
+
+[class$="-h3"] {
+  font-size: 2.2rem;
+}
+
+[class$="-h4"] {
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+[class$="-h5"] {
+  font-size: 1.4rem;
+  line-height: 1.3rem;
+}
+
+
+[class$="-label"] {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+}
+
+.background {
+  font-size: 1.4rem;
+  line-height: 1.5em;
+}
+
+.experience {
+  font-size: 1.25rem;
+  line-height: 1.5em;
+}
+
+.footer {
+  font-size: 1.3rem;
+  line-height: 2em;
+}
+

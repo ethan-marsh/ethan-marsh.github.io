@@ -4,10 +4,11 @@ export default class Portfolio extends Component {
   handleProjectClick = e => {
     const project = e.currentTarget.parentNode;
 
-    // make the selection active
+    // Make selection active
     project.classList.toggle("project--is-active");
 
-    // remove the active class from others
+    // Remove the active class from anything
+    // other than selected
     Array.from(project.parentNode.children).forEach(
       project =>
         !e.currentTarget && project.classList.remove("project--is-active")
@@ -44,7 +45,7 @@ export default class Portfolio extends Component {
                 Learn More
               </button>
               <figcaption className="project__text">
-                <h5 className="project__title">{`Project ${projectNum}`}</h5>
+                <h5 className="project__title-h5">{`Project ${projectNum}`}</h5>
                 <p className="project__description">
                   Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                 </p>

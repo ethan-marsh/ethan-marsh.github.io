@@ -60,7 +60,7 @@ export default class Home extends Component {
           {() => (props =>
             <animated.div className="home__bottom" style={props}>
             <div className="home__bottom-row">
-              <h2 className="home__bottom-subtitle" >
+              <h2 className="home__bottom-subtitle-h2" >
                 Front-End Web Developer / San Francisco
               </h2>
               <ButtonMore
