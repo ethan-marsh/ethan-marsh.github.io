@@ -1,5 +1,5 @@
 .experience {
-  background-color: rgba($black, .85);
+  background-color: #222;
   position: relative;
   color: #ddd;
   padding: 11rem 0;
@@ -7,10 +7,10 @@
 
   &::before {
     content: "";
-    background-image: linear-gradient(to right, rgba(#000, .4) , rgba(#000,.55)), url("/images/experience-bg.png");
+    background-image: linear-gradient(to right, rgba(#000, .55) , rgba(#000,.55)), url("/images/hero-3.jpg");
     background-size: cover;
     filter: brightness(120%);
-    background-position: left center;
+    background-position: left bottom;
     background-repeat: no-repeat;
     position: absolute;
     top: 0;

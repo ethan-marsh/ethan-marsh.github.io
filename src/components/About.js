@@ -1,21 +1,11 @@
 import React, { Component, Fragment } from "react";
 
 export default class About extends Component {
-  componentDidMount = () => {
-    this.section = document.querySelector('.background-left');
-  }
-
-  getPosition = (e) => {
-    const sectionPosition = e.currentTarget.parentNode.parentNode.getBoundingClientRect();
-    console.log(sectionPosition);
-  }
-
-
   render() {
     return (
       <Fragment>
         <div className="background-left">
-          <h4 className="background__title-h4" onClick={this.getPosition}>Background.</h4>
+          <h4 className="background__title-h4">Background.</h4>
         </div>
         <div className="background-right">
           <div className="background__text">

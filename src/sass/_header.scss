@@ -4,6 +4,7 @@
   max-height: 8rem;
   align-items: center;
   border-bottom: 1px solid transparent;
+  transition: all .3s ease-out;
 
   .logo {
     position: relative;
@@ -40,6 +41,7 @@
   &--scrolled {
     background-color: $white;
     border-color: #ccc;
+    transition: all .3s ease-out;
 
     .logo__img {
       &--light {

@@ -14,7 +14,7 @@ export default class Nav extends Component {
             </li>
           </ul>
         </nav> */}
-        <nav className="nav navigation nav-block primary-navigation">
+        <nav className="nav">
           <ul className="nav__links">
             {this.props.nav.map(link => (
               <li className="nav__item" key={link}>

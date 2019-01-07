@@ -24,47 +24,64 @@ class App extends Component {
     nav: ["home", "about", "experience", "folio"],
     activeLink: "home",
     aboutPosition: 0,
-    headerHeight: 0
+    headerHeight: 0,
+    homeOffset: 100,
   };
 
   componentDidMount = () => {
+    // Add scroll event listener to window
     window.addEventListener('scroll', this.handleScroll);
+    // Update the header height state
     this.getHeaderHeight(this.headerRef.current);
   }
 
   componentWillUnmount = () => {
+    // Remove scroll listener from window
     window.removeEventListener('scroll', this.handleScroll);
   }
 
   activateLink = activeLink => {
+    // Activate nav link item
     this.setState({ activeLink });
   };
 
+  // Get bottom position of the header
   getHeaderHeight = (headerNode) => {
     const headerPos = headerNode.getBoundingClientRect(),
           headerHeight = headerPos.bottom;
     this.setState({ headerHeight });
   }
 
-  getAboutPosition = (aboutNode) => {
-    const aboutPos = aboutNode.getBoundingClientRect(),
-          aboutPosition =  aboutPos.top;
-    this.setState({ aboutPosition });
+  // Keep the state updated with the top of the about position
+  getAboutPosition = (node) => {
+    const posObj = node.getBoundingClientRect(),
+          top =  Math.floor(posObj.top);
+    this.setState({ aboutPosition: top });
   }
+
+  // Get amount to move home section
+  transformSection = (windowHeight) => {
+    const homeOffset = Math.floor(this.state.aboutPosition / windowHeight * 100);
+
+    if(homeOffset > 0) {
+      this.setState({ homeOffset });
+    } else
+        this.setState({ homeOffset: 0 });
+    }
 
   handleScroll = (e) => {
-   const scrollY = e.currentTarget.scrollY;
-  //  const innerHeight = e.currentTarget.innerHeight;
-   const aboutPosition = this.getAboutPosition(this.aboutRef.current);
+    // Keep aboutPosition state updated
+    this.getAboutPosition(this.aboutRef.current);
+    // Update padding top while home in view
+    this.transformSection(e.currentTarget.innerHeight);
 
+    // Add class when about position reaches header height
    if (this.state.aboutPosition < this.state.headerHeight) {
     this.headerRef.current.classList.add('header--scrolled');
+    // Update active link
+    this.activateLink("about");
    } else
     this.headerRef.current.classList.remove('header--scrolled');
-  }
-
-  changeHeaderClass = (e) => {
-    console.log(e);
   }
 
   render() {
@@ -79,10 +96,8 @@ class App extends Component {
           />
         </header>
 
+          <Home aboutPosition={this.state.aboutPosition} homeOffset={this.state.homeOffset} />
         <div className="content">
-          <section id="home" className="home">
-            <Home />
-          </section>
 
           <section id="about" className="background" ref={this.aboutRef}>
             <About />

@@ -9,14 +9,17 @@
 .content {
   @extend %grid-base;
 
-  grid-template-rows: 100vh repeat(4, max-content);
+  grid-template-rows: repeat(4, max-content);
   grid-template-areas:
-    "home home home home home home home home home home home home"
     "bckg bckg bckg bckg bckg bckg bckg bckg bckg bckg bckg bckg"
     "expr expr expr expr expr expr expr expr expr expr expr expr"
     "work work work work work work work work work work work work"
     "foot foot foot foot foot foot foot foot foot foot foot foot";
   padding: 0;
+  position: absolute;
+  top: 100vh;
+  left: 0;
+  z-index: 99;
 }
 
 .header,
@@ -44,8 +47,11 @@
 }
 
 .home {
-  grid-area: home;
-  padding-top: 25vh;
+  z-index: -100;
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-height: 100vh;
 }
 
 .background {
