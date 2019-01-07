@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 //* COMPONENTS *//
-import Header from "./Header";
+import Logo from "./Logo";
 import Nav from "./Nav";
 import Home from "./Home";
 import About from "./About";
@@ -27,7 +27,7 @@ class App extends Component {
     return (
       <div className="app">
         <header id="header" className="header">
-          <Header />
+          <Logo />
           <Nav
             nav={this.state.nav}
             activeLink={this.state.activeLink}

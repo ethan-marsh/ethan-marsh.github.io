@@ -1,6 +1,6 @@
 import React from "react";
 
-const Header = () => (
+const Logo = () => (
   <div className="logo">
     <a href="/" className="logo__link">
       <img
@@ -21,4 +21,4 @@ const Header = () => (
   </div>
 );
 
-export default Header;
+export default Logo;
