@@ -14,14 +14,22 @@ import "../sass/main.scss";
 
 // --- APP START --- //
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.headerRef = React.createRef();
+    this.aboutRef = React.createRef();
+  }
+
   state = {
     nav: ["home", "about", "experience", "folio"],
     activeLink: "home",
-    bgPos: 0
+    aboutPosition: 0,
+    headerHeight: 0
   };
 
   componentDidMount = () => {
     window.addEventListener('scroll', this.handleScroll);
+    this.getHeaderHeight(this.headerRef.current);
   }
 
   componentWillUnmount = () => {
@@ -32,22 +40,37 @@ class App extends Component {
     this.setState({ activeLink });
   };
 
+  getHeaderHeight = (headerNode) => {
+    const headerPos = headerNode.getBoundingClientRect(),
+          headerHeight = headerPos.bottom;
+    this.setState({ headerHeight });
+  }
+
+  getAboutPosition = (aboutNode) => {
+    const aboutPos = aboutNode.getBoundingClientRect(),
+          aboutPosition =  aboutPos.top;
+    this.setState({ aboutPosition });
+  }
+
   handleScroll = (e) => {
    const scrollY = e.currentTarget.scrollY;
-   const innerHeight = e.currentTarget.innerHeight;
+  //  const innerHeight = e.currentTarget.innerHeight;
+   const aboutPosition = this.getAboutPosition(this.aboutRef.current);
 
-   if (scrollY >= (innerHeight - 81)) {
-  // Home is 100vh minus headerHeight w/ border
-    document.querySelector('header').classList.add('header--scrolled');
-   } else {
-     document.querySelector('header').classList.remove('header--scrolled');
-   }
+   if (this.state.aboutPosition < this.state.headerHeight) {
+    this.headerRef.current.classList.add('header--scrolled');
+   } else
+    this.headerRef.current.classList.remove('header--scrolled');
+  }
+
+  changeHeaderClass = (e) => {
+    console.log(e);
   }
 
   render() {
     return (
       <div className="app" >
-        <header id="header" className="header">
+        <header id="header" className="header" ref={this.headerRef} >
           <Logo />
           <Nav
             nav={this.state.nav}
@@ -61,7 +84,7 @@ class App extends Component {
             <Home />
           </section>
 
-          <section id="about" className="background">
+          <section id="about" className="background" ref={this.aboutRef}>
             <About />
           </section>
 
