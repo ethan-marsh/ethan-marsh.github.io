@@ -1,6 +1,4 @@
-import React, { Component, Fragment } from "react";
-/* eslint-disable-next-line */
-import { Spring } from "react-spring";
+import React, { Component } from "react";
 
 //* COMPONENTS *//
 import Header from "./Header";
@@ -27,7 +25,7 @@ class App extends Component {
 
   render() {
     return (
-      <Fragment>
+      <div className="app">
         <header id="header" className="header">
           <Header />
           <Nav
@@ -36,29 +34,31 @@ class App extends Component {
             activateLink={this.activateLink}
           />
         </header>
-        <div className="app">
-          <div className="content">
-            <section id="home" className="home">
-              <Home />
-            </section>
 
-            <section id="about" className="background">
-              <About />
-            </section>
+        <div className="content">
 
-            <section id="experience" className="experience">
-              <Experience />
-            </section>
+          <section id="home" className="home">
+            <Home />
+          </section>
 
-            <section id="portfolio" className="portfolio">
-              <Portfolio />
-            </section>
-            <footer id="footer" className="footer">
-              <Footer />
-            </footer>
+          <section id="about" className="background">
+            <About />
+          </section>
+
+          <section id="experience" className="experience">
+            <Experience />
+          </section>
+
+          <section id="portfolio" className="portfolio">
+            <Portfolio />
+          </section>
+
+          <footer id="footer" className="footer">
+            <Footer />
+          </footer>
+
           </div>
         </div>
-      </Fragment>
     );
   }
 }

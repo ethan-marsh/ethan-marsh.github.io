@@ -15,30 +15,6 @@ h5 {
   font-weight: 300;
 }
 
-.nav {
-  &__link {
-    &:link,
-    &:visited {
-      font-family: $font-primary;
-      font-size: 1.1rem;
-      line-height: 1.5em;
-      text-transform: uppercase;
-      letter-spacing: .5px;
-      text-decoration: none;
-    }
-  }
-}
-
-.portfolio {
-  &__link {
-    &:link,
-    &:visited {
-      font-family: $font-display;
-      font-size: 1.4rem;
-      text-decoration: none;
-    }
-  }
-}
 
 
 [class$="-h1"] {
@@ -47,8 +23,7 @@ h5 {
 }
 
 [class$="-h2"] {
-  font-size: 3.3rem;
-  letter-spacing: 1px;
+  font-size: 2.5rem;
 }
 
 [class$="-h3"] {
@@ -66,10 +41,35 @@ h5 {
   line-height: 1.3rem;
 }
 
-
 [class$="-label"] {
   font-size: 1.2rem;
   text-transform: uppercase;
+}
+
+
+.nav {
+  &__link {
+    &:link,
+    &:visited {
+      font-family: $font-primary;
+      font-size: 1.1rem;
+      line-height: 1.5em;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-weight: 400;
+    }
+  }
+}
+
+.portfolio {
+  &__link {
+    &:link,
+    &:visited {
+      font-family: $font-display;
+      font-size: 1.4rem;
+      text-decoration: none;
+    }
+  }
 }
 
 .background {

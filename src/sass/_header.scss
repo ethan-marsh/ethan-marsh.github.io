@@ -1,17 +1,14 @@
 .header {
-  padding: 2.5rem 0;
-  max-height: 8rem;
   background-color: transparent;
 
-  &__logo {
-    &-inner {
-      display: flex;
-      align-content: center;
+  .logo {
+    &__link {
+      display: inline-block;
     }
 
-    &-img {
+    &__img {
       display: block;
-      width: 15rem;
+      width: 12vw;
       height: auto;
       max-height: 100%;
 

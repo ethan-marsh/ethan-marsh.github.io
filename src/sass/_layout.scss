@@ -1,6 +1,14 @@
-.content {
+%grid-base {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
+  grid-gap: 2rem;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.content {
+  @extend %grid-base;
+
   grid-template-rows: 100vh repeat(4, max-content);
   grid-template-areas:
     "home home home home home home home home home home home home"
@@ -8,9 +16,6 @@
     "expr expr expr expr expr expr expr expr expr expr expr expr"
     "work work work work work work work work work work work work"
     "foot foot foot foot foot foot foot foot foot foot foot foot";
-  grid-gap: 2rem;
-  width: 100%;
-  margin: 0 auto;
   padding: 0;
 }
 
@@ -20,10 +25,7 @@
 .experience,
 .portfolio,
 .footer {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-gap: 2rem;
-  width: 100%;
+  @extend %grid-base;
 }
 
 .header {
@@ -31,23 +33,22 @@
   top: 0;
   left: 0;
   z-index: 100;
-  grid-template-areas: "pad-left logo logo .... center nav nav nav nav nav nav pad-right";
+  padding: 2.5rem 0;
+  max-height: 8rem;
   align-items: center;
 
-  &__logo {
-    grid-area: logo;
+  .logo {
+    grid-column: 2 / 6;
   }
 
   .nav {
-    grid-area: nav;
+    grid-column: 6 / -2;
   }
 }
 
 .home {
   grid-area: home;
-  align-items: start;
-  justify-content: center;
-  padding: 11rem 0;
+  padding-top: 25vh;
 }
 
 .background {
