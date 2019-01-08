@@ -15,8 +15,6 @@ h5 {
   font-weight: 300;
 }
 
-
-
 [class$="-h1"] {
   font-size: 4.5rem;
   letter-spacing: 2px;
@@ -47,7 +45,6 @@ h5 {
   text-transform: uppercase;
 }
 
-
 .nav {
   &__link {
     &:link,
@@ -73,12 +70,12 @@ h5 {
   }
 }
 
-.background {
+.about {
   font-size: 1.4rem;
   line-height: 1.5em;
 }
 
-.experience {
+.background {
   font-size: 1.25rem;
   line-height: 1.5em;
 }
@@ -87,4 +84,3 @@ h5 {
   font-size: 1.3rem;
   line-height: 2em;
 }
-

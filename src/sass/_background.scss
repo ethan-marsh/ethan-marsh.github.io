@@ -1,7 +1,29 @@
 .background {
-  background-color: $white;
-  color: #555;
+  background-color: #222;
+  position: relative;
+  color: #ddd;
   padding: 11rem 0;
+  z-index: -2;
+
+  &::before {
+    content: "";
+    background-image: linear-gradient(
+        to right,
+        rgba(#000, 0.05),
+        rgba(#000, 0.05)
+      ),
+      url("/images/bg-keyboard.jpg");
+    background-size: cover;
+    filter: brightness(120%);
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 45%;
+    z-index: -1;
+  }
 
   .section__title {
     grid-column: 2 / 5;
@@ -11,48 +33,58 @@
     grid-column: 5 / -2;
   }
 
-  &__text {
-    & > p {
-      margin-bottom: 3rem;
-      &:last-child {
-        margin-bottom: 9rem;
+  &__list {
+    list-style: none;
+    font-size: 1.3rem;
+  }
+
+  &__item {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(2, max-content);
+    column-gap: 2rem;
+    row-gap: 0.25rem;
+
+    margin-bottom: 5rem;
+    letter-spacing: 0.5px;
+
+    &--certs {
+      margin-bottom: 0.5rem;
+
+      &:first-child {
+        margin-top: 2rem;
       }
     }
   }
-}
 
-.bars {
-  margin: 2rem auto;
-
-  &__bar {
-    width: 100%;
-    background-color: #eee;
-    border-radius: 20rem;
-    line-height: 0.5rem;
-    position: relative;
-
-    &::before {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      border-top-left-radius: 20rem;
-      border-bottom-left-radius: 20rem;
-      background-color: #27ccc0;
-      height: 0.4rem;
-
-      animation: moveInRight 1s loop;
-      -moz-animation: moveInRight 1s loop;
+  .time {
+    &__title-h5 {
+      grid-row: 1 / span 1;
+      grid-column: 1 / span 2;
+      margin-bottom: 1rem;
+      color: #ccc;
     }
 
-    @include fill-bar(70);
-    @include fill-bar(80);
-    @include fill-bar(90);
+    &__sub {
+      grid-row: 2 / span 1;
+      grid-column: 1 / span 2;
+      transform: translateY(-0.5em);
+      font-size: 1.3rem;
+      color: $white;
+    }
+  }
 
-    &-label {
-      display: flex;
-      padding-bottom: 0.4rem;
-      align-content: center;
-      justify-content: space-between;
+  .description {
+    padding: 0 1rem;
+    &__title-h5 {
+      grid-row: 1 / span 1;
+      grid-column: 4 / -1;
+    }
+
+    &__sub {
+      grid-row: 2 / span 1;
+      grid-column: 4 / -1;
+      color: #999;
     }
   }
 }

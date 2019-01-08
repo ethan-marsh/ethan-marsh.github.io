@@ -11,10 +11,10 @@
 
   grid-template-rows: repeat(4, max-content);
   grid-template-areas:
-    "bckg bckg bckg bckg bckg bckg bckg bckg bckg bckg bckg bckg"
-    "expr expr expr expr expr expr expr expr expr expr expr expr"
-    "work work work work work work work work work work work work"
-    "foot foot foot foot foot foot foot foot foot foot foot foot";
+    "about about about about about about about about about about about about"
+    "backg backg backg backg backg backg backg backg backg backg backg backg"
+    "works works works works works works works works works works works works"
+    "footr footr footr footr footr footr footr footr footr footr footr footr";
   padding: 0;
   position: absolute;
   top: 100vh;
@@ -24,8 +24,8 @@
 
 .header,
 .home,
+.about,
 .background,
-.experience,
 .portfolio,
 .footer {
   @extend %grid-base;
@@ -54,18 +54,18 @@
   min-height: 100vh;
 }
 
-.background {
-  grid-area: bckg;
+.about {
+  grid-area: about;
 }
 
-.experience {
-  grid-area: expr;
+.background {
+  grid-area: backg;
 }
 
 .portfolio {
-  grid-area: work;
+  grid-area: works;
 }
 
 .footer {
-  grid-area: foot;
+  grid-area: footr;
 }
