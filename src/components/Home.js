@@ -22,8 +22,6 @@ export default class Home extends Component {
 			left: 0,
 			behavior: "smooth",
 		});
-
-		console.log(scrollNeeded);
 	};
 
 	render() {
@@ -88,13 +86,9 @@ export default class Home extends Component {
 										onClick={e => this.scrollToAbout(e.currentTarget.parentNode.parentNode)}
 									>
 										<Icon
-											name="arrow-down"
-											width="3vh"
-											height="37%"
-											fill="currentColor"
-											stroke="currentColor"
-											strokeWidth="3"
-											strokeLinecap="round"
+											name="arrowDown"
+											width="3vw"
+											strokeWidth="1"
 										/>
 									</ButtonMore>
 								</div>
@@ -115,16 +109,14 @@ const ButtonMore = styled.button`
 	text-decoration: none;
 	background: transparent;
 	border: none;
-	background-position-x: 50%;
-	background-position-y: 100%;
 	transition: color .2s ease-out;
 	outline: none;
+	width: 3vw;
 
 	&:hover,
 	&:active {
 		cursor: pointer;
 		color: #27ccc0;
-		outline: none;
 	}
 `;
 
@@ -132,5 +124,6 @@ const Section = styled.section.attrs(props => ({
 	homeOffset: props.homeOffset,
 }))`
 	transform: translate3d(0, ${props => (-2* (100 - props.homeOffset))}px, 0);
-  `;
+	transition: transform linear;
+	`;
 

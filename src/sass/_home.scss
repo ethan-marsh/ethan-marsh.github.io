@@ -47,27 +47,10 @@
     }
 
     .social-item {
+      position: relative;
+
       &:not(:first-child) {
-        margin-left: 1rem;
-      }
-    }
-
-    .social-link {
-      &:link,
-      &:visited {
-        filter: brightness(190%);
-        transition: all 0.2s ease-in;
-      }
-
-      &:hover,
-      &:active {
-        filter: brightness(150%);
-      }
-
-      &__icon {
-        width: 3rem;
-        height: 3rem;
-        opacity: 0.9;
+        margin-left: 1vw;
       }
     }
   }
