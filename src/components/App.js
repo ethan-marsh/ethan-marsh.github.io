@@ -61,12 +61,11 @@ class App extends Component {
 
   // Get amount to move home section
   transformSection = (windowHeight) => {
-    const homeOffset = Math.floor(this.state.aboutPosition / windowHeight * 100);
-
+    const homeOffset = Math.floor(this.state.aboutPosition / windowHeight * 100); // get a round number
     if(homeOffset > 0) {
       this.setState({ homeOffset });
     } else
-        this.setState({ homeOffset: 0 });
+        this.setState({ homeOffset: 0 }); // don't keep setting it once it's out of view
     }
 
   handleScroll = (e) => {
@@ -75,13 +74,12 @@ class App extends Component {
     // Update padding top while home in view
     this.transformSection(e.currentTarget.innerHeight);
 
-    // Add class when about position reaches header height
-   if (this.state.aboutPosition < this.state.headerHeight) {
-    this.headerRef.current.classList.add('header--scrolled');
-    // Update active link
-    this.activateLink("about");
+    // Toggle class when about position reaches header height
+    if (this.state.aboutPosition < this.state.headerHeight) {
+      this.headerRef.current.classList.add('header--scrolled');
+
    } else
-    this.headerRef.current.classList.remove('header--scrolled');
+     this.headerRef.current.classList.remove('header--scrolled');
   }
 
   render() {
@@ -95,8 +93,11 @@ class App extends Component {
             activateLink={this.activateLink}
           />
         </header>
+          <Home
+            aboutPosition={this.state.aboutPosition}
+            homeOffset={this.state.homeOffset}
+          />
 
-          <Home aboutPosition={this.state.aboutPosition} homeOffset={this.state.homeOffset} />
         <div className="content">
 
           <section id="about" className="background" ref={this.aboutRef}>
