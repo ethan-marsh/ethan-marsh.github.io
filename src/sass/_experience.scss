@@ -7,10 +7,10 @@
 
   &::before {
     content: "";
-    background-image: linear-gradient(to right, rgba(#000, .55) , rgba(#000,.55)), url("/images/hero-3.jpg");
+    background-image: linear-gradient(to right, rgba(#000, .05) , rgba(#000,.05)), url("/images/bg-keyboard.jpg");
     background-size: cover;
     filter: brightness(120%);
-    background-position: left bottom;
+    background-position: center;
     background-repeat: no-repeat;
     position: absolute;
     top: 0;

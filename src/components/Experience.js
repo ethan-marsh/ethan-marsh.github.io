@@ -1,39 +1,6 @@
 import React, { Component, Fragment } from "react";
 
-const jobs = {
-  job1: {
-    title: "Penske Motor Group",
-    years: 3,
-    yearSpan: "2017-19",
-    description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat consectetur adipisci veritatis nobis, autem quibusdam dicta aspernatur magni porro, Neque voluptates aliquid impedit."
-  },
-  job2: {
-    title: "Penske Motor Group",
-    years: 1,
-    yearSpan: "2015-16",
-    description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat consectetur adipisci veritatis nobis, autem quibusdam dicta aspernatur magni porro, Neque voluptates aliquid impedit."
-  },
-  job3: {
-    title: "MBUSA",
-    years: 1,
-    yearSpan: "2014-15",
-    description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat consectetur adipisci veritatis nobis, autem quibusdam dicta aspernatur magni porro, Neque voluptates aliquid impedit."
-  }
-};
-
-const certifications = {
-  cert1: {
-    title: "Harvard CS50",
-    time: "2018"
-  },
-  cert2: {
-    title: "B.S, University of California, Davis",
-    time: "2014"
-  }
-};
+import { jobs, certifications } from "Data";
 
 export default class Experience extends Component {
   render() {
@@ -61,6 +28,10 @@ export default class Experience extends Component {
                 <h5 className="description__title-h5">
                   {certifications[key].title}
                 </h5>
+                {certifications[key].description &&
+                  (
+                    <p className="description__sub" style={{transform: 'translateY(-1rem)'}}>{certifications[key].description}</p>
+                  )}
               </li>
             ))}
           </ul>

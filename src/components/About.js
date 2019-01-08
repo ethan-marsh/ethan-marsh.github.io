@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import {aboutText, aboutSkills} from "Data";
 
 export default class About extends Component {
   render() {
@@ -9,18 +10,11 @@ export default class About extends Component {
         </div>
         <div className="background-right">
           <div className="background__text">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Cupiditate quam vero eligendi odit nostrum numquam ratione,
-              officia quidem inventore magni libero perspiciatis esse provident
-              quisquam, mollitia eveniet ex cumque voluptatibus?
+            {Object.keys(aboutText).map(key => (
+            <p key={key}>
+              {aboutText[key]}
             </p>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Cupiditate quam vero eligendi odit nostrum numquam ratione,
-              officia quidem inventore magni libero perspiciatis esse provident
-              quisquam, mollitia eveniet ex cumque voluptatibus?
-            </p>
+            ))}
           </div>
           <div className="background__bars bars">
             <div className="bars__bar-label">
