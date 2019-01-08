@@ -6,10 +6,10 @@ export default class Experience extends Component {
   render() {
     return (
       <Fragment>
-        <div className="experience-left">
-          <h4 className="experience__title-h4">Experience.</h4>
+        <div className="section__title">
+          <h3 className="section__title-h3">Background.</h3>
         </div>
-        <div className="experience-right">
+        <div className="section__content">
           <ul className="experience__list">
             {Object.keys(jobs).map(key => (
               <li className="experience__item" key={key}>

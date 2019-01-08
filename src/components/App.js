@@ -21,7 +21,7 @@ class App extends Component {
   }
 
   state = {
-    nav: ["home", "about", "experience", "folio"],
+    nav: ["home", "about", "background", "work"],
     activeLink: "home",
     aboutPosition: 0,
     headerHeight: 0,
@@ -104,11 +104,11 @@ class App extends Component {
             <About />
           </section>
 
-          <section id="experience" className="experience">
+          <section id="background" className="experience">
             <Experience />
           </section>
 
-          <section id="portfolio" className="portfolio">
+          <section id="work" className="portfolio">
             <Portfolio />
           </section>
 

@@ -20,11 +20,11 @@
     z-index: -1;
   }
 
-  &-left {
+  .section__title {
     grid-column: 2 / 5;
   }
 
-  &-right {
+  .section__content {
     grid-column: 5 / -2;
   }
 

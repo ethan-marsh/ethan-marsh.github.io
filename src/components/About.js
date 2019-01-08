@@ -5,10 +5,10 @@ export default class About extends Component {
   render() {
     return (
       <Fragment>
-        <div className="background-left">
-          <h4 className="background__title-h4">Background.</h4>
+        <div className="section__title">
+          <h3 className="section__title-h3">About.</h3>
         </div>
-        <div className="background-right">
+        <div className="section__content">
           <div className="background__text">
             {Object.keys(aboutText).map(key => (
             <p key={key}>

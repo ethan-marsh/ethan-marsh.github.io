@@ -3,11 +3,11 @@
   color: #555;
   padding: 11rem 0;
 
-  &-left {
+  .section__title {
     grid-column: 2 / 5;
   }
 
-  &-right {
+  .section__content {
     grid-column: 5 / -2;
   }
 
