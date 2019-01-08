@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Transition, animated, config } from "react-spring";
 
 import Social from "./Social";
+import {Icon} from "Elements";
 
 export default class Home extends Component {
 	scrollToAbout = el => {
@@ -78,7 +79,15 @@ export default class Home extends Component {
 										className="home__bottom-more"
 										onClick={e => this.scrollToAbout(e.currentTarget)}
 									>
-										&or;
+										<Icon
+											name="arrow-down"
+											width="3vh"
+											height="37%"
+											fill="currentColor"
+											stroke="currentColor"
+											strokeWidth="3"
+											strokeLinecap="round"
+										/>
 									</ButtonMore>
 								</div>
 								<div className="home__bottom__links">
@@ -94,12 +103,17 @@ export default class Home extends Component {
 }
 
 const ButtonMore = styled.button`
+	color: #fff;
+	text-decoration: none;
 	background: transparent;
 	border: none;
+	background-position-x: 50%;
+	background-position-y: 100%;
+	transition: color .2s ease-out;
 
 	&:hover {
 		cursor: pointer;
-		color: #6bf;
+		color: #27ccc0;
 	}
 `;
 
@@ -108,3 +122,4 @@ const Section = styled.section.attrs(props => ({
 }))`
 	transform: translate3d(0, ${props => (-2 * (100 - props.homeOffset))}px, 0);
   `;
+
