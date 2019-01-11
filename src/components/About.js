@@ -1,4 +1,6 @@
 import React, { Component, Fragment } from "react";
+import styled from "styled-components";
+
 // eslint-disable-next-line
 import { aboutText, aboutSkills } from "data";
 

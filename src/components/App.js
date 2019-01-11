@@ -26,7 +26,7 @@ class App extends Component {
     activeLink: "home",
     headerIsScrolled: false,
     aboutPosition: 0,
-    headerHeight: 80,
+    headerHeight: 79,
     homeOffset: 100
   };
 

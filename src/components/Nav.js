@@ -29,7 +29,7 @@ const LinkNav = styled.a.attrs({
     text-decoration: none;
     font-weight: 400;
     opacity: 0.6;
-    transition: all .2s ease-out;
+    transition: opacity .2s ease-out;
     color: ${props => (props.headerIsScrolled ? "#000" : "#fff")};
   }
 
