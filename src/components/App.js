@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 
 //* COMPONENTS *//
-import Logo from "./Logo";
-import Nav from "./Nav";
+// import Logo from "./Logo";
+// import Nav from "./Nav";
+import Header from "./Header";
 import Home from "./Home";
 import About from "./About";
 import Background from "./Background";
@@ -23,8 +24,9 @@ class App extends Component {
   state = {
     nav: ["home", "about", "background", "work"],
     activeLink: "home",
+    headerIsScrolled: false,
     aboutPosition: 0,
-    headerHeight: 0,
+    headerHeight: 80,
     homeOffset: 100
   };
 
@@ -32,7 +34,7 @@ class App extends Component {
     // Add scroll event listener to window
     window.addEventListener("scroll", this.handleScroll);
     // Update the header height state
-    this.getHeaderHeight(this.headerRef.current);
+    // this.getHeaderHeight(this.headerRef.current);
   };
 
   componentWillUnmount = () => {
@@ -43,13 +45,6 @@ class App extends Component {
   activateLink = activeLink => {
     // Activate nav link item
     this.setState({ activeLink });
-  };
-
-  // Get bottom position of the header
-  getHeaderHeight = headerNode => {
-    const headerPos = headerNode.getBoundingClientRect(),
-      headerHeight = headerPos.bottom;
-    this.setState({ headerHeight });
   };
 
   // Keep the state updated with the top of the about position
@@ -77,21 +72,24 @@ class App extends Component {
 
     // Toggle class when about position reaches header height
     if (this.state.aboutPosition < this.state.headerHeight) {
-      this.headerRef.current.classList.add("header--scrolled");
-    } else this.headerRef.current.classList.remove("header--scrolled");
+      this.setState({ headerIsScrolled: true });
+      //this.headerRef.current.classList.add("header--scrolled");
+    } else this.setState({ headerIsScrolled: false });
+    //this.headerRef.current.classList.remove("header--scrolled");
   };
 
   render() {
     return (
       <div className="app">
-        <header id="header" className="header" ref={this.headerRef}>
-          <Logo />
-          <Nav
-            nav={this.state.nav}
-            activeLink={this.state.activeLink}
-            activateLink={this.activateLink}
-          />
-        </header>
+        <Header
+          ref={this.headerRef}
+          headerIsScrolled={this.state.headerIsScrolled}
+          height={this.state.headerHeight}
+          nav={this.state.nav}
+          activeLink={this.state.activeLink}
+          activateLink={this.activateLink}
+        />
+
         <Home
           aboutPosition={this.state.aboutPosition}
           homeOffset={this.state.homeOffset}

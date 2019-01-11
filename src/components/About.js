@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
-import {aboutText, aboutSkills} from "Data";
+// eslint-disable-next-line
+import { aboutText, aboutSkills } from "data";
 
 export default class About extends Component {
   render() {
@@ -11,9 +12,7 @@ export default class About extends Component {
         <div className="section__content">
           <div className="about__text">
             {Object.keys(aboutText).map(key => (
-            <p key={key}>
-              {aboutText[key]}
-            </p>
+              <p key={key}>{aboutText[key]}</p>
             ))}
           </div>
           <div className="about__bars bars">
@@ -38,7 +37,7 @@ export default class About extends Component {
             <div className="bars__bar bars__bar--pct-90">&nbsp;</div>
           </div>
         </div>
-        </Fragment>
+      </Fragment>
     );
   }
 }

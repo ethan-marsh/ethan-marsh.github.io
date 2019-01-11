@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 
-import { jobs, certifications } from "Data";
+import { jobs, certifications } from "data";
 
 export default class Background extends Component {
   render() {

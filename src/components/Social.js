@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
-import {Icon} from "Elements";
+import { Icon } from "elements";
 
 const socialLinks = {
   linkedin: {
@@ -11,7 +11,7 @@ const socialLinks = {
   github: {
     href: "https://github.com/ethan-marsh",
     icon: "icon-github.png"
-  },
+  }
   // email: {
   //   href: "mailto:ethancmarsh@yahoo.com?subject=Saw%20Your%20Site!",
   //   icon: "icon-email.png"
@@ -32,15 +32,15 @@ export default class Social extends Component {
               href={socialLinks[key].href}
               className={`social-link social-link--${key}`}
             >
-            <Icon
+              <Icon
                 name={key}
                 width="3vw"
                 height="3vw"
                 fill="currentColor"
                 stroke="currentColor"
                 strokeWidth="2"
-            />
-          </StyledIconLink>
+              />
+            </StyledIconLink>
           </li>
         ))}
       </ul>
@@ -54,7 +54,7 @@ const StyledIconLink = styled.a`
   background-color: transparent;
   display: flex;
   justify-content: center;
-  transition: all .2s ease;
+  transition: all 0.2s ease;
 
   &:hover {
     color: #007a81;

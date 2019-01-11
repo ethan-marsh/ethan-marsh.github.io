@@ -1,5 +1,44 @@
 import React, { Component, Fragment } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
+
+const StyledNav = styled.nav`
+  grid-column: 6 / -2;
+  text-align: right;
+`;
+
+const StyledNavLinksUl = styled.ul`
+  display: flex;
+  justify-content: flex-end;
+  list-style: none;
+
+  & li:not(:first-child) {
+    padding-left: 3rem;
+  }
+`;
+
+const LinkNav = styled.a.attrs({
+  href: `#${props => props.name}`,
+  color: props => props.headerIsScrolled
+})`
+  :link,
+  :visited {
+    font-family: $font-primary;
+    font-size: 1.1rem;
+    line-height: 1.5em;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 400;
+    opacity: 0.6;
+    transition: all .2s ease-out;
+    color: ${props => (props.headerIsScrolled ? "#000" : "#fff")};
+  }
+
+  :hover,
+  :active {
+    opacity: .9
+  },
+
+`;
 
 export default class Nav extends Component {
   render() {
@@ -14,34 +53,21 @@ export default class Nav extends Component {
             </li>
           </ul>
         </nav> */}
-        <nav className="nav">
-          <ul className="nav__links">
+        <StyledNav>
+          <StyledNavLinksUl>
             {this.props.nav.map(link => (
-              <li className="nav__item" key={link}>
-                <NavLink
-                  href={`#${link}`}
+              <li key={link}>
+                <LinkNav
                   name={link}
-                  className="nav__link"
-                  active={this.props.activeLink === link}
-                  onClick={e => this.props.activateLink(e.currentTarget.name)}
+                  headerIsScrolled={this.props.headerIsScrolled}
                 >
                   {link}
-                </NavLink>
+                </LinkNav>
               </li>
             ))}
-          </ul>
-        </nav>
+          </StyledNavLinksUl>
+        </StyledNav>
       </Fragment>
     );
   }
 }
-
-const NavLink = styled.a`
-  opacity: 0.6;
-
-  ${props =>
-    props.active &&
-    css`
-      opacity: 9;
-    `}
-`;

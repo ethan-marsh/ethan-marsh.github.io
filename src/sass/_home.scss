@@ -1,6 +1,6 @@
 .home {
-  background-image: linear-gradient(rgba(#000, 0.4), rgba(#000,0.4)),
-    url("/images/hero-3.png");
+  background-image: linear-gradient(rgba(#000, 0.4), rgba(#000, 0.4)),
+    url("/images/hero-alt.jpg");
   background-attachment: scroll;
   filter: contrast(110%);
   background-size: cover;
@@ -18,16 +18,14 @@
   }
 
   &__title {
-    display:flex;
+    display: flex;
     align-items: flex-end;
-
   }
 
   &__divider {
   }
 
   &__bottom {
-
     &-row {
       display: flex;
       justify-content: space-between;
