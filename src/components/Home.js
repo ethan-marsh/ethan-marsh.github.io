@@ -52,13 +52,13 @@ const StyledRow = styled.div`
 const Row = animated(StyledRow);
 
 const ButtonScrollDown = styled.button`
-  color: #fff;
+  color: ${props => props.theme.white};
   text-decoration: none;
   background: transparent;
   border: none;
-  transition: color 0.2s ease-out;
   outline: none;
   width: 3vw;
+  transition: color 0.2s ease-out;
 
   &:hover,
   &:active {

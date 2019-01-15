@@ -48,7 +48,7 @@ class Page extends Component {
       <ThemeProvider theme={theme}>
         <StyledPage>
           <Meta />
-          <Header nav={["home","about","background","work"]}/>
+          <Header />
           <Inner>{this.props.children}</Inner>
         </StyledPage>
       </ThemeProvider>
