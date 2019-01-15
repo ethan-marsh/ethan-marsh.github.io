@@ -1,9 +1,71 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { Transition, animated, config } from "react-spring";
-
+import { Grid } from "./styles/Grid";
 import Social from "./Social";
 import { Icon } from "elements";
+
+const SectionHome = styled(Grid).attrs({
+  as: "section"
+})`
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -100;
+  height: 100vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("/images/hero-alt.jpg");
+  background-attachment: scroll;
+  filter: contrast(110%);
+  background-size: cover;
+  background-position: 50% 20%;
+  background-repeat: no-repeat;
+  color: #fff;
+  transform: translate3d(0, ${props => -2 * (100 - props.homeOffset)}px, 0);
+  transition: transform ease;
+
+  & > div {
+    grid-column: 2/-2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  h1 {
+    font-size: 4.5rem;
+    letter-spacing: 2px;
+    align-self: flex-start;
+  }
+`;
+
+const StyledRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 3rem 0 2rem;
+  flex-wrap: nowrap;
+
+  h2 {
+    font-size: 2.5rem;
+  }
+`;
+
+const Row = animated(StyledRow);
+
+const ButtonScrollDown = styled.button`
+  color: #fff;
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  transition: color 0.2s ease-out;
+  outline: none;
+  width: 3vw;
+
+  &:hover,
+  &:active {
+    cursor: pointer;
+    color: #27ccc0;
+  }
+`;
 
 export default class Home extends Component {
   scrollToAbout = el => {
@@ -26,27 +88,23 @@ export default class Home extends Component {
   };
 
   render() {
+    const { ...props } = this.props;
+
     return (
-      <Section id="home" className="home" homeOffset={this.props.homeOffset}>
-        <div className="home-inner">
-          <div className="home__title">
-            <Transition
-              native
-              items={{ item: true }}
-              from={{ opacity: 0 }}
-              enter={{ opacity: 1 }}
-              leave={{ opacity: 0 }}
-              config={{ ...config.molasses }}
-            >
-              {() => props => (
-                <animated.h1
-                  className="home__title-h1"
-                  style={props}
-                  children={"Ethan Marsh"}
-                />
-              )}
-            </Transition>
-          </div>
+      <SectionHome {...props}>
+        <div>
+          <Transition
+            native
+            items={{ item: true }}
+            from={{ opacity: 0 }}
+            enter={{ opacity: 1 }}
+            leave={{ opacity: 0 }}
+            config={{ ...config.molasses }}
+          >
+            {() => props => (
+              <animated.h1 style={props} children={"Ethan Marsh"} />
+            )}
+          </Transition>
 
           <Transition
             native
@@ -55,13 +113,7 @@ export default class Home extends Component {
             leave={{ transform: "scaleX(0)", opacity: 0 }}
             config={{ ...config.slow }}
           >
-            {() => props => (
-              <animated.div
-                style={props}
-                className="home__divider"
-                children={<hr />}
-              />
-            )}
+            {() => props => <animated.hr style={props} />}
           </Transition>
 
           <Transition
@@ -73,51 +125,19 @@ export default class Home extends Component {
             delay={1000}
           >
             {() => props => (
-              <animated.div className="home__bottom" style={props}>
-                <div className="home__bottom-row">
-                  <h2 className="home__bottom-subtitle-h2">
-                    Front-End Web Developer / San Francisco
-                  </h2>
-                  <ButtonMore
-                    className="home__bottom-more"
-                    onClick={e =>
-                      this.scrollToAbout(e.currentTarget.parentNode.parentNode)
-                    }
-                  >
-                    <Icon name="arrowDown" width="3vw" strokeWidth="1" />
-                  </ButtonMore>
-                </div>
-                <div className="home__bottom__links">
-                  <Social />
-                </div>
-              </animated.div>
+              <Row style={props}>
+                <h2>Front-End Web Developer / San Francisco</h2>
+                <ButtonScrollDown
+                  onClick={e => this.scrollToAbout(e.currentTarget)}
+                >
+                  <Icon name="arrowDown" width="3vw" strokeWidth="1" />
+                </ButtonScrollDown>
+              </Row>
             )}
           </Transition>
+          <Social />
         </div>
-      </Section>
+      </SectionHome>
     );
   }
 }
-
-const ButtonMore = styled.button`
-  color: #fff;
-  text-decoration: none;
-  background: transparent;
-  border: none;
-  transition: color 0.2s ease-out;
-  outline: none;
-  width: 3vw;
-
-  &:hover,
-  &:active {
-    cursor: pointer;
-    color: #27ccc0;
-  }
-`;
-
-const Section = styled.section.attrs(props => ({
-  homeOffset: props.homeOffset
-}))`
-  transform: translate3d(0, ${props => -2 * (100 - props.homeOffset)}px, 0);
-  transition: transform linear;
-`;

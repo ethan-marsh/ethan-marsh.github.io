@@ -17,8 +17,7 @@ const StyledNavLinksUl = styled.ul`
 `;
 
 const LinkNav = styled.a.attrs({
-  href: `#${props => props.name}`,
-  color: props => props.headerIsScrolled
+  href: `#${props => props.name}`
 })`
   :link,
   :visited {
@@ -60,9 +59,8 @@ export default class Nav extends Component {
                 <LinkNav
                   name={link}
                   headerIsScrolled={this.props.headerIsScrolled}
-                >
-                  {link}
-                </LinkNav>
+                  children={link}
+                />
               </li>
             ))}
           </StyledNavLinksUl>

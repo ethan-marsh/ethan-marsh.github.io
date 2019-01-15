@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-
 import { Icon } from "elements";
 
 const socialLinks = {
@@ -22,16 +21,35 @@ const socialLinks = {
   // }
 };
 
+const IconList = styled.ul`
+  list-style: none;
+  display: flex;
+
+  li:not(:first-child) {
+    margin-left: 1vw;
+  }
+`;
+
+const StyledIconLink = styled.a`
+  border-radius: 50%;
+  color: #ccc;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  transition: all 0.2s ease;
+
+  :hover {
+    color: #007a81;
+  }
+`;
+
 export default class Social extends Component {
   render() {
     return (
-      <ul className="home__bottom__links-list">
+      <IconList>
         {Object.keys(socialLinks).map(key => (
-          <li className="social-item" key={key}>
-            <StyledIconLink
-              href={socialLinks[key].href}
-              className={`social-link social-link--${key}`}
-            >
+          <li key={key}>
+            <StyledIconLink href={socialLinks[key].href}>
               <Icon
                 name={key}
                 width="3vw"
@@ -43,20 +61,7 @@ export default class Social extends Component {
             </StyledIconLink>
           </li>
         ))}
-      </ul>
+      </IconList>
     );
   }
 }
-
-const StyledIconLink = styled.a`
-  border-radius: 50%;
-  color: #555;
-  background-color: transparent;
-  display: flex;
-  justify-content: center;
-  transition: all 0.2s ease;
-
-  &:hover {
-    color: #007a81;
-  }
-`;

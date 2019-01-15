@@ -12,7 +12,7 @@ const LogoImage = styled.img`
   position: absolute;
   top: 0;
   left: 0;
-  transition: all 0.3s ease-out;
+  transition: all 0.3s cubic-bezier(0.11, 0.68, 0.89, 0.99);
 `;
 
 const LogoDark = styled(LogoImage).attrs({
@@ -21,7 +21,7 @@ const LogoDark = styled(LogoImage).attrs({
   title: "ethanmarsh.com"
 })`
   opacity: 0;
-  transform: translate3d(0, 2rem, 0);
+  transform: translate3d(0, 3rem, 0);
   ${props =>
     props.up &&
     css`
@@ -40,7 +40,7 @@ const LogoLight = styled(LogoImage).attrs({
   ${props =>
     props.up &&
     css`
-      transform: translate3d(0, -2rem, 0);
+      transform: translate3d(0, -3rem, 0);
       opacity: 0;
     `}
 `;

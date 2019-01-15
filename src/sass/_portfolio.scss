@@ -1,7 +1,4 @@
 .portfolio {
-  padding: 11rem 0;
-  background-color: $white;
-
   // Titles and project categories
   &__categories {
     grid-column: 2 / span 4;
@@ -12,9 +9,12 @@
 
   &__link:link,
   &__link:visited {
-    color: $black;
+    color: black;
     opacity: 0.5;
     transition: opacity 0.5s ease-in-out;
+    font-family: Raleway, sans-serif;
+    font-size: 1.4rem;
+    text-decoration: none;
   }
 
   &__link:hover,
@@ -41,7 +41,7 @@
   height: 60vh;
   max-height: 60rem;
   width: 20rem;
-  box-shadow: -1px 5px 2rem rgba($black, 0.5);
+  box-shadow: -1px 5px 2rem rgba(black, 0.5);
   transition: all 0.5s ease-in;
 
   &--is-active {
@@ -67,7 +67,7 @@
     top: 0;
     left: 0;
     padding-left: 1rem;
-    background: rgba($white, 0.8);
+    background: rgba(white, 0.8);
     height: 100%;
     width: 40%;
 
@@ -88,11 +88,11 @@
   }
 
   &__description {
-   // used to be a link
+    // used to be a link
   }
 
   &__button {
-    background-color: rgba($white, 0.8);
+    background-color: rgba(white, 0.8);
     color: #555;
     border: none;
     padding: 1rem 0.5rem;

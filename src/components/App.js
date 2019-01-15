@@ -1,17 +1,30 @@
 import React, { Component } from "react";
+import styled from "styled-components";
 
 //* COMPONENTS *//
-// import Logo from "./Logo";
-// import Nav from "./Nav";
 import Header from "./Header";
 import Home from "./Home";
 import About from "./About";
 import Background from "./Background";
 import Portfolio from "./Portfolio";
 import Footer from "./Footer";
+import { Grid } from "./styles/Grid";
 
 //* STYLES *//
 import "../sass/main.scss";
+
+const MainContent = styled(Grid)`
+  grid-auto-rows: max-content;
+  position: absolute;
+  top: 100vh;
+  left: 0;
+  z-index: 99;
+  grid-template-areas:
+    "about about about about about about about about about about about about"
+    "backg backg backg backg backg backg backg backg backg backg backg backg"
+    "works works works works works works works works works works works works"
+    "footr footr footr footr footr footr footr footr footr footr footr footr";
+`;
 
 // --- APP START --- //
 class App extends Component {
@@ -67,7 +80,8 @@ class App extends Component {
   handleScroll = e => {
     // Keep aboutPosition state updated
     this.getAboutPosition(this.aboutRef.current);
-    // Update padding top while home in view
+
+    // Translate the home section up slower
     this.transformSection(e.currentTarget.innerHeight);
 
     // Toggle class when about position reaches header height
@@ -82,7 +96,6 @@ class App extends Component {
     return (
       <div className="app">
         <Header
-          ref={this.headerRef}
           headerIsScrolled={this.state.headerIsScrolled}
           height={this.state.headerHeight}
           nav={this.state.nav}
@@ -91,27 +104,27 @@ class App extends Component {
         />
 
         <Home
+          id="home"
+          className="home"
           aboutPosition={this.state.aboutPosition}
           homeOffset={this.state.homeOffset}
         />
 
-        <div className="content">
-          <section id="about" className="about" ref={this.aboutRef}>
-            <About />
-          </section>
-
-          <section id="background" className="background">
-            <Background />
-          </section>
-
-          <section id="work" className="portfolio">
-            <Portfolio />
-          </section>
-
-          <footer id="footer" className="footer">
-            <Footer />
-          </footer>
-        </div>
+        <MainContent>
+          <About
+            forwardedRef={this.aboutRef}
+            id="about"
+            className="about"
+            title="about"
+          />
+          <Background
+            id="background"
+            className="background"
+            title="background"
+          />
+          <Portfolio id="work" className="portfolio" />
+          <Footer id="footer" className="footer" />
+        </MainContent>
       </div>
     );
   }

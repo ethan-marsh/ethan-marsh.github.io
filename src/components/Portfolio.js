@@ -1,4 +1,7 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
+import { Section } from "./styles/Section";
+
+import "../sass/_portfolio.scss";
 
 export default class Portfolio extends Component {
   handleProjectClick = e => {
@@ -16,8 +19,9 @@ export default class Portfolio extends Component {
   };
 
   render() {
+    const { ...props } = this.props;
     return (
-      <Fragment>
+      <Section {...props}>
         <ul className="portfolio__categories">
           {["All", "Professional", "Personal", "Playground"].map(link => (
             <li key={link}>
@@ -53,7 +57,7 @@ export default class Portfolio extends Component {
             </figure>
           ))}
         </div>
-      </Fragment>
+      </Section>
     );
   }
 }
