@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styled, { ThemeProvider, injectGlobal } from "styled-components";
+import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
 import Meta from "./Meta";
 import Header from "./Header";
 
@@ -24,7 +24,7 @@ const Inner = styled.div`
   padding: 0;
 `;
 
-injectGlobal`
+createGlobalStyle`
   html {
     box-sizing: border-box;
     font-size: 62.5%;
@@ -48,7 +48,7 @@ class Page extends Component {
       <ThemeProvider theme={theme}>
         <StyledPage>
           <Meta />
-          <Header />
+          <Header nav={["home","about","background","work"]}/>
           <Inner>{this.props.children}</Inner>
         </StyledPage>
       </ThemeProvider>

@@ -16,9 +16,7 @@ const StyledNavLinksUl = styled.ul`
   }
 `;
 
-const LinkNav = styled.a.attrs({
-  href: `#${props => props.name}`
-})`
+const LinkNav = styled.a`
   :link,
   :visited {
     font-family: $font-primary;
@@ -39,6 +37,8 @@ const LinkNav = styled.a.attrs({
 
 `;
 
+const nav = ["home", "about", "background", "work"];
+
 export default class Nav extends Component {
   render() {
     return (
@@ -54,10 +54,11 @@ export default class Nav extends Component {
         </nav> */}
         <StyledNav>
           <StyledNavLinksUl>
-            {this.props.nav.map(link => (
+            {nav.map(link => (
               <li key={link}>
                 <LinkNav
                   name={link}
+                  href={`#${link}`}
                   headerIsScrolled={this.props.headerIsScrolled}
                   children={link}
                 />

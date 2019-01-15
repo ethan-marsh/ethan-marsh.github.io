@@ -2,7 +2,7 @@ import React from "react";
 import Helmet from "react-helmet";
 
 const Meta = () => (
-  <>
+  <Helmet>
     <meta charset="utf-8" />
     <meta
       name="viewport"
@@ -15,7 +15,7 @@ const Meta = () => (
       type="text/css"
     />
     <title>Ethan Marsh</title>
-  </>
+  </Helmet>
 );
 
 export default Meta;
