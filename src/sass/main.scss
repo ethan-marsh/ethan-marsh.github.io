@@ -1,29 +1,29 @@
-// VARIABLES
-$font-primary: "Helvetica Neue", "Open Sans", sans-serif;
-$font-display: "Raleway", sans-serif;
-$white: #fff;
-$black: #000;
+// // VARIABLES
+// $font-primary: "Helvetica Neue", "Open Sans", sans-serif;
+// $font-display: "Raleway", sans-serif;
+// $white: #fff;
+// $black: #000;
 
-// RESET
-*,
-*::after,
-*::before {
-  box-sizing: inherit;
-  margin: 0;
-  padding: 0;
-}
+// // RESET
+// *,
+// *::after,
+// *::before {
+//   box-sizing: inherit;
+//   margin: 0;
+//   padding: 0;
+// }
 
-html {
-  font-size: 62.5%; // 1rem = 10px @ default 16px
-}
+// html {
+//   font-size: 62.5%; // 1rem = 10px @ default 16px
+// }
 
-body {
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  font-family: $font-primary;
-  color: $black;
-  font-weight: 300;
-}
+// body {
+//   box-sizing: border-box;
+//   -webkit-font-smoothing: antialiased;
+//   font-family: $font-primary;
+//   color: $black;
+//   font-weight: 300;
+// }
 
 // UNIVERSAL
 h1,
