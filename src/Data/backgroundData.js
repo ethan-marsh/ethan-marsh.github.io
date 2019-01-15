@@ -1,4 +1,4 @@
-export const jobs = {
+const jobs = {
   job1: {
     title: "Marketing Operations Penske Motor Group",
     years: 3,
@@ -31,3 +31,5 @@ export const jobs = {
     description: "Bachelor of Science"
   }
 };
+
+export {jobs};

@@ -1,18 +1,19 @@
 import React, { Component } from "react";
 import styled, { css } from "styled-components";
-
+import {absolute} from './styles/utilities'
 const StyledLogo = styled.div`
   grid-column: 2 / 6;
-  position: relative;
-`;
+  ${absolute({})};
+  top: 35%;
+  `;
 
-const LogoImage = styled.img`
-  width: 15vw;
+  const LogoImage = styled.img`
+  width: 13vw;
   height: auto;
-  position: absolute;
-  top: 0;
-  left: 0;
-  transition: all 0.3s cubic-bezier(0.11, 0.68, 0.89, 0.99);
+  ${absolute({})};
+  max-height: 8rem;
+  overflow-y: hidden;
+  transition: all 0.3s ease-out;
 `;
 
 const LogoDark = styled(LogoImage).attrs({
@@ -21,7 +22,7 @@ const LogoDark = styled(LogoImage).attrs({
   title: "ethanmarsh.com"
 })`
   opacity: 0;
-  transform: translate3d(0, 3rem, 0);
+  transform: translate3d(0, 4rem, 0);
   ${props =>
     props.up &&
     css`
@@ -40,7 +41,7 @@ const LogoLight = styled(LogoImage).attrs({
   ${props =>
     props.up &&
     css`
-      transform: translate3d(0, -3rem, 0);
+      transform: translate3d(0, -4rem, 0);
       opacity: 0;
     `}
 `;
