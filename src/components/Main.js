@@ -14,6 +14,7 @@ import "../sass/main.scss";
 
 const MainContent = styled(Grid)`
   grid-auto-rows: max-content;
+  grid-auto-flow: row;
   position: absolute;
   top: 100vh;
   left: 0;

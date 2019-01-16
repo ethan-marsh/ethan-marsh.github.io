@@ -14,6 +14,7 @@ const StyledHeader = styled(Grid).attrs({
   height: ${props => props.height || "8rem"}; /*use unit when using*/
   max-height: 8rem;
   align-items: center;
+  justify-content: space-between;
   border-bottom: 1px solid transparent;
 
   ${props =>

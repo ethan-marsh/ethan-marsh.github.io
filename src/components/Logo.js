@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import styled, { css } from "styled-components";
-import {absolute} from './styles/utilities'
+import { absolute } from "./styles/utilities";
 const StyledLogo = styled.div`
   grid-column: 2 / 6;
   ${absolute({})};
   top: 35%;
-  `;
+`;
 
-  const LogoImage = styled.img`
+const LogoImage = styled.img`
   width: 13vw;
   height: auto;
   ${absolute({})};
