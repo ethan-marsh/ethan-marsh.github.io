@@ -15,7 +15,8 @@ const theme = {
   maxWidth: "1440px",
   fontPrimary: "'Helvetica Neue', 'Open Sans', sans-serif;",
   fontDisplay: "'Raleway', sans-serif",
-  bs: "0 12px 24px 0 rgba(0, 0, 0, 0.09)"
+  bs: "0 12px 24px 0 rgba(0, 0, 0, 0.09)",
+  fwNormal: "300"
 };
 
 const StyledPage = styled.div`
@@ -26,12 +27,9 @@ const StyledPage = styled.div`
 const Inner = styled.div`
   margin: 0 auto;
   padding: 0;
-  font-family: ${props => props.theme.fontPrimary};
-  font-weight: 300;
-  -webkit-font-smoothing: antialiased;
 `;
 
-createGlobalStyle`
+const GlobalStyle = createGlobalStyle`
   html {
     box-sizing: border-box;
     font-size: 62.5%;
@@ -44,11 +42,22 @@ createGlobalStyle`
   body {
     padding: 0;
     margin: 0;
+    font-weight: ${theme.fwNormal};
+    -webkit-font-smoothing: antialiased;
   }
-  a:link, a:visited {
+  a {
     text-decoration: none;
-    color: ${theme.black};
+    color: ${theme.white};
   }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    margin: 0;
+    padding: 0;
+    font-family: ${theme.fontDisplay};
+    font-weight: ${theme.fwNormal};
 `;
 
 class Page extends Component {
@@ -57,6 +66,7 @@ class Page extends Component {
       <ThemeProvider theme={theme}>
         <StyledPage>
           <Meta />
+          <GlobalStyle />
           <Header />
           <Inner>{this.props.children}</Inner>
         </StyledPage>

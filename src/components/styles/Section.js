@@ -1,8 +1,9 @@
 import styled from "styled-components";
-import { grid } from "./utilities";
+import Grid from "./Grid";
 
-const Section = styled.section`
-  ${grid({})};
+const Section = styled(Grid).attrs({
+  as: "section"
+})`
   padding: 10rem 0;
   font-size: 1.4rem;
   background-color: white;

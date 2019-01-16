@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Grid } from "./styles/Grid";
+import Grid from "./styles/Grid";
 
 import Social from "./Social";
 

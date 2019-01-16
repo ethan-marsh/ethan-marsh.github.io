@@ -1,5 +1,6 @@
 import { grid } from "./grid";
 import { absolute } from "./absolute";
-import { media } from "./media";
+import media from "./media";
 
-export { grid, absolute, media };
+export { grid, absolute };
+export default media;

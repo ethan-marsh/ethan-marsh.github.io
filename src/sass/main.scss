@@ -26,29 +26,29 @@
 // }
 
 // UNIVERSAL
-h1,
-h2,
-h3,
-h4,
-h5 {
-  margin: 0;
-  padding: 0;
-  font-family: $font-display;
-  font-weight: 300;
-}
+// h1,
+// h2,
+// h3,
+// h4,
+// h5 {
+// margin: 0;
+// padding: 0;
+// font-family: Raleway, sans-serif;
+// font-weight: 300;
+// }
 
-.about {
+#about {
   grid-area: about;
 }
 
-.background {
+#background {
   grid-area: backg;
 }
 
-.portfolio {
+#work {
   grid-area: works;
 }
 
-.footer {
+footer {
   grid-area: footr;
 }

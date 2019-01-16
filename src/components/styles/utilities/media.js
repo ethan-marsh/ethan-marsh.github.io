@@ -2,18 +2,22 @@ import { css } from "styled-components";
 
 // Default sizes (max-width)
 const sizes = {
-  desktop: 992,
-  tablet: 768,
-  phone: 576
+  biggest: 2400,
+  desktop: 1440,
+  tablet: 1024,
+  phone: 736,
+  smallest: 400
 };
 
 // Media template generator
-export const media = Object.keys(sizes).reduce((acc, label) => {
+const media = Object.keys(sizes).reduce((acc, label) => {
   acc[label] = (...args) => css`
-    @media screen only and (max-width: ${sizes[label] / 16}em) {
+    @media only screen and (max-width: ${sizes[label]}px) {
       ${css(...args)}
     }
   `;
 
   return acc;
 }, {});
+
+export default media;

@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import styled, { css } from "styled-components";
 import Logo from "./Logo";
 import Nav from "./Nav";
-import { Grid } from "./styles/Grid";
+import Grid from "./styles/Grid";
 
 const StyledHeader = styled(Grid).attrs({
-  as: 'header'
+  as: "header"
 })`
   position: fixed;
   top: 0;
@@ -30,21 +30,22 @@ export default class Header extends Component {
   state = {
     isScrolled: false,
     nextDivPos: 0
-  }
+  };
 
   componentDidMount = () => {
     window.addEventListener("scroll", this.handleScroll);
-      // add scroll event listener to window
+    // add scroll event listener to window
   };
 
   componentWillUnmount = () => {
     window.removeEventListener("scroll", this.handleScroll);
-      // remove scroll listener from window
+    // remove scroll listener from window
   };
 
   getNextDivPosition = node => {
-    const posObj = node.getBoundingClientRect(), top = Math.floor(posObj.top);
-      // maintain state with the top of the about section position
+    const posObj = node.getBoundingClientRect(),
+      top = Math.floor(posObj.top);
+    // maintain state with the top of the about section position
     this.setState({ nextDivPos: top });
   };
 
@@ -61,15 +62,13 @@ export default class Header extends Component {
 
   render() {
     return (
-    <StyledHeader
-      headerIsScrolled={this.state.headerIsScrolled}
-      height={headerHeight}
-    >
-      <Logo headerIsScrolled={this.props.headerIsScrolled} />
-      <Nav {...this.props} />
-    </StyledHeader>
-    )
+      <StyledHeader
+        headerIsScrolled={this.state.headerIsScrolled}
+        height={headerHeight}
+      >
+        <Logo headerIsScrolled={this.props.headerIsScrolled} />
+        <Nav {...this.props} />
+      </StyledHeader>
+    );
   }
 }
-
-

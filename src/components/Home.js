@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { Transition, animated, config } from "react-spring";
-import { Grid } from "./styles/Grid";
+import Grid from "./styles/Grid";
 import Social from "./Social";
 import { Icon } from "elements";
 
