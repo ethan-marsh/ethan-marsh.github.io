@@ -11,6 +11,8 @@ const Section = styled(Grid).attrs({
   ${media.tablet`
     row-gap: 2rem;
     `}
+
+  grid-column: span 12;
 `;
 
 const SectionTitle = styled.div`

@@ -10,21 +10,17 @@ import Footer from "./Footer";
 import Grid from "./styles/Grid";
 
 //* STYLES *//
-import "../sass/main.scss";
+//import "../sass/main.scss";
 
 const MainContent = styled(Grid)`
-  grid-auto-rows: max-content;
   grid-auto-flow: row;
+  grid-auto-rows: auto-fill;
+  justify-items: stretch;
+  align-items: stretch;
   position: absolute;
   top: 100vh;
   left: 0;
   z-index: 99;
-
-  grid-template-areas:
-    "about about about about about about about about about about about about"
-    "backg backg backg backg backg backg backg backg backg backg backg backg"
-    "works works works works works works works works works works works works"
-    "footr footr footr footr footr footr footr footr footr footr footr footr";
 `;
 
 // --- APP START --- //
@@ -107,17 +103,8 @@ class Main extends Component {
         />
 
         <MainContent>
-          <About
-            forwardedRef={this.aboutRef}
-            id="about"
-            className="about"
-            title="about"
-          />
-          <Background
-            id="background"
-            className="background"
-            title="background"
-          />
+          <About forwardedRef={this.aboutRef} id="about" title="about" />
+          <Background id="background" title="background" />
           <Portfolio id="work" className="portfolio" />
           <Footer id="footer" className="footer" />
         </MainContent>
