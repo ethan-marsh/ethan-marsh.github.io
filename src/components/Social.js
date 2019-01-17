@@ -39,7 +39,7 @@ const StyledIconLink = styled.a`
   transition: all 0.2s ease;
 
   :hover {
-    color: #007a81;
+    color: ${props => props.theme.lightblue};
   }
 `;
 

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Transition, animated, config } from "react-spring";
 
 const ProjectContainer = styled.a`
   display: grid;
@@ -10,33 +11,22 @@ const ProjectContainer = styled.a`
   grid-column: span ${props => props.colSpan || 1};
   overflow: hidden;
 
-  &.fade-enter {
-    opacity: 0.01;
-  }
-  &.fade-enter-active {
-    opacity: 1;
-    transition: opacity 500ms ease-in;
-  }
-  &.fade-exit {
-    opacity: 1;
-  }
-  &.fade-exit-active {
-    opacity: 0.01;
-    transition: opacity 500ms ease-in;
-  }
-
   img {
     grid-column: 1 / -1;
     grid-row: 1 / -1;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease-in-out;
+  backface-visibility: hidden;
+
+    transition: transform 0.5s ease-in;
   }
-  &:hover img {
+  &:hover img, &:active img {
     transform: scale(1.5);
   }
 `;
+
+const AnimatedContainer = animated(ProjectContainer);
 
 const ProjectOverlay = styled.div`
   grid-column: 1 / -1;
@@ -44,7 +34,9 @@ const ProjectOverlay = styled.div`
   width: 100%;
   height: 100%;
   position: relative;
-  background: rgba(0, 0, 0, 0.5);
+  backface-visibility: hidden;
+
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -55,7 +47,7 @@ const ProjectOverlay = styled.div`
   opacity: 0;
   transition: opacity 0.5s ease-out;
 
-  :hover {
+  :hover, :active {
     opacity: 1;
   }
   h6 {
@@ -72,21 +64,35 @@ const ProjectOverlay = styled.div`
   }
 `;
 
-const Project = props => (
-  <ProjectContainer
-    isInView={props.isInView}
-    className="fade"
-    href={props.link}
-    rowSpan={props.rowSpan}
-    colSpan={props.colSpan}
-    category={props.category}
-  >
-    <img src={props.imgSrc} alt={props.title} />
-    <ProjectOverlay>
-      <h6>{props.title}</h6>
-      <p>{props.desc}</p>
-    </ProjectOverlay>
-  </ProjectContainer>
-);
+class Project extends React.Component {
+  render() {
+    return (
+      <Transition
+        native
+        initial={{ opacity: .2, transform: 'translate3d(0, 3rem, 0)' }}
+        from={{ opacity: 0, transform: 'translate3d(0, 15rem, 0)' }}
+        enter={{ opacity: 1, transform: 'translate3d(0,0,0)' }}
+        leave={{ opacity: .2, transform: 'translate3d(0, -15rem, 0)' }}
+        config={{ ...config.slow }}
+      >
+        {() => props => (
+          <AnimatedContainer
+            style={props}
+            href={this.props.link}
+            rowSpan={this.props.rowSpan}
+            colSpan={this.props.colSpan}
+            category={this.props.category}
+          >
+            <img src={this.props.imgSrc} alt={this.props.title} />
+            <ProjectOverlay>
+              <h6>{this.props.title}</h6>
+              <p>{this.props.desc}</p>
+            </ProjectOverlay>
+          </AnimatedContainer>
+        )}
+      </Transition>
+    )
+  }
+}
 
 export default Project;

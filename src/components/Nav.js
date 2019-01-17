@@ -19,7 +19,7 @@ const StyledNavLinksUl = styled.ul`
 const LinkNav = styled.a`
   :link,
   :visited {
-    font-family: $font-primary;
+    font-family: ${props => props.theme.fontPrimary};
     font-size: 1.1rem;
     line-height: 1.5em;
     text-transform: uppercase;
@@ -32,7 +32,7 @@ const LinkNav = styled.a`
 
   :hover,
   :active {
-    opacity: .9
+    opacity: .9;
   },
 
 `;
