@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+
 import Project from "./Project";
 import { Section } from "./styles/Section";
 import { projects } from "../data";
@@ -22,6 +24,7 @@ const StyledCategory = styled.button`
   font-family: ${props => props.theme.fontDisplay};
   font-size: 1.25rem;
   font-weight: ${props => props.theme.fw};
+  text-transform: capitalize;
   background: none;
   border: none;
   outline: none;
@@ -32,6 +35,7 @@ const StyledCategory = styled.button`
     cursor: pointer;
   }
 `;
+
 const ProjectsGrid = styled.div`
   grid-column: 2 / -2;
   grid-row-start: 2;
@@ -44,31 +48,32 @@ const ProjectsGrid = styled.div`
 
 const eachCategory = Object.values(projects).map(project => project.category),
   uniqueCategories = new Set(eachCategory),
-  categories = ["All", ...uniqueCategories];
+  categories = ["all", ...uniqueCategories];
 
 export default class Portfolio extends Component {
   state = {
-    category: "All"
+    category: "all",
+    projects: projects
   };
 
   handleClick = e => {
     const category = e.currentTarget.name;
     this.setState({ category });
+    this.filterProjects({ category });
   };
 
-  filterProjects = () => {
-    if (this.state.category === "All") {
-      return projects;
+  filterProjects = category => {
+    if (category === "all") {
+      this.setState({ projects });
     } else {
-      return Object.values(projects).filter(
-        project => project.category === this.state.category
+      const filteredProjects = Object.values(projects).filter(
+        project => project.category === category
       );
+      this.setState({ projects: filteredProjects });
     }
   };
 
   render() {
-    const projectArr = this.filterProjects();
-
     return (
       <Section {...this.props}>
         <StyledCategories>
@@ -84,18 +89,25 @@ export default class Portfolio extends Component {
           ))}
         </StyledCategories>
         <ProjectsGrid>
-          {Object.keys(projectArr).map(key => (
-            <Project
-              key={key}
-              title={projectArr[key].title}
-              rowSpan={projectArr[key].span["row"]}
-              colSpan={projectArr[key].span["col"]}
-              imgSrc={`images/${projectArr[key].img}`}
-              link={projectArr[key].link}
-              category={projectArr[key].category}
-              desc={projectArr[key].desc}
-            />
-          ))}
+          <TransitionGroup>
+            {Object.keys(this.state.projects).map(key => (
+              <CSSTransition
+                key={`project-${key}`}
+                timeout={500}
+                classNames="fade"
+              >
+                <Project
+                  title={this.state.projects[key].title}
+                  rowSpan={this.state.projects[key].span["row"]}
+                  colSpan={this.state.projects[key].span["col"]}
+                  imgSrc={`images/${this.state.projects[key].img}`}
+                  link={this.state.projects[key].link}
+                  category={this.state.projects[key].category}
+                  desc={this.state.projects[key].desc}
+                />
+              </CSSTransition>
+            ))}
+          </TransitionGroup>
         </ProjectsGrid>
       </Section>
     );
