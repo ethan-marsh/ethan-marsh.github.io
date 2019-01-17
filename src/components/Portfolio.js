@@ -18,14 +18,14 @@ const StyledCategories = styled.ul`
   }
 `;
 const StyledCategory = styled.button`
-  color: ${props => props.theme.gray};
+  color: ${props => props.theme.grey};
   font-family: ${props => props.theme.fontDisplay};
   font-size: 1.25rem;
   font-weight: ${props => props.theme.fw};
   background: none;
   border: none;
   outline: none;
-  opacity: 0.6;
+  opacity: ${props => (props.selected ? 1 : 0.6)};
   transition: opacity 0.3s ease-out;
   :hover {
     opacity: 1;
@@ -42,23 +42,35 @@ const ProjectsGrid = styled.div`
   grid-auto-flow: dense;
 `;
 
-const categories = ["All", "Professional", "Personal", "Playground"];
-
-const cats = Object.values(projects);
+const eachCategory = Object.values(projects).map(project => project.category),
+  uniqueCategories = new Set(eachCategory),
+  categories = ["All", ...uniqueCategories];
 
 export default class Portfolio extends Component {
-  handleClick = e => {
-    console.log(e.currentTarget.name);
+  state = {
+    category: "All"
   };
 
-  componentDidMount = () => {
-    console.log(cats);
+  handleClick = e => {
+    const category = e.currentTarget.name;
+    this.setState({ category });
+  };
+
+  filterProjects = () => {
+    if (this.state.category === "All") {
+      return projects;
+    } else {
+      return Object.values(projects).filter(
+        project => project.category === this.state.category
+      );
+    }
   };
 
   render() {
-    const { ...props } = this.props;
+    const projectArr = this.filterProjects();
+
     return (
-      <Section {...props}>
+      <Section {...this.props}>
         <StyledCategories>
           {categories.map(category => (
             <li key={category}>
@@ -66,21 +78,22 @@ export default class Portfolio extends Component {
                 name={category}
                 onClick={this.handleClick}
                 children={category}
+                selected={category === this.state.category}
               />
             </li>
           ))}
         </StyledCategories>
         <ProjectsGrid>
-          {Object.keys(projects).map(key => (
+          {Object.keys(projectArr).map(key => (
             <Project
               key={key}
-              title={projects[key].title}
-              rowSpan={projects[key].span["row"]}
-              colSpan={projects[key].span["col"]}
-              imgSrc={`images/${projects[key].img}`}
-              link={projects[key].link}
-              category={projects[key].category}
-              desc={projects[key].desc}
+              title={projectArr[key].title}
+              rowSpan={projectArr[key].span["row"]}
+              colSpan={projectArr[key].span["col"]}
+              imgSrc={`images/${projectArr[key].img}`}
+              link={projectArr[key].link}
+              category={projectArr[key].category}
+              desc={projectArr[key].desc}
             />
           ))}
         </ProjectsGrid>
