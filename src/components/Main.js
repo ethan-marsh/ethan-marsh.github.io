@@ -9,9 +9,6 @@ import Portfolio from "./Portfolio";
 import Footer from "./Footer";
 import Grid from "./styles/Grid";
 
-//* STYLES *//
-//import "../sass/main.scss";
-
 const MainContent = styled(Grid)`
   grid-auto-flow: row;
   grid-auto-rows: auto-fill;
@@ -103,10 +100,10 @@ class Main extends Component {
         />
 
         <MainContent>
-          <About forwardedRef={this.aboutRef} id="about" title="about" />
+          <About id="about" title="about" forwardedRef={this.aboutRef} />
           <Background id="background" title="background" />
-          <Portfolio id="work" className="portfolio" />
-          <Footer id="footer" className="footer" />
+          <Portfolio id="work" />
+          <Footer />
         </MainContent>
       </div>
     );
