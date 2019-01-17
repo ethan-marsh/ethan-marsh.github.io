@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Grid } from "./styles/Grid";
+import Grid from "./styles/Grid";
 
 import Social from "./Social";
 
@@ -12,6 +12,7 @@ const StyledFooter = styled(Grid).attrs({
   color: #ddd;
   font-size: 1.3rem;
   line-height: 2em;
+  grid-column: span 12;
 
   hr {
     grid-column: 2 / -2;

@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { Transition, animated, config } from "react-spring";
-import { Grid } from "./styles/Grid";
 import Social from "./Social";
-import { Icon } from "elements";
+import Icon from "./Icon";
+import Grid from "./styles/Grid";
+import media from "./styles/utilities";
 
 const SectionHome = styled(Grid).attrs({
   as: "section"
@@ -13,8 +14,8 @@ const SectionHome = styled(Grid).attrs({
   left: 0;
   z-index: -100;
   height: 100vh;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-    url("/images/hero-alt.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("/images/hero.jpg");
   background-attachment: scroll;
   filter: contrast(110%);
   background-size: cover;
@@ -32,27 +33,30 @@ const SectionHome = styled(Grid).attrs({
   }
 
   h1 {
-    font-size: 4.5rem;
+    font-size: 3.5vw;
     letter-spacing: 2px;
-    align-self: flex-start;
+    margin-bottom: 1.5rem;
+    ${media.tablet`font-size: 5vw; letter-spacing: .5px;`};
+    ${media.phone`font-size: 6vw`};
   }
 `;
 
 const StyledRow = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 3rem 0 2rem;
-  flex-wrap: nowrap;
+  padding: 2rem 0 3rem;
 
   h2 {
-    font-size: 2.5rem;
+    font-size: 2vw;
+    ${media.tablet`font-size: 3vw`};
+    ${media.phone`font-size: 4vw`};
+    color: ${props => props.theme.lightgrey};
   }
 `;
-
 const Row = animated(StyledRow);
 
 const ButtonScrollDown = styled.button`
-  color: ${props => props.theme.white};
+  color: ${props => props.theme.lightgrey};
   text-decoration: none;
   background: transparent;
   border: none;
@@ -63,8 +67,10 @@ const ButtonScrollDown = styled.button`
   &:hover,
   &:active {
     cursor: pointer;
-    color: #27ccc0;
+    color: ${props => props.theme.lightblue};
   }
+
+  ${media.phone`display:none;`}
 `;
 
 export default class Home extends Component {
@@ -89,7 +95,6 @@ export default class Home extends Component {
 
   render() {
     const { ...props } = this.props;
-
     return (
       <SectionHome {...props}>
         <div>

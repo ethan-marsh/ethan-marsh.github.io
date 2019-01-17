@@ -7,22 +7,17 @@ import About from "./About";
 import Background from "./Background";
 import Portfolio from "./Portfolio";
 import Footer from "./Footer";
-import { Grid } from "./styles/Grid";
-
-//* STYLES *//
-import "../sass/main.scss";
+import Grid from "./styles/Grid";
 
 const MainContent = styled(Grid)`
-  grid-auto-rows: max-content;
+  grid-auto-flow: row;
+  grid-auto-rows: auto-fill;
+  justify-items: stretch;
+  align-items: stretch;
   position: absolute;
   top: 100vh;
   left: 0;
   z-index: 99;
-  grid-template-areas:
-    "about about about about about about about about about about about about"
-    "backg backg backg backg backg backg backg backg backg backg backg backg"
-    "works works works works works works works works works works works works"
-    "footr footr footr footr footr footr footr footr footr footr footr footr";
 `;
 
 // --- APP START --- //
@@ -42,17 +37,17 @@ class Main extends Component {
 
   componentDidMount = () => {
     window.addEventListener("scroll", this.handleScroll);
-      // add scroll event listener to window
+    // add scroll event listener to window
   };
 
   componentWillUnmount = () => {
     window.removeEventListener("scroll", this.handleScroll);
-      // remove scroll listener from window
+    // remove scroll listener from window
   };
 
   activateLink = activeLink => {
     this.setState({ activeLink });
-      // activate nav link item
+    // activate nav link item
   };
 
   handleScroll = e => {
@@ -69,21 +64,22 @@ class Main extends Component {
   };
 
   getAboutPosition = node => {
-    const posObj = node.getBoundingClientRect(), top = Math.floor(posObj.top);
-      // maintain state with the top of the about section position
+    const posObj = node.getBoundingClientRect(),
+      top = Math.floor(posObj.top);
+    // maintain state with the top of the about section position
     this.setState({ aboutPosition: top });
   };
 
   // calc amount to move home section
   transformSection = windowHeight => {
-    const homeOffset =
-      Math.floor((this.state.aboutPosition / windowHeight) * 100); // => round number
+    const homeOffset = Math.floor(
+      (this.state.aboutPosition / windowHeight) * 100
+    ); // => round number
 
     if (homeOffset > 0) {
       this.setState({ homeOffset });
     } else this.setState({ homeOffset: 0 }); // don't keep setting it once it's out of view
   };
-
 
   render() {
     return (
@@ -104,19 +100,10 @@ class Main extends Component {
         />
 
         <MainContent>
-          <About
-            forwardedRef={this.aboutRef}
-            id="about"
-            className="about"
-            title="about"
-          />
-          <Background
-            id="background"
-            className="background"
-            title="background"
-          />
-          <Portfolio id="work" className="portfolio" />
-          <Footer id="footer" className="footer" />
+          <About id="about" title="about" forwardedRef={this.aboutRef} />
+          <Background id="background" title="background" />
+          <Portfolio id="work" />
+          <Footer />
         </MainContent>
       </div>
     );
