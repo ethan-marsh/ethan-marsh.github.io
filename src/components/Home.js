@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { Transition, animated, config } from "react-spring";
+import Social from "./Social";
+import Icon from "./Icon";
 import Grid from "./styles/Grid";
 import media from "./styles/utilities";
-import Social from "./Social";
-import { Icon } from "elements";
 
 const SectionHome = styled(Grid).attrs({
   as: "section"

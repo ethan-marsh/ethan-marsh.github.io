@@ -44,13 +44,15 @@ const ProjectsGrid = styled.div`
 
 const categories = ["All", "Professional", "Personal", "Playground"];
 
+const cats = Object.values(projects);
+
 export default class Portfolio extends Component {
   handleClick = e => {
     console.log(e.currentTarget.name);
   };
 
   componentDidMount = () => {
-    console.log("Mounted");
+    console.log(cats);
   };
 
   render() {
