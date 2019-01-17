@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 import { iconData } from "../data";
 
 export default class Icon extends Component {

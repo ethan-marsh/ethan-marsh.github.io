@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { Icon } from "elements";
+import Icon from "./Icon";
 
 const socialLinks = {
   linkedin: {
