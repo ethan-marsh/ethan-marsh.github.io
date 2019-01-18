@@ -85,16 +85,20 @@ class Page extends Component {
   }
 
   render() {
+    const { children } = this.props;
+    const childrenWithProps = React.cloneElement(children, {toggleHeaderTheme: this.toggleTheme})
     return (
       <ThemeProvider theme={theme}>
         <StyledPage>
           <Meta />
           <GlobalStyle />
           <ScrollContext.Provider value={this.state}>
-            <Header changeTheme={this.toggleTheme}/>
-            <Content />
+            <Header />
           </ScrollContext.Provider>
-          <Inner>{this.props.children}</Inner>
+            <Content />
+            <Inner>
+              {childrenWithProps}
+            </Inner>
         </StyledPage>
       </ThemeProvider>
     );

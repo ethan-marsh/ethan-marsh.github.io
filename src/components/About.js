@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Section, SectionContent, SectionTitle } from "./styles/Section";
 // eslint-disable-next-line
 import { aboutText, aboutSkills } from "Data";
+import {ScrollContext, themes} from './scroll-context';
 
 const SectionAbout = styled(Section)`
   background-color: #fff;
@@ -18,10 +19,42 @@ const SectionAbout = styled(Section)`
 `;
 
 export default class About extends Component {
+  // constructor(props) {
+  //   super(props);
+
+  //   this.toggleTheme = () => {
+  //     console.log('Theme was toggled');
+  //     this.setState(state => ({
+  //       theme:
+  //       state.theme === themes.initial
+  //       ? themes.scrolled
+  //       : themes.initial,
+  //     }));
+  //   };
+
+  //   this.handleScroll = () => {
+  //     console.log('working...take me off please');
+
+  //   }
+
+  //   this.state = {
+  //     theme: themes.initial,
+  //     toggleTheme: this.toggleTheme,
+  //   };
+  // }
+
+  // componentDidMount = () => {
+  //   window.addEventListener("scroll", this.handleScroll);
+  // };
+
+  // componentWillUnmount = () => {
+  //   window.removeEventListener("scroll", this.handleScroll);
+  // };
+
   render() {
     const { forwardedRef, ...rest } = this.props;
     return (
-      <SectionAbout ref={forwardedRef} {...rest}>
+        <SectionAbout ref={forwardedRef} {...rest}>
         <SectionTitle>
           <h3>{this.props.title}</h3>
         </SectionTitle>
@@ -30,7 +63,7 @@ export default class About extends Component {
             <p key={key}>{aboutText[key]}</p>
           ))}
         </SectionContent>
-      </SectionAbout>
+        </SectionAbout>
     );
   }
 }

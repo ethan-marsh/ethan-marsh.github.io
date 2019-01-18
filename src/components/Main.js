@@ -8,6 +8,7 @@ import Background from "./Background";
 import Portfolio from "./Portfolio";
 import Footer from "./Footer";
 import Grid from "./styles/Grid";
+import {ScrollContext, themes} from './scroll-context';
 
 const MainContent = styled(Grid)`
   grid-auto-flow: row;
@@ -20,20 +21,67 @@ const MainContent = styled(Grid)`
   z-index: 99;
 `;
 
+// function ToggleHeaderTheme() {
+//   return (
+
+//   )
+// }
+
+// )
+
 // --- APP START --- //
 class Main extends Component {
   constructor(props) {
     super(props);
     this.aboutRef = React.createRef();
-  }
 
-  state = {
-    activeLink: "home",
-    headerIsScrolled: false,
-    aboutPosition: 0,
-    headerHeight: 79,
-    homeOffset: 100
-  };
+    this.toggleHeaderTheme = () => {
+      this.context.toggleTheme();
+      // console.log('Theme was toggled');
+      // this.setState(state => ({
+      //   theme:
+      //   state.theme === themes.initial
+      //   ? themes.scrolled
+      //   : themes.initial,
+      // }));
+    }
+
+    this.state = {
+      activeLink: "home",
+      headerIsScrolled: false,
+      aboutPosition: 0,
+      headerHeight: 79,
+      homeOffset: 100,
+    };
+
+    this.handleScroll = e => {
+      // call about position set state
+      this.getAboutPosition(this.aboutRef.current);
+      // translate home section
+      this.transformSection(e.currentTarget.innerHeight);
+      // Toggle class when about position reaches header height
+      if (this.state.aboutPosition < this.state.headerHeight) {
+        //this.setState({ headerIsScrolled: true });
+        this.props.toggleHeaderTheme();
+      } else this.setState({ headerIsScrolled: false });
+    };
+
+    this.getAboutPosition = node => {
+      const posObj = node.getBoundingClientRect();
+      const top = Math.floor(posObj.top);
+      this.setState({ aboutPosition: top });
+    };
+
+    // calc amount to move home section
+    this.transformSection = windowHeight => {
+      const homeOffset = Math.floor(
+        (this.state.aboutPosition / windowHeight) * 100
+      ); // => round number
+      if (homeOffset > 0) {
+        this.setState({ homeOffset });
+      } else this.setState({ homeOffset: 0 }); // don't keep setting it once it's out of view
+    };
+  }
 
   componentDidMount = () => {
     window.addEventListener("scroll", this.handleScroll);
@@ -42,43 +90,6 @@ class Main extends Component {
 
   componentWillUnmount = () => {
     window.removeEventListener("scroll", this.handleScroll);
-    // remove scroll listener from window
-  };
-
-  activateLink = activeLink => {
-    this.setState({ activeLink });
-    // activate nav link item
-  };
-
-  handleScroll = e => {
-    // call about position set state
-    this.getAboutPosition(this.aboutRef.current);
-
-    // translate home section
-    this.transformSection(e.currentTarget.innerHeight);
-
-    // Toggle class when about position reaches header height
-    if (this.state.aboutPosition < this.state.headerHeight) {
-      this.setState({ headerIsScrolled: true });
-    } else this.setState({ headerIsScrolled: false });
-  };
-
-  getAboutPosition = node => {
-    const posObj = node.getBoundingClientRect(),
-      top = Math.floor(posObj.top);
-    // maintain state with the top of the about section position
-    this.setState({ aboutPosition: top });
-  };
-
-  // calc amount to move home section
-  transformSection = windowHeight => {
-    const homeOffset = Math.floor(
-      (this.state.aboutPosition / windowHeight) * 100
-    ); // => round number
-
-    if (homeOffset > 0) {
-      this.setState({ homeOffset });
-    } else this.setState({ homeOffset: 0 }); // don't keep setting it once it's out of view
   };
 
   render() {
