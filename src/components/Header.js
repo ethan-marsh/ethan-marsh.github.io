@@ -3,6 +3,7 @@ import styled, { css } from "styled-components";
 import Logo from "./Logo";
 import Nav from "./Nav";
 import Grid from "./styles/Grid";
+import {ScrollContext} from "./scroll-context";
 
 const StyledHeader = styled(Grid).attrs({
   as: "header"
@@ -15,14 +16,15 @@ const StyledHeader = styled(Grid).attrs({
   max-height: 8rem;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid transparent;
+  border-bottom: 1px solid ${props => props.borderColor};
+  background-color: ${props => props.bg};
 
-  ${props =>
+  /*${props =>
     props.headerIsScrolled &&
     css`
       background-color: #fff;
       border-color: #ccc;
-    `};
+    `};*/
 `;
 
 const headerHeight = `8rem`;
@@ -62,14 +64,24 @@ export default class Header extends Component {
   };
 
   render() {
+    let props = this.props;
     return (
-      <StyledHeader
-        headerIsScrolled={this.state.headerIsScrolled}
-        height={headerHeight}
-      >
-        <Logo headerIsScrolled={this.props.headerIsScrolled} />
-        <Nav {...this.props} />
-      </StyledHeader>
+      <ScrollContext.Consumer>
+        {({theme}) => (
+          <StyledHeader
+          headerIsScrolled={this.state.headerIsScrolled}
+          height={headerHeight}
+          bg={theme.background}
+          color={theme.foreground}
+          borderColor={theme.accent}
+        >
+          <Logo headerIsScrolled={this.props.headerIsScrolled} color={theme.foreground} />
+          <Nav {...props} color={theme.foreground}/>
+        </StyledHeader>
+        )
+      }
+      </ScrollContext.Consumer>
     );
   }
 }
+Header.contextType = ScrollContext;

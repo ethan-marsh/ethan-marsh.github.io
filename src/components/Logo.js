@@ -24,11 +24,11 @@ const LogoDark = styled(LogoImage).attrs({
   opacity: 0;
   transform: translate3d(0, 4rem, 0);
   ${props =>
-    props.up &&
-    css`
-      transform: translate3d(0, 0, 0);
-      opacity: 1;
-    `}
+    props.color === 'dark' &&
+      css`
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+      `}
 `;
 
 const LogoLight = styled(LogoImage).attrs({
@@ -39,7 +39,7 @@ const LogoLight = styled(LogoImage).attrs({
   opacity: 1;
   transform: translate3d(0, 0, 0);
   ${props =>
-    props.up &&
+    props.color === 'dark' &&
     css`
       transform: translate3d(0, -4rem, 0);
       opacity: 0;
@@ -48,11 +48,12 @@ const LogoLight = styled(LogoImage).attrs({
 
 export default class Logo extends Component {
   render() {
+    let props = this.props;
     return (
       <StyledLogo>
         <a href="/">
-          <LogoLight up={this.props.headerIsScrolled} />
-          <LogoDark up={this.props.headerIsScrolled} />
+          <LogoLight color={props.color === '#FFFFFF' ? 'light' : 'dark'} up={this.props.headerIsScrolled} />
+          <LogoDark color={props.color === '#FFFFFF' ? 'light' : 'dark'} up={this.props.headerIsScrolled} />
         </a>
       </StyledLogo>
     );

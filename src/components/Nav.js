@@ -27,7 +27,8 @@ const LinkNav = styled.a`
     font-weight: 400;
     opacity: 0.6;
     transition: opacity .2s ease-out;
-    color: ${props => (props.headerIsScrolled ? "#000" : "#fff")};
+    /*color: ${props => (props.headerIsScrolled ? "#000" : "#fff")};*/
+    color: ${props => props.color};
   }
 
   :hover,
@@ -59,6 +60,7 @@ export default class Nav extends Component {
                 <LinkNav
                   name={link}
                   href={`#${link}`}
+                  color={this.props.color}
                   headerIsScrolled={this.props.headerIsScrolled}
                   children={link}
                 />

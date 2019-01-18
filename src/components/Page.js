@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
 import Meta from "./Meta";
 import Header from "./Header";
+import HeaderToggler from "./header-toggler";
+import {ScrollContext, themes} from "./scroll-context";
 
 const theme = {
   blue: "#005DB3",
@@ -16,7 +18,8 @@ const theme = {
   fontPrimary: "'Helvetica Neue', 'Open Sans', sans-serif;",
   fontDisplay: "'Raleway', sans-serif",
   bs: "0 12px 24px 0 rgba(0, 0, 0, 0.09)",
-  fwNormal: "300"
+  fwNormal: "300",
+  background: '#FFFFFF',
 };
 
 const StyledPage = styled.div`
@@ -62,13 +65,35 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 class Page extends Component {
+  constructor(props) {
+    super(props);
+
+    this.toggleTheme = () => {
+      console.log('you clicked');
+      this.setState(state => ({
+        theme:
+        state.theme === themes.initial
+        ? themes.scrolled
+        : themes.initial,
+      }));
+    };
+
+    this.state = {
+      theme: themes.initial,
+      toggleTheme: this.toggleTheme,
+    };
+  }
+
   render() {
     return (
       <ThemeProvider theme={theme}>
         <StyledPage>
           <Meta />
           <GlobalStyle />
-          <Header />
+          <ScrollContext.Provider value={this.state}>
+            <Header changeTheme={this.toggleTheme}/>
+            <Content />
+          </ScrollContext.Provider>
           <Inner>{this.props.children}</Inner>
         </StyledPage>
       </ThemeProvider>
@@ -77,3 +102,11 @@ class Page extends Component {
 }
 
 export default Page;
+
+function Content() {
+  return (
+    <div>
+      <HeaderToggler />
+    </div>
+  )
+}
