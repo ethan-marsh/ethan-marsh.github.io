@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import Project from "./Project";
 import { Section } from "./styles/Section";
-import { projects } from "../data";
+import { projects } from "Data";
 
 const StyledCategories = styled.ul`
   grid-column: 2 / -2;

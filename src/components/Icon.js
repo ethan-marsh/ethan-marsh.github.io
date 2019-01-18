@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { iconData } from "../data";
+import { iconData } from "Data";
 
 export default class Icon extends Component {
   render() {

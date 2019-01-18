@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { Section, SectionContent, SectionTitle } from "./styles/Section";
-import { jobs } from "../data";
+import { jobs } from "Data";
 import media, { absolute } from "./styles/utilities";
 
 const SectionBackground = styled(Section)`

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { Section, SectionContent, SectionTitle } from "./styles/Section";
 // eslint-disable-next-line
-import { aboutText, aboutSkills } from "../data";
+import { aboutText, aboutSkills } from "Data";
 
 const SectionAbout = styled(Section)`
   background-color: #fff;
