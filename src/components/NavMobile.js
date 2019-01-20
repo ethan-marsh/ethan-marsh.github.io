@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-// eslint-disable-next-line
 import styled, { css } from 'styled-components';
-import NavLinks from './NavLinks';
-import Social from './Social';
 import { WrapperButton, StyledNavButton } from './styles/NavButton';
 import NavAnimation from './NavAnimation'
+import Social from './Social';
 
 const NavWrapper = styled.aside`
     position: fixed;

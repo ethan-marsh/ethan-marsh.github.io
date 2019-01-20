@@ -1,10 +1,9 @@
 import React, { Component, Fragment } from "react";
 import styled from "styled-components";
 
-
 export const LinkNav = styled.a`
     &:link,
-  &:visited {
+    &:visited {
     font-family: ${props => props.theme.fontPrimary};
     font-size: 1.1rem;
     line-height: 1.5em;
