@@ -10,16 +10,13 @@ const StyledHeader = styled(Grid).attrs({
   as: "header"
 })`
   position: fixed;
-  top: 0;
-  left: 0;
   z-index: 100;
   height: 8rem;
-  max-height: 8rem;
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid ${props => props.borderColor};
   background-color: ${props => props.bg};
-  transition: background-color .4s ease-out;
+  transition: background-color .1s ease-in-out;
 
   ${media.tablet`
     border-color: ${themes.mobile.accent}

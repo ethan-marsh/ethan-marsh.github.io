@@ -10,28 +10,16 @@ const SectionHome = styled(Grid).attrs({
   as: "section"
 })`
   position: fixed;
-  top: 0;
   ${media.tablet`top: 6rem;`}
-  left: 0;
   z-index: -100;
   height: 100vh;
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("/images/hero.jpg");
-  background-attachment: scroll;
-  filter: contrast(110%);
   background-size: cover;
-  background-position: 0 0;
-  background-repeat: no-repeat;
-  color: #fff;
-  transform: translate3d(0, ${props => props.translateY}%, 0);
-  transition: transform linear;
+  color: ${props => props.theme.white};
+  transform: translate3d(0, -${props => props.translateY}%, 0);
+  transition: transform 0ms ease-in-out;
   backface-visibility: hidden;
-
-  /*@media only screen and (min-width: 1024px) {
-    transform: translate3d(0, ${props => props.translateY}%, 0);
-    transition: transform linear;
-    backface-visibility: hidden;
-  } */
 
   & > div {
     grid-column: 2/-2;
@@ -101,7 +89,7 @@ export default class Home extends Component {
   };
 
   render() {
-    let translateY = Math.floor(this.props.scrollPercent / -4); // move the section slower than scroll
+    let translateY = Math.floor(.25 * this.props.scrollPercent); // move the section slower than scroll
     return (
       <SectionHome translateY={translateY}>
         <div>

@@ -6,7 +6,6 @@ const grid = ({ colPad = "1fr", colGap = "2rem" }) => `
   grid-template-columns: ${colPad} repeat(10, 1fr) ${colPad};
   column-gap: ${colGap};
   width: 100%;
-  margin: 0 auto;
 `;
 
 const Grid = styled.div`
