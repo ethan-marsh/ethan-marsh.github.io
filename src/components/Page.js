@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
 import Meta from "./Meta";
 import Header from "./Header";
-import HeaderToggler from "./header-toggler";
 import {ScrollContext, themes} from "./scroll-context";
 
 const theme = {
@@ -114,7 +113,7 @@ class Page extends Component {
 
   render() {
     const { children } = this.props;
-    const childrenWithProps = React.cloneElement(children, { toggleHeaderTheme: this.toggleHeaderTheme, scrollY: this.state.scrollYPosition })
+    const childrenWithProps = React.cloneElement(children, { ...this.state  })
     return (
       <ThemeProvider theme={theme}>
         <StyledPage>
@@ -123,7 +122,6 @@ class Page extends Component {
           <ScrollContext.Provider value={ this.state }>
             <Header />
           </ScrollContext.Provider>
-            <Content />
             <Inner>
               { childrenWithProps }
             </Inner>
@@ -134,12 +132,3 @@ class Page extends Component {
 }
 
 export default Page;
-
-function Content() {
-  return (
-    <div>
-      <HeaderToggler />
-    </div>
-  )
-
-}

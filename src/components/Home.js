@@ -19,11 +19,10 @@ const SectionHome = styled(Grid).attrs({
   background-attachment: scroll;
   filter: contrast(110%);
   background-size: cover;
-  background-position: 50% 20%;
+  background-position: 0 0;
   background-repeat: no-repeat;
   color: #fff;
-  transform: translate3d(0, ${props => -2 * (100 - props.homeOffset)}px, 0);
-  transition: transform ease;
+  transform: translate3d(0, ${props => props.translateY}%, 0);
 
   & > div {
     grid-column: 2/-2;
@@ -35,16 +34,16 @@ const SectionHome = styled(Grid).attrs({
   h1 {
     font-size: 3.5vw;
     letter-spacing: 2px;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     ${media.tablet`font-size: 5vw; letter-spacing: .5px;`};
     ${media.phone`font-size: 6vw`};
   }
 `;
 
-const StyledRow = styled.div`
+const StyledRow = styled(animated.div)`
   display: flex;
   justify-content: space-between;
-  padding: 2rem 0 3rem;
+  padding: 2rem 0;
 
   h2 {
     font-size: 2vw;
@@ -53,7 +52,6 @@ const StyledRow = styled.div`
     color: ${props => props.theme.lightgrey};
   }
 `;
-const Row = animated(StyledRow);
 
 const ButtonScrollDown = styled.button`
   color: ${props => props.theme.lightgrey};
@@ -73,19 +71,19 @@ const ButtonScrollDown = styled.button`
   ${media.phone`display:none;`}
 `;
 
+
 export default class Home extends Component {
-  scrollToAbout = el => {
-    const start = el.getBoundingClientRect();
+  handleClick = (el) => {
+    const buttonTop = el.getBoundingClientRect().top,
+          contentTop = this.props.getContentPosition();
 
-    // If scroll not activated yet
     let scrollNeeded;
-    if (this.props.aboutPosition === 0) {
-      scrollNeeded = start.top * 2; // Bring up the below div halfway
+    if (this.props.scrollPercent === 0) { // If scroll not activated yet
+      scrollNeeded = (window.innerHeight / 1.3) - 80; // Bring up the below div halfway
     } else {
-      scrollNeeded =
-        this.props.aboutPosition - start.top + this.props.homeOffset + 10;
+      scrollNeeded = contentTop - buttonTop + (((100 - this.props.scrollPercent)/400 * window.innerHeight) - 80);
+        // offset between two + amount button will transform
     }
-
     window.scrollBy({
       top: scrollNeeded,
       left: 0,
@@ -94,9 +92,9 @@ export default class Home extends Component {
   };
 
   render() {
-    const { ...props } = this.props;
+    let translateY = Math.floor(this.props.scrollPercent / -4); // move the section slower than scroll
     return (
-      <SectionHome {...props}>
+      <SectionHome translateY={translateY}>
         <div>
           <Transition
             native
@@ -130,14 +128,14 @@ export default class Home extends Component {
             delay={1000}
           >
             {() => props => (
-              <Row style={props}>
+              <StyledRow style={props} ref={this.buttonRef}>
                 <h2>Front-End Web Developer / San Francisco</h2>
                 <ButtonScrollDown
-                  onClick={e => this.scrollToAbout(e.currentTarget)}
+                  onClick={e => this.handleClick(e.currentTarget)}
                 >
                   <Icon name="arrowDown" width="3vw" strokeWidth="1" />
                 </ButtonScrollDown>
-              </Row>
+              </StyledRow>
             )}
           </Transition>
           <Social />

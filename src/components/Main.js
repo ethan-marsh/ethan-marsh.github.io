@@ -25,24 +25,17 @@ class Main extends Component {
   constructor(props) {
     super(props);
     this.aboutRef = React.createRef();
+    this.contentRef = React.createRef();
 
     this.state = {
       activeLink: "home",
-      headerIsScrolled: false,
-      aboutPosition: 0,
-      headerHeight: 79,
-      homeOffset: 100,
     };
+  }
 
-    // calc amount to move home section
-    this.transformSection = windowHeight => {
-      let homeOffset = Math.floor(
-        (this.state.aboutPosition / windowHeight) * 100
-      ); // => round number
-      if (homeOffset > 0) {
-        this.setState({ homeOffset });
-      } else this.setState({ homeOffset: 0 }); // don't keep setting it once it's out of view
-    };
+  getContentPosition = () => {
+    const currentRef = this.contentRef.current;
+    const positions = currentRef.getBoundingClientRect();
+    return positions.top;
   }
 
   render() {
@@ -51,11 +44,11 @@ class Main extends Component {
         <Home
           id="home"
           className="home"
-          aboutPosition={this.state.aboutPosition}
-          homeOffset={this.state.homeOffset}
+          getContentPosition={this.getContentPosition}
+          scrollPercent={this.props.scrollPercent}
         />
 
-        <MainContent>
+        <MainContent ref={this.contentRef}>
           <About id="about" title="about" forwardedRef={this.aboutRef} />
           <Background id="background" title="background" />
           <Portfolio id="work" />
