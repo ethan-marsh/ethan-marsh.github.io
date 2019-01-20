@@ -112,8 +112,9 @@ class Page extends Component {
   }
 
   render() {
-    const { children } = this.props;
-    const childrenWithProps = React.cloneElement(children, { ...this.state  })
+    const { children } = this.props,
+        childrenWithProps = React.cloneElement(children, { ...this.state  });
+
     return (
       <ThemeProvider theme={theme}>
         <StyledPage>

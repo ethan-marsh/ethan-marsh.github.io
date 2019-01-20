@@ -1,9 +1,10 @@
 import React, { Component, Fragment } from "react";
-import styled, {css} from "styled-components";
+import styled from "styled-components";
 
-const LinkNav = styled.a`
-  :link,
-  :visited {
+
+export const LinkNav = styled.a`
+    &:link,
+  &:visited {
     font-family: ${props => props.theme.fontPrimary};
     font-size: 1.1rem;
     line-height: 1.5em;
@@ -15,36 +16,13 @@ const LinkNav = styled.a`
     color: ${props => props.color};
   }
 
-  :hover,
-  :active {
+  &:hover,
+  &:active {
     opacity: 1;
-  },
-
-  ${props => props.on && css`
-  &:link,
-  &:visited {
-    font-size: 1.6rem;
-    line-height: 3rem;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
-    letter-spacing: 1.5px;
-    position: relative;
-
-    &::after {
-        content: "";
-        width: 2rem;
-        height: 2px;
-        background-color: #FFF;
-        opacity: 1;
-        position: absolute;
-        bottom: 40%;
-        left: -4.5rem;
-    }
-  `}
-
+  }
 `;
 
-const nav = ["home", "about", "background", "work"];
+export const nav = ["home", "about", "background", "work"];
 
 export default class NavLinks extends Component {
     render() {

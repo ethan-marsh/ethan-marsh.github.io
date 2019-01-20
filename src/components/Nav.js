@@ -1,8 +1,8 @@
-import React, { Component, Fragment } from "react";
-import styled from "styled-components";
-import NavLinks from "./NavLinks";
-import NavMobile from "./NavMobile";
-import media from "./styles/utilities";
+import React, { Component, Fragment } from "react"
+import styled from "styled-components"
+import NavLinks from "./NavLinks"
+import NavMobile from "./NavMobile"
+import media from "./styles/utilities"
 
 const StyledNav = styled.nav`
 	grid-column: 6 / -2;

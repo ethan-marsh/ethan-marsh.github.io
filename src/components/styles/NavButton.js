@@ -44,7 +44,7 @@ border-radius: 5rem;
     border-radius: 5rem;
     background-color: ${props => props.theme.black}
     transform-origin: center;
-    transition: transform .2s ease;
+    transition: all .4s ease-out;
 }
 
 &::before {

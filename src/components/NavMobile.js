@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import styled, { css } from 'styled-components';
 import NavLinks from './NavLinks';
 import Social from './Social';
-import {WrapperButton, StyledNavButton} from './styles/NavButton';
+import { WrapperButton, StyledNavButton } from './styles/NavButton';
+import NavAnimation from './NavAnimation'
 
 const NavWrapper = styled.aside`
     position: fixed;
@@ -13,8 +14,13 @@ const NavWrapper = styled.aside`
     width: 30rem;
     text-align: left;
     background: ${props => props.theme.darkgrey || '#111'};
+    transform: translate3d(30rem, 0, 0);
     transition: all .5s cubic-bezier(0.86, 0, .07, 1);
     overflow: hidden;
+
+   ${props => props.on && css`
+        transform: translate3d(0, 0, 0);
+    `}
 `;
 
 const NavInner = styled.nav`
@@ -27,10 +33,6 @@ const NavInner = styled.nav`
     left: 0;
 `;
 
-const NavMobileUl = styled.ul`
-    padding-left: 4.5rem;
-    `;
-
 const NavFooter = styled.div`
     color: #666;
     font-size: 1.1rem;
@@ -40,6 +42,7 @@ const NavFooter = styled.div`
     position: absolute;
     bottom: 0;
 `;
+
 
 class NavMobile extends Component {
     state = {
@@ -59,19 +62,15 @@ class NavMobile extends Component {
                 <WrapperButton onClick={this.toggle}>
                     <StyledNavButton on={on} />
                 </WrapperButton>
-                {on && (
-                    <NavWrapper>
-                        <NavInner>
-                            <NavMobileUl>
-                                <NavLinks on={on} />
-                            </NavMobileUl>
-                            <NavFooter>
-                                <Social />
-                                <p>&copy; 2019 Ethan Marsh</p>
-                            </NavFooter>
-                        </NavInner>
-                    </NavWrapper>
-                )}
+                <NavWrapper on={on}>
+                    <NavInner>
+                        <NavAnimation on={on} />
+                        <NavFooter>
+                            <Social />
+                            <p>&copy; 2019 Ethan Marsh</p>
+                        </NavFooter>
+                    </NavInner>
+                </NavWrapper>
             </>
         )
     }
