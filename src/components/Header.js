@@ -29,47 +29,14 @@ const StyledHeader = styled(Grid).attrs({
 
 const headerHeight = `8rem`;
 
-export default class Header extends Component {
-  state = {
-    isScrolled: false,
-    nextDivPos: 0
-  };
-
-  componentDidMount = () => {
-    window.addEventListener("scroll", this.handleScroll);
-    // add scroll event listener to window
-  };
-
-  componentWillUnmount = () => {
-    window.removeEventListener("scroll", this.handleScroll);
-    // remove scroll listener from window
-  };
-
-  getNextDivPosition = node => {
-    const posObj = node.getBoundingClientRect(),
-      top = Math.floor(posObj.top);
-    // maintain state with the top of the about section position
-    this.setState({ nextDivPos: top });
-  };
-
-  // switch to scroll listenerrr
-  handleScroll = e => {
-    // call about position set state
-    //this.getNextDivPosition(this.aboutRef.current);
-
-    // Toggle class when about position reaches header height
-    if (this.state.nextDivPos < headerHeight) {
-      this.setState({ headerIsScrolled: true });
-    } else this.setState({ headerIsScrolled: false });
-  };
-
+class Header extends Component {
   render() {
     let props = this.props;
     return (
       <ScrollContext.Consumer>
-        {({theme}) => (
+        {({ theme }) => (
           <StyledHeader
-          headerIsScrolled={this.state.headerIsScrolled}
+          headerIsScrolled={false}
           height={headerHeight}
           bg={theme.background}
           color={theme.foreground}
@@ -85,3 +52,5 @@ export default class Header extends Component {
   }
 }
 Header.contextType = ScrollContext;
+
+export default Header;

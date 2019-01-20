@@ -43,6 +43,8 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
   }
   body {
+    height: 0;
+    overflow: scroll;
     padding: 0;
     margin: 0;
     font-family: ${theme.fontPrimary};
@@ -68,36 +70,62 @@ class Page extends Component {
   constructor(props) {
     super(props);
 
-    this.toggleTheme = () => {
-      console.log('you clicked');
-      this.setState(state => ({
+    this.handleScroll = e => {
+      const windowHeight = e.currentTarget.innerHeight,
+        scrollY = e.currentTarget.scrollY,
+        scrollYPosition = Math.floor(windowHeight - scrollY);
+
+      this.setState({
+        scrollYPosition,
         theme:
-        state.theme === themes.initial
+        scrollYPosition < 80
         ? themes.scrolled
         : themes.initial,
+        scrollPercent:
+          scrollYPosition > 0
+          ? ( Math.floor((scrollY / windowHeight) * 100))
+          : 0,
+      });
+    };
+
+    this.toggleHeaderTheme = () => {
+      this.setState(state => ({
+          theme:
+          state.theme === themes.initial
+          ? themes.scrolled
+          : themes.initial,
       }));
     };
 
     this.state = {
       theme: themes.initial,
       toggleTheme: this.toggleTheme,
+      scrollYPosition: 0,
+      scrollPercent: 0,
     };
+  }
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
   }
 
   render() {
     const { children } = this.props;
-    const childrenWithProps = React.cloneElement(children, {toggleHeaderTheme: this.toggleTheme})
+    const childrenWithProps = React.cloneElement(children, { toggleHeaderTheme: this.toggleHeaderTheme, scrollY: this.state.scrollYPosition })
     return (
       <ThemeProvider theme={theme}>
         <StyledPage>
           <Meta />
           <GlobalStyle />
-          <ScrollContext.Provider value={this.state}>
+          <ScrollContext.Provider value={ this.state }>
             <Header />
           </ScrollContext.Provider>
             <Content />
             <Inner>
-              {childrenWithProps}
+              { childrenWithProps }
             </Inner>
         </StyledPage>
       </ThemeProvider>
@@ -113,4 +141,5 @@ function Content() {
       <HeaderToggler />
     </div>
   )
+
 }

@@ -7,8 +7,7 @@ export default class App extends Component {
   render() {
     return (
       <Page>
-        <Main toggleHeaderTheme={this.props.toggleHeaderTheme}
-        />
+        <Main { ...this.props } />
       </Page>
     );
   }

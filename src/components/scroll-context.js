@@ -21,6 +21,8 @@ export const themes ={
 
 export const ScrollContext = React.createContext({
     theme: themes.initial,
-    toggleTheme: () => {}
+    toggleTheme: () => {},
+    scrollYPosition: 0,
+    scrollPercent: 0,
 })
 
