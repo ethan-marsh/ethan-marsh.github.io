@@ -3,7 +3,8 @@ import styled, { css } from "styled-components";
 import Logo from "./Logo";
 import Nav from "./Nav";
 import Grid from "./styles/Grid";
-import {ScrollContext} from "./scroll-context";
+import {ScrollContext, themes} from "./scroll-context";
+import media from "./styles/utilities"
 
 const StyledHeader = styled(Grid).attrs({
   as: "header"
@@ -12,22 +13,18 @@ const StyledHeader = styled(Grid).attrs({
   top: 0;
   left: 0;
   z-index: 100;
-  height: ${props => props.height || "8rem"}; /*use unit when using*/
+  height: 8rem;
   max-height: 8rem;
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid ${props => props.borderColor};
   background-color: ${props => props.bg};
 
-  /*${props =>
-    props.headerIsScrolled &&
-    css`
-      background-color: #fff;
-      border-color: #ccc;
-    `};*/
+  ${media.tablet`
+    border-color: ${themes.mobile.accent}
+    background-color: ${themes.mobile.background}
+  `}
 `;
-
-const headerHeight = `8rem`;
 
 class Header extends Component {
   render() {
@@ -36,8 +33,6 @@ class Header extends Component {
       <ScrollContext.Consumer>
         {({ theme }) => (
           <StyledHeader
-          headerIsScrolled={false}
-          height={headerHeight}
           bg={theme.background}
           color={theme.foreground}
           borderColor={theme.accent}

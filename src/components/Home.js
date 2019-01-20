@@ -68,7 +68,7 @@ const ButtonScrollDown = styled.button`
     color: ${props => props.theme.lightblue};
   }
 
-  ${media.phone`display:none;`}
+  ${media.tablet`display:none;`}
 `;
 
 

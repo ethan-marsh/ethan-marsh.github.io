@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import styled from "styled-components";
+import media from './/styles/utilities'
 
 const StyledNav = styled.nav`
   grid-column: 6 / -2;
@@ -27,8 +28,10 @@ const LinkNav = styled.a`
     font-weight: 400;
     opacity: 0.6;
     transition: opacity .2s ease-out;
-    /*color: ${props => (props.headerIsScrolled ? "#000" : "#fff")};*/
     color: ${props => props.color};
+    ${media.tablet`
+      color: ${props => props.theme.black}
+    `}
   }
 
   :hover,

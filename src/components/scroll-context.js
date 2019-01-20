@@ -14,10 +14,9 @@ export const themes ={
     mobile: {
         background: '#FFFFFF',
         foreground: '#000000',
-        accent: '#000000',
+        accent: '#CCCCCC',
     },
 }
-
 
 export const ScrollContext = React.createContext({
     theme: themes.initial,
