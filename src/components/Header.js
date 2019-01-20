@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import Logo from "./Logo";
 import Nav from "./Nav";
 import Grid from "./styles/Grid";

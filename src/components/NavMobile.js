@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// eslint-disable-next-line
 import styled, { css } from 'styled-components';
 import NavLinks from './NavLinks';
 import Social from './Social';
@@ -12,7 +13,7 @@ const NavWrapper = styled.aside`
     width: 30rem;
     text-align: left;
     background: ${props => props.theme.darkgrey || '#111'};
-    transition: transform .5s cubic-bezier(0.86, 0, .07, 1);
+    transition: all .5s cubic-bezier(0.86, 0, .07, 1);
     overflow: hidden;
 `;
 
@@ -39,7 +40,6 @@ const NavFooter = styled.div`
     position: absolute;
     bottom: 0;
 `;
-
 
 class NavMobile extends Component {
     state = {
