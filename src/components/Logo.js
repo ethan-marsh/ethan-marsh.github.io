@@ -9,10 +9,10 @@ const StyledLogo = styled.div`
 `;
 
 const LogoImage = styled.img`
-  width: 13vw;
-  height: auto;
+  max-width: 12rem;
+  max-height: 2rem;
+
   ${absolute({})};
-  max-height: 8rem;
   overflow-y: hidden;
   transition: all 0.3s ease-out;
 `;

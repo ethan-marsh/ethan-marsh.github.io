@@ -11,6 +11,7 @@ const SectionHome = styled(Grid).attrs({
 })`
   position: fixed;
   top: 0;
+  ${media.tablet`top: 6rem;`}
   left: 0;
   z-index: -100;
   height: 100vh;
@@ -23,6 +24,14 @@ const SectionHome = styled(Grid).attrs({
   background-repeat: no-repeat;
   color: #fff;
   transform: translate3d(0, ${props => props.translateY}%, 0);
+  transition: transform linear;
+  backface-visibility: hidden;
+
+  /*@media only screen and (min-width: 1024px) {
+    transform: translate3d(0, ${props => props.translateY}%, 0);
+    transition: transform linear;
+    backface-visibility: hidden;
+  } */
 
   & > div {
     grid-column: 2/-2;

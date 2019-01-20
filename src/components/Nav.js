@@ -1,77 +1,37 @@
 import React, { Component, Fragment } from "react";
 import styled from "styled-components";
-import media from './/styles/utilities'
+import NavLinks from "./NavLinks";
+import NavMobile from "./NavMobile";
+import media, {absolute} from ".//styles/utilities";
 
 const StyledNav = styled.nav`
-  grid-column: 6 / -2;
+	grid-column: 6 / -2;
   text-align: right;
+
+  ${media.tablet`display: none`}
 `;
 
 const StyledNavLinksUl = styled.ul`
-  display: flex;
-  justify-content: flex-end;
-  list-style: none;
+	display: flex;
+	justify-content: flex-end;
+	list-style: none;
 
-  & li:not(:first-child) {
-    padding-left: 3rem;
-  }
+	& li:not(:first-child) {
+		margin-left: 3rem;
+	}
 `;
-
-const LinkNav = styled.a`
-  :link,
-  :visited {
-    font-family: ${props => props.theme.fontPrimary};
-    font-size: 1.1rem;
-    line-height: 1.5em;
-    text-transform: uppercase;
-    text-decoration: none;
-    font-weight: 400;
-    opacity: 0.6;
-    transition: opacity .2s ease-out;
-    color: ${props => props.color};
-    ${media.tablet`
-      color: ${props => props.theme.black}
-    `}
-  }
-
-  :hover,
-  :active {
-    opacity: .9;
-  },
-
-`;
-
-const nav = ["home", "about", "background", "work"];
 
 export default class Nav extends Component {
-  render() {
-    return (
-      <Fragment>
-        {/* <nav className="navigation nav-block secondary-navigation nav-right">
-          <ul>
-            <li className="aux-navigation hide">
-              <a href="#" className="navigation-show side-nav-show nav-icon">
-                <span className="icon-menu" />
-              </a>
-            </li>
-          </ul>
-        </nav> */}
-        <StyledNav>
-          <StyledNavLinksUl>
-            {nav.map(link => (
-              <li key={link}>
-                <LinkNav
-                  name={link}
-                  href={`#${link}`}
-                  color={this.props.color}
-                  headerIsScrolled={this.props.headerIsScrolled}
-                  children={link}
-                />
-              </li>
-            ))}
-          </StyledNavLinksUl>
-        </StyledNav>
-      </Fragment>
-    );
-  }
+	render() {
+		return (
+			<Fragment>
+				<NavMobile />
+				<StyledNav>
+					<StyledNavLinksUl>
+						<NavLinks {...this.props} />
+					</StyledNavLinksUl>
+				</StyledNav>
+			</Fragment>
+		);
+	}
 }

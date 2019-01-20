@@ -19,6 +19,7 @@ const StyledHeader = styled(Grid).attrs({
   justify-content: space-between;
   border-bottom: 1px solid ${props => props.borderColor};
   background-color: ${props => props.bg};
+  transition: background-color .4s ease-out;
 
   ${media.tablet`
     border-color: ${themes.mobile.accent}
