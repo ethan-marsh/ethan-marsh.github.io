@@ -21,11 +21,12 @@ const SectionHome = styled(Grid).attrs({
   transition: transform 0ms ease-in-out;
   backface-visibility: hidden;
 
-  & > div {
+  & div:first-child {
     grid-column: 2/-2;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-top: -8rem;
   }
 
   h1 {
@@ -76,9 +77,9 @@ export default class Home extends Component {
 
     let scrollNeeded;
     if (this.props.scrollPercent === 0) { // If scroll not activated yet
-      scrollNeeded = (window.innerHeight / 1.3) - 80; // Bring up the below div halfway
+      scrollNeeded = (window.innerHeight / 1.3); // Bring up the below div halfway
     } else {
-      scrollNeeded = contentTop - buttonTop + (((100 - this.props.scrollPercent)/400 * window.innerHeight) - 80);
+      scrollNeeded = contentTop - buttonTop + (((100 - this.props.scrollPercent)/400 * window.innerHeight) - 50);
         // offset between two + amount button will transform
     }
     window.scrollBy({
