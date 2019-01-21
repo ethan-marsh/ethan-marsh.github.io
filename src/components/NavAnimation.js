@@ -24,12 +24,14 @@ ${mediaMax.tablet`
         content: "";
         width: 2rem;
         height: 2px;
-        background-color: #FFF;
+        background-color: #111;
         opacity: 1;
         position: absolute;
         bottom: 40%;
         left: -4.5rem;
     }
+
+    &:active::after {background-color: #fff;}
   }
 
   &:hover,

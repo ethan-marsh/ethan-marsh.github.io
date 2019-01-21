@@ -33,11 +33,13 @@ const SectionHome = styled(Grid).attrs({
   }
 
   h1 {
-    font-size: 3.5vw;
-    letter-spacing: 2px;
-    margin-bottom: 2rem;
-    ${mediaMax.tablet`font-size: 5vw; letter-spacing: .5px;`};
+    font-size: 4vw;
+    letter-spacing: .5px;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+    ${mediaMax.tablet`font-size: 5.2vw; letter-spacing: .5px;`};
     ${mediaMax.phone`font-size: 6vw`};
+
   }
 `;
 
@@ -47,6 +49,7 @@ const StyledRow = styled(animated.div)`
   h2 {
     font-size: 2vw;
     margin-bottom: 2rem;
+    font-weight: 400;
     ${mediaMax.tablet`font-size: 3vw`};
     ${mediaMax.phone`font-size: 4vw`};
     color: ${props => props.theme.lightgrey};
@@ -59,7 +62,7 @@ const ButtonScrollDown = styled(animated.button)`
   background: transparent;
   border: none;
   outline: none;
-  width: 3vw;
+  width: 3%;
   transition: color 0.2s ease-out;
   position: absolute;
   top: calc(50% + 1rem); /* where h2 sits */
@@ -173,7 +176,7 @@ function Content() {
     >
       {() => props => (
         <StyledRow style={props} >
-          <h2>Front-End Developer / San Francisco</h2>
+          <h2>Web Developer  /  San Francisco</h2>
           <Social />
         </StyledRow>
       )}
@@ -193,7 +196,7 @@ function Content() {
           style={props}
           onClick={e => this.handleClick(e.currentTarget)}
           >
-            <Icon name="arrowDown" width="2vh" strokeWidth="1" />
+            <Icon name="arrowDown" width="2vh" strokeWidth="3" />
           </ButtonScrollDown>
         )}
       </Transition>
