@@ -26,7 +26,7 @@ const IconList = styled.ul`
   display: flex;
 
   li:not(:first-child) {
-    margin-left: 1vw;
+    margin-left: 2vh;
   }
 `;
 
@@ -52,8 +52,8 @@ export default class Social extends Component {
             <StyledIconLink href={socialLinks[key].href}>
               <Icon
                 name={key}
-                width="3vw"
-                height="3vw"
+                width="3.5vh"
+                height="3.5vh"
                 fill="currentColor"
                 stroke="currentColor"
                 strokeWidth="2"
