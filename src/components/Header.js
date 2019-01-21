@@ -4,7 +4,7 @@ import Logo from "./Logo";
 import Nav from "./Nav";
 import Grid from "./styles/Grid";
 import {ScrollContext, themes} from "./scroll-context";
-import media from "./styles/utilities"
+import {mediaMax} from "./styles/utilities"
 
 const StyledHeader = styled(Grid).attrs({
   as: "header"
@@ -18,7 +18,7 @@ const StyledHeader = styled(Grid).attrs({
   background-color: ${props => props.bg};
   transition: background-color .1s ease-in-out;
 
-  ${media.tablet`
+  ${mediaMax.tablet`
     border-color: ${themes.mobile.accent}
     background-color: ${themes.mobile.background}
   `}

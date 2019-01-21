@@ -2,19 +2,19 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { Section, SectionContent, SectionTitle } from "./styles/Section";
 import { jobs } from "Data";
-import media, { absolute } from "./styles/utilities";
+import { mediaMax, absolute } from "./styles/utilities";
 
 const SectionBackground = styled(Section)`
   position: relative;
   background-color: ${props => props.theme.grey};
   color: #ddd;
   z-index: -2;
-  ${media.tablet`
+  ${mediaMax.tablet`
       padding-top: 35vh;
       `}
 
   ::before {
-    ${media.biggest`${absolute({})}`}
+    ${mediaMax.biggest`${absolute({})}`}
     content: "";
     background-image: linear-gradient(
         to right,
@@ -28,7 +28,7 @@ const SectionBackground = styled(Section)`
     background-repeat: no-repeat;
     height: 100%;
     width: 45%;
-    ${media.tablet`
+    ${mediaMax.tablet`
       height: 25vh;
       width: 100%;
       `}
@@ -40,7 +40,7 @@ const StyledJobItem = styled.li`
   display: flex;
   justify-content: space-between;
   margin-bottom: 4rem;
-  ${media.tablet`flex-direction: column;`}
+  ${mediaMax.tablet`flex-direction: column;`}
   font-size: 1.3rem;
   letter-spacing: 0.5px;
 
@@ -49,14 +49,14 @@ const StyledJobItem = styled.li`
     &:last-of-type {
       ${props =>
         props.type === "cert"
-          ? `${media.tablet`margin-top: .5rem;`}`
-          : `${media.tablet`margin-top: 1.5rem;`}`}
+          ? `${mediaMax.tablet`margin-top: .5rem;`}`
+          : `${mediaMax.tablet`margin-top: 1.5rem;`}`}
     }
   }
 
   div:first-child {
     flex: 1;
-    ${media.tablet`font-size: 1.2rem`}
+    ${mediaMax.tablet`font-size: 1.2rem`}
   }
   div:last-child {
     flex: 1 1 40%;

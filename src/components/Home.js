@@ -4,7 +4,7 @@ import { Transition, animated, config, Spring } from "react-spring";
 import Social from "./Social";
 import Icon from "./Icon";
 import Grid from "./styles/Grid";
-import media from "./styles/utilities";
+import {mediaMax} from "./styles/utilities";
 
 const SectionHome = styled(Grid).attrs({
   as: animated.section
@@ -12,16 +12,14 @@ const SectionHome = styled(Grid).attrs({
   position: fixed;
   height: 100vh;
   z-index: -100;
-  ${media.tablet`top: 6rem;`}
+  ${mediaMax.tablet`top: 6rem;`}
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("/images/hero.jpg");
   background-size: cover;
   background-position: left top;
   color: ${props => props.theme.white};
-  //transition: transform 0ms ease-in-out;
   backface-visibility: hidden;
-
-  /*${props => props && css`transform: translate3d(0, -${props.transY}%, 0);`}*/
+  will-change: ${props => props.ready ? 'transform, opacity' : ''};
 
   & div:first-child {
     grid-column: 2/-2;
@@ -35,8 +33,8 @@ const SectionHome = styled(Grid).attrs({
     font-size: 3.5vw;
     letter-spacing: 2px;
     margin-bottom: 2rem;
-    ${media.tablet`font-size: 5vw; letter-spacing: .5px;`};
-    ${media.phone`font-size: 6vw`};
+    ${mediaMax.tablet`font-size: 5vw; letter-spacing: .5px;`};
+    ${mediaMax.phone`font-size: 6vw`};
   }
 `;
 
@@ -47,8 +45,8 @@ const StyledRow = styled(animated.div)`
 
   h2 {
     font-size: 2vw;
-    ${media.tablet`font-size: 3vw`};
-    ${media.phone`font-size: 4vw`};
+    ${mediaMax.tablet`font-size: 3vw`};
+    ${mediaMax.phone`font-size: 4vw`};
     color: ${props => props.theme.lightgrey};
   }
 `;
@@ -68,18 +66,19 @@ const ButtonScrollDown = styled.button`
     color: ${props => props.theme.lightblue};
   }
 
-  ${media.tablet`display:none;`}
+  ${mediaMax.tablet`display:none;`}
 `;
 
 
 export default class Home extends Component {
   state = {
     prevY: 0,
-    y: 0
+    y: 0,
+    ready: null,
   }
 
-  handleClick = (el) => {
-    const buttonTop = el.getBoundingClientRect().top,
+  handleClick = (eTarget) => {
+    const buttonTop = eTarget.getBoundingClientRect().top,
       contentTop = this.props.getContentPosition();
 
     let scrollNeeded;
@@ -96,16 +95,26 @@ export default class Home extends Component {
     });
   };
 
+  componentDidMount() {
+    this.setState(state =>({
+      ready: state.y !== 0
+    }))
+  }
+
+  componentWillUnmount() {
+    this.setState(state =>({ ready: false }))
+  }
+
 
   componentDidUpdate(prevProps) {
-    if (prevProps.scrollPercent !== 0 &&
-      this.props.scrollPercent !== prevProps.scrollPercent) {
+    if (prevProps.scrollPercent !== 0
+        && this.props.scrollPercent !== prevProps.scrollPercent) {
       this.setState({ prevY: prevProps.scrollPercent / 4, y: this.props.scrollPercent / 4 })
     }
   }
 
   render() {
-    let { prevY, y } = this.state;
+    let { prevY, y, ready } = this.state;
     return (
       <>
       <Spring
@@ -115,7 +124,7 @@ export default class Home extends Component {
         config={{tension: 0, friction: 0, mass: 3, precision: .1, easing: 'ease-out'}}
         >
           {props =>
-        <SectionHome style={{
+        <SectionHome ready style={{
           transform: props.translateY.interpolate(translateY => `translate3d(0,-${translateY}%,0)`)
         }}>
         <Content />
@@ -154,7 +163,7 @@ function Content() {
     >
       {() => props => <animated.hr style={props} />}
     </Transition>
-{/*
+{
     <Transition
       native
       from={{ transform: "translate3d(0,-2rem,0)", opacity: 0 }}
@@ -164,7 +173,7 @@ function Content() {
       delay={1000}
     >
       {() => props => (
-        <StyledRow style={props} ref={this.buttonRef}>
+        <StyledRow style={props} >
           <h2>Front-End Web Developer / San Francisco</h2>
           <ButtonScrollDown
             onClick={e => this.handleClick(e.currentTarget)}
@@ -174,7 +183,8 @@ function Content() {
         </StyledRow>
       )}
     </Transition>
-    <Social /> */}
+}
+<Social />
   </div>
   )
 }

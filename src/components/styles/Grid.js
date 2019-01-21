@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import media from "./utilities";
+import {mediaMax} from "./utilities";
 
 const grid = ({ colPad = "1fr", colGap = "2rem" }) => `
   display: grid;
@@ -10,11 +10,11 @@ const grid = ({ colPad = "1fr", colGap = "2rem" }) => `
 
 const Grid = styled.div`
   ${grid({})}; /* Need to pass in empty object even with defaults */
-   ${media.biggest`${grid({ colPad: "1fr" })};`}
-   ${media.desktop`${grid({ colPad: "6rem" })};`}
-   ${media.tablet`${grid({ colPad: "4rem" })};`}
-   ${media.phone`${grid({ colPad: "2rem" })};`}
-   ${media.smallest`${grid({ colPad: "1rem" })};`}
+   ${mediaMax.biggest`${grid({ colPad: "1fr" })};`}
+   ${mediaMax.desktop`${grid({ colPad: "6rem" })};`}
+   ${mediaMax.tablet`${grid({ colPad: "4rem" })};`}
+   ${mediaMax.phone`${grid({ colPad: "2rem" })};`}
+   ${mediaMax.smallest`${grid({ colPad: "1rem" })};`}
 `;
 
 export default Grid;

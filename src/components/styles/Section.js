@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Grid from "./Grid";
-import media from "./utilities";
+import {mediaMax} from "./utilities";
 
 const Section = styled(Grid).attrs({
   as: "section"
@@ -8,7 +8,7 @@ const Section = styled(Grid).attrs({
   padding: 10rem 0;
   font-size: 1.4rem;
   background-color: white;
-  ${media.tablet`
+  ${mediaMax.tablet`
     row-gap: 2rem;
     `}
 
@@ -17,7 +17,7 @@ const Section = styled(Grid).attrs({
 
 const SectionTitle = styled.div`
   grid-column: 2 / 5;
-  ${media.tablet`
+  ${mediaMax.tablet`
     grid-column: 2 / -2;
     grid-row: 1 / span 1;
     `}
@@ -33,7 +33,7 @@ const SectionTitle = styled.div`
 
 const SectionContent = styled.div`
   grid-column: 5 / -2;
-  ${media.tablet`
+  ${mediaMax.tablet`
       grid-column: 2 / -2;
       grid-row-start: 2;
       `}

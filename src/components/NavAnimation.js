@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import { Keyframes, animated } from 'react-spring'
 import styled from 'styled-components'
-import media from './styles/utilities'
-import {LinkNav, nav} from './NavLinks'
+import { mediaMax } from './styles/utilities'
+import { LinkNav, nav } from './NavLinks'
 
 const NavMobileUl = styled.ul`
     padding-left: 4.5rem;
 `;
 
 const LinkNavMobile = styled(LinkNav)`
-${media.tablet`
+${mediaMax.tablet`
   &:link,
   &:visited {
     font-size: 1.6rem;

@@ -1,5 +1,5 @@
 import styled, {css} from 'styled-components'
-import media, {absolute} from './utilities'
+import {mediaMax, absolute} from './utilities'
 
 export const WrapperButton = styled.button`
 @media only screen and (min-width: 1024px) {
@@ -7,9 +7,9 @@ export const WrapperButton = styled.button`
 }
 position: fixed;
 top: 1rem;
-${media.tablet`right: 6rem;`}
-${media.phone`right: 4rem;`}
-${media.smallest`right: 3rem`}
+${mediaMax.tablet`right: 6rem;`}
+${mediaMax.phone`right: 4rem;`}
+${mediaMax.smallest`right: 3rem`}
 height: 5rem;
 width: 2rem;
 z-index: 1000;
