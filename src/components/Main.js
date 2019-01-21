@@ -8,6 +8,7 @@ import Background from "./Background";
 import Portfolio from "./Portfolio";
 import Footer from "./Footer";
 import Grid from "./styles/Grid";
+import {mediaMax} from "./styles/utilities";
 
 const MainContent = styled(Grid)`
   grid-auto-flow: row;
@@ -16,6 +17,9 @@ const MainContent = styled(Grid)`
   align-items: stretch;
   position: absolute;
   top: 100vh;
+  ${mediaMax.tablet`
+    top: 95vh;
+  `}
   left: 0;
   z-index: 99;
 `;

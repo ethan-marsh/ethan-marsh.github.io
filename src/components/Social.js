@@ -36,7 +36,7 @@ const StyledIconLink = styled.a`
   background-color: transparent;
   display: flex;
   justify-content: center;
-  transition: all 0.2s ease;
+  transition: all 0.5s ease-out;
 
   :hover {
     color: ${props => props.theme.lightblue};

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { Transition, animated, config, Spring } from "react-spring";
 import Social from "./Social";
 import Icon from "./Icon";
@@ -12,21 +12,24 @@ const SectionHome = styled(Grid).attrs({
   position: fixed;
   height: 100vh;
   z-index: -100;
-  ${mediaMax.tablet`top: 6rem;`}
+  ${mediaMax.tablet`
+    top: 6rem;
+    height: 95vh;
+  `}
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("/images/hero.jpg");
   background-size: cover;
   background-position: left top;
   color: ${props => props.theme.white};
   backface-visibility: hidden;
-  will-change: ${props => props.ready ? 'transform, opacity' : ''};
 
-  & div:first-child {
-    grid-column: 2/-2;
+  & > div:first-child {
     display: flex;
+    grid-column: 2/-2;
     flex-direction: column;
     justify-content: center;
     margin-top: -8rem;
+    position: relative;
   }
 
   h1 {
@@ -39,19 +42,18 @@ const SectionHome = styled(Grid).attrs({
 `;
 
 const StyledRow = styled(animated.div)`
-  display: flex;
-  justify-content: space-between;
   padding: 2rem 0;
 
   h2 {
     font-size: 2vw;
+    margin-bottom: 2rem;
     ${mediaMax.tablet`font-size: 3vw`};
     ${mediaMax.phone`font-size: 4vw`};
     color: ${props => props.theme.lightgrey};
   }
 `;
 
-const ButtonScrollDown = styled.button`
+const ButtonScrollDown = styled(animated.button)`
   color: ${props => props.theme.lightgrey};
   text-decoration: none;
   background: transparent;
@@ -59,6 +61,9 @@ const ButtonScrollDown = styled.button`
   outline: none;
   width: 3vw;
   transition: color 0.2s ease-out;
+  position: absolute;
+  top: calc(50% + 1rem); /* where h2 sits */
+  right: 0;
 
   &:hover,
   &:active {
@@ -66,7 +71,7 @@ const ButtonScrollDown = styled.button`
     color: ${props => props.theme.lightblue};
   }
 
-  ${mediaMax.tablet`display:none;`}
+  ${mediaMax.phone`display:none;`}
 `;
 
 
@@ -74,7 +79,6 @@ export default class Home extends Component {
   state = {
     prevY: 0,
     y: 0,
-    ready: null,
   }
 
   handleClick = (eTarget) => {
@@ -95,17 +99,6 @@ export default class Home extends Component {
     });
   };
 
-  componentDidMount() {
-    this.setState(state =>({
-      ready: state.y !== 0
-    }))
-  }
-
-  componentWillUnmount() {
-    this.setState(state =>({ ready: false }))
-  }
-
-
   componentDidUpdate(prevProps) {
     if (prevProps.scrollPercent !== 0
         && this.props.scrollPercent !== prevProps.scrollPercent) {
@@ -114,17 +107,23 @@ export default class Home extends Component {
   }
 
   render() {
-    let { prevY, y, ready } = this.state;
+    let { prevY, y } = this.state;
     return (
       <>
       <Spring
         native
         from={{ translateY: prevY }}
         to={{translateY: y }}
-        config={{tension: 0, friction: 0, mass: 3, precision: .1, easing: 'ease-out'}}
+        config={{
+          tension: 0,
+          friction: 0,
+          mass: 3,
+          precision: .25,
+          easing: 'ease-out',
+        }}
         >
           {props =>
-        <SectionHome ready style={{
+        <SectionHome style={{
           transform: props.translateY.interpolate(translateY => `translate3d(0,-${translateY}%,0)`)
         }}>
         <Content />
@@ -174,17 +173,31 @@ function Content() {
     >
       {() => props => (
         <StyledRow style={props} >
-          <h2>Front-End Web Developer / San Francisco</h2>
-          <ButtonScrollDown
-            onClick={e => this.handleClick(e.currentTarget)}
-          >
-            <Icon name="arrowDown" width="3vw" strokeWidth="1" />
-          </ButtonScrollDown>
+          <h2>Front-End Developer / San Francisco</h2>
+          <Social />
         </StyledRow>
       )}
     </Transition>
 }
-<Social />
-  </div>
+{
+ <Transition
+      native
+      from={{ transform: "translate3d(0,3rem,0)", opacity: 0 }}
+      enter={{ transform: "translate3d(0,0,0)", opacity: 1 }}
+      leave={{ opacity: 0 }}
+      config={{ ...config.molasses }}
+      delay={1000}
+    >
+      {() => props => (
+          <ButtonScrollDown
+          style={props}
+          onClick={e => this.handleClick(e.currentTarget)}
+          >
+            <Icon name="arrowDown" width="2vh" strokeWidth="1" />
+          </ButtonScrollDown>
+        )}
+      </Transition>
+}
+    </div>
   )
 }
