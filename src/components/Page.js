@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
 import Meta from "./Meta";
 import Header from "./Header";
-import {ScrollContext, themes} from "./scroll-context";
+import {ScrollContext, themes, nav} from "./scroll-context";
 
 const theme = {
   blue: "#005DB3",
@@ -35,6 +35,7 @@ const GlobalStyle = createGlobalStyle`
   html {
     box-sizing: border-box;
     font-size: 62.5%;
+    scroll-behavior: smooth;
   }
   *, *:before, *:after {
     box-sizing: inherit;
@@ -70,11 +71,12 @@ class Page extends Component {
     super(props);
 
     this.handleScroll = e => {
-      const windowHeight = e.currentTarget.innerHeight,
-        scrollY = e.currentTarget.scrollY,
-        scrollYPosition = Math.floor(windowHeight - scrollY);
+      const windowHeight = e.currentTarget.innerHeight, //client height
+        scrollY = e.currentTarget.scrollY, // scrollY
+        scrollYPosition = Math.floor(windowHeight - scrollY); // scroll relative to client height
 
       this.setState({
+        scrollY,
         scrollYPosition,
         theme:
         scrollYPosition < 80
@@ -96,13 +98,34 @@ class Page extends Component {
       }));
     };
 
-    this.state = {
-      theme: themes.initial,
-      toggleTheme: this.toggleTheme,
-      scrollYPosition: 0,
-      scrollPercent: 0,
+    this.updateActiveNav = activeNavLink => {
+      this.setState({ activeNavLink })
     };
-  }
+
+    this.updateSectionHeight = (navIndex, height) => {
+      const sectionHeights = {...this.state.sectionHeights};
+      sectionHeights[navIndex] = height;
+      this.setState({ sectionHeights })
+    };
+
+    this.state = {
+        theme: themes.initial,
+        toggleTheme: this.toggleTheme,
+        scrollY: 0,
+        scrollYPosition: 0,
+        scrollPercent: 0,
+        nav: nav.links,
+        activeNavLink: nav.activeLink,
+        updateActiveNav: this.updateActiveNav,
+        updateSectionHeight: this.updateSectionHeight,
+        sectionHeights: [
+          window.innerHeight - 80, //hero - header
+          0, //about
+          0, //background
+          0, //work
+        ]
+      }
+  };
 
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll);
@@ -112,8 +135,8 @@ class Page extends Component {
   }
 
   render() {
-    const { children } = this.props,
-        childrenWithProps = React.cloneElement(children, { ...this.state  });
+    const { children } = this.props;
+    const childrenWithProps = React.cloneElement(children, { ...this.state  });
 
     return (
       <ThemeProvider theme={theme}>
@@ -121,11 +144,11 @@ class Page extends Component {
           <Meta />
           <GlobalStyle />
           <ScrollContext.Provider value={ this.state }>
-            <Header />
+              <Header />
           </ScrollContext.Provider>
-            <Inner>
-              { childrenWithProps }
-            </Inner>
+              <Inner>
+                { childrenWithProps }
+              </Inner>
         </StyledPage>
       </ThemeProvider>
     );

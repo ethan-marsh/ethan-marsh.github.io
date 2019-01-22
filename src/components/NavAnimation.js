@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 import { Keyframes, animated } from 'react-spring'
 import styled from 'styled-components'
 import { mediaMax } from './styles/utilities'
-import { LinkNav, nav } from './NavLinks'
+import { LinkNav } from './NavLinks'
+import {ScrollContext, nav} from './scroll-context'
 
 const NavMobileUl = styled.ul`
     padding-left: 4.5rem;
+    list-style: none;
 `;
 
 const LinkNavMobile = styled(LinkNav)`
@@ -18,20 +20,23 @@ ${mediaMax.tablet`
 
     letter-spacing: 1.5px;
     position: relative;
-    opacity: 0.6;
+    opacity: ${props => props.active ? `1` : `0.6`};
 
     &::after {
         content: "";
         width: 2rem;
         height: 2px;
-        background-color: #111;
+        background-color: ${props => props.active ? `#FFF` : `#111`};
         opacity: 1;
         position: absolute;
         bottom: 40%;
         left: -4.5rem;
     }
 
-    &:active::after {background-color: #fff;}
+    &:active::after {
+        background-color: #fff;
+
+    }
   }
 
   &:hover,
@@ -62,8 +67,8 @@ export default class AnimatedMobileNav extends Component {
             <NavMobileUl>
                 <NavItems
                     native
-                    items={nav}
-                    keys={nav.map((_, i) => i)}
+                    items={nav.links}
+                    keys={nav.links.map((_, i) => i)}
                     reverse={!this.props.on}
                     state={on}>
                     {(item, i) => ({ x, ...props }) => (
@@ -72,13 +77,19 @@ export default class AnimatedMobileNav extends Component {
                                 transform: x.interpolate(x => `translate3d(${x}%,0,0)`),
                                 ...props,
                             }}>
+                            <ScrollContext.Consumer>
+                                {( {activeNavLink} ) => (
                             <LinkNavMobile
                                 {...this.props}
                                 name={item}
-                                href={`#${item}`}
+                                href={item === 'home' ? '#' : `#${item}`}
+                                onClick={e => this.setState({ active: e.currentTarget.name})}
+                                active={activeNavLink === item}
                             >
                                 {item}
                             </LinkNavMobile>
+                                )}
+                            </ScrollContext.Consumer>
                         </animated.li>
                     )}
                 </NavItems>

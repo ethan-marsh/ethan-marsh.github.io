@@ -7,8 +7,10 @@ import About from "./About";
 import Background from "./Background";
 import Portfolio from "./Portfolio";
 import Footer from "./Footer";
+import MeasureSection from "./MeasureSection";
+
 import Grid from "./styles/Grid";
-import {mediaMax} from "./styles/utilities";
+import { mediaMax } from "./styles/utilities";
 
 const MainContent = styled(Grid)`
   grid-auto-flow: row;
@@ -24,11 +26,14 @@ const MainContent = styled(Grid)`
   z-index: 99;
 `;
 
+const BackgroundSection = MeasureSection(Background)
+const AboutSection = MeasureSection(About)
+const PortfolioSection = MeasureSection(Portfolio)
+
 // --- APP START --- //
 class Main extends Component {
   constructor(props) {
     super(props);
-    this.aboutRef = React.createRef();
     this.contentRef = React.createRef();
 
     this.state = {
@@ -43,19 +48,18 @@ class Main extends Component {
   }
 
   render() {
+    const { scrollPercent, updateActiveNav, scrollY, activeNavLink, updateSectionHeight, sectionHeights } = this.props;
     return (
       <div className="main">
         <Home
-          id="home"
-          className="home"
           getContentPosition={this.getContentPosition}
-          scrollPercent={this.props.scrollPercent}
+          scrollPercent={scrollPercent}
         />
 
         <MainContent ref={this.contentRef}>
-          <About id="about" title="about" forwardedRef={this.aboutRef} />
-          <Background id="background" title="background" />
-          <Portfolio id="work" />
+          <AboutSection id="about" title="about" updateActiveNav={updateActiveNav} scrollY={scrollY} activeNavLink={activeNavLink} updateSectionHeight={updateSectionHeight} sectionHeights={sectionHeights} />
+          <BackgroundSection id="background" title="background" updateActiveNav={updateActiveNav} scrollY={scrollY} activeNavLink={activeNavLink} updateSectionHeight={updateSectionHeight} sectionHeights={sectionHeights} />
+          <PortfolioSection id="work" updateActiveNav={updateActiveNav} scrollY={scrollY} activeNavLink={activeNavLink} updateSectionHeight={updateSectionHeight} sectionHeights={sectionHeights}/>
           <Footer />
         </MainContent>
       </div>

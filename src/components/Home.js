@@ -12,6 +12,7 @@ const SectionHome = styled(Grid).attrs({
   position: fixed;
   height: 100vh;
   z-index: -100;
+  will-change: transform, opacity;
   ${mediaMax.tablet`
     top: 6rem;
     height: 95vh;
@@ -120,9 +121,8 @@ export default class Home extends Component {
         config={{
           tension: 0,
           friction: 0,
-          mass: 3,
-          precision: .25,
-          easing: 'ease-out',
+          mass: 1,
+          precision: .01,
         }}
         >
           {props =>

@@ -64,16 +64,37 @@ export default class Portfolio extends Component {
       );
       this.setState({ category, projects: filteredProjects });
     }
-
   }
 
+  componentDidMount() {
+    this.props.updateSectionHeight(3, this.props.rectHeight)
+  }
+
+  // sets nav at either about or background
+  componentDidUpdate(prevProps) {
+    if (this.props.rectHeight !== prevProps.rectHeight) {
+      this.props.updateSectionHeight(3, this.props.rectHeight)
+    }
+    if (this.props.activeNavLink === 'background'
+      && this.props.scrollY > prevProps.scrollY // scrolling down
+      && this.props.scrollY > (this.props.sectionHeights[0] + this.props.sectionHeights[1] + this.props.sectionHeights[2] / 2)
+    ) {
+      this.props.updateActiveNav('work');
+    } else if (this.props.activeNavLink === 'work'
+      && this.props.scrollY < prevProps.scrollY) // scrolling up
+      if (this.props.scrollY < (this.props.sectionHeights[0] + this.props.sectionHeights[1] + (this.props.sectionHeights[2]))
+        && this.props.scrollY > (this.props.sectionHeights[0] + (this.props.sectionHeights[1] + this.props.sectionHeights[2] / 2))) {
+        this.props.updateActiveNav('background')
+
+      }
+  }
 
   render() {
-    const { ...props } = this.props;
-    const newProjects = {...this.state.projects};
+    const { measureRef, ...rest } = this.props;
+    const newProjects = { ...this.state.projects };
 
     return (
-      <Section {...props}>
+      <Section ref={measureRef} {...rest}>
         <StyledCategories>
           {categories.map(category => (
             <li key={category}>

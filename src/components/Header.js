@@ -26,17 +26,16 @@ const StyledHeader = styled(Grid).attrs({
 
 class Header extends Component {
   render() {
-    let props = this.props;
     return (
       <ScrollContext.Consumer>
-        {({ theme }) => (
+        {({ theme, scrollYPosition, activeNavLink }) => (
           <StyledHeader
           bg={theme.background}
           color={theme.foreground}
           borderColor={theme.accent}
         >
-          <Logo headerIsScrolled={this.props.headerIsScrolled} color={theme.foreground} />
-          <Nav {...props} color={theme.foreground}/>
+          <Logo color={theme.foreground} />
+          <Nav {...this.props} color={theme.foreground} scrollYPosition={scrollYPosition} />
         </StyledHeader>
         )
       }

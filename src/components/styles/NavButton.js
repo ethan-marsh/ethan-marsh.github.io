@@ -57,7 +57,7 @@ transform: translate3d(0, .5rem, 0);
 ${props =>
 	props.on &&
 	css`
-		background-color: #111;
+		background-color: transparent;
 
 		&::before {
 			transform: rotate(45deg);
