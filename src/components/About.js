@@ -24,7 +24,7 @@ export default class About extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.rectHeight !== prevProps.rectHeight) {
-      this.props.updateSectionHeight(1, this.props.rectHeight)
+      this.props.updateSectionHeight(1, this.props.rectHeight);
     }
     if (this.props.activeNavLink !== 'about'
         && this.props.scrollY > prevProps.scrollY) {

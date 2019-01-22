@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 import { WrapperButton, StyledNavButton } from './styles/NavButton';
 import NavAnimation from './NavAnimation'
 import Social from './Social';
+import {mediaMin} from './styles/utilities'
 
 const NavWrapper = styled.aside`
     position: fixed;
@@ -19,6 +20,8 @@ const NavWrapper = styled.aside`
    ${props => props.on && css`
         transform: translate3d(0, 0, 0);
     `}
+
+    ${mediaMin.tablet`display:none`};
 `;
 
 const NavInner = styled.nav`

@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import { Keyframes, animated } from 'react-spring'
 import styled from 'styled-components'
-import { mediaMax } from './styles/utilities'
+import { mediaMax} from './styles/utilities'
 import { LinkNav } from './NavLinks'
 import {ScrollContext, nav} from './scroll-context'
 
 const NavMobileUl = styled.ul`
     padding-left: 4.5rem;
     list-style: none;
+
 `;
 
 const LinkNavMobile = styled(LinkNav)`
