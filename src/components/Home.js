@@ -1,206 +1,101 @@
-import React, { Component } from "react";
-import styled from "styled-components";
-import { Transition, animated, config, Spring } from "react-spring";
-import Social from "./Social";
-import Icon from "./Icon";
-import Grid from "./styles/Grid";
-import {mediaMax} from "./styles/utilities";
+import React, { Component } from 'react';
+import styled from 'styled-components';
 
-const SectionHome = styled(Grid).attrs({
-  as: animated.section
-})`
-  position: fixed;
-  height: 100vh;
-  z-index: -100;
-  will-change: transform, opacity;
-  ${mediaMax.tablet`
-    top: 6rem;
-    height: 95vh;
-  `}
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("/images/hero.jpg");
-  background-size: cover;
-  background-position: left top;
-  color: ${props => props.theme.white};
-  backface-visibility: hidden;
+//* COMPONENTS *//
+import Hero from './Hero';
+import AboutSection from './AboutSection';
+import Background from './Background';
+import Portfolio from './Portfolio';
+import Footer from './Footer';
+import measureSection from './measureSection';
+import sectionWrapper from 'components/sectionWrapper';
 
-  & > div:first-child {
-    display: flex;
-    grid-column: 2/-2;
-    flex-direction: column;
-    justify-content: center;
-    margin-top: -8rem;
-    position: relative;
-  }
+import Grid from './styles/Grid';
+import { mediaMax } from './styles/utils';
 
-  h1 {
-    font-size: 4vw;
-    letter-spacing: .5px;
-    margin-bottom: 1.5rem;
-    font-weight: 300;
-    ${mediaMax.tablet`font-size: 5.2vw; letter-spacing: .5px;`};
-    ${mediaMax.phone`font-size: 6vw`};
-
-  }
-`;
-
-const StyledRow = styled(animated.div)`
-  padding: 2rem 0;
-
-  h2 {
-    font-size: 2vw;
-    margin-bottom: 2rem;
-    font-weight: 400;
-    ${mediaMax.tablet`font-size: 3vw`};
-    ${mediaMax.phone`font-size: 4vw`};
-    color: ${props => props.theme.lightgrey};
-  }
-`;
-
-const ButtonScrollDown = styled(animated.button)`
-  color: ${props => props.theme.lightgrey};
-  text-decoration: none;
-  background: transparent;
-  border: none;
-  outline: none;
-  width: 3%;
-  transition: color 0.2s ease-out;
+const MainSections = styled(Grid)`
+  grid-auto-flow: row;
+  grid-auto-rows: auto-fill;
+  justify-items: stretch;
+  align-items: stretch;
   position: absolute;
-  top: calc(50% + 1rem); /* where h2 sits */
-  right: 0;
-
-  &:hover,
-  &:active {
-    cursor: pointer;
-    color: ${props => props.theme.lightblue};
-  }
-
-  ${mediaMax.phone`display:none;`}
+  top: 100vh;
+  ${mediaMax.tablet`
+    top: 95vh;
+  `}
+  left: 0;
+  z-index: 99;
 `;
 
+const About = sectionWrapper(AboutSection);
+const BackgroundSection = measureSection(Background);
+const PortfolioSection = measureSection(Portfolio);
 
-export default class Home extends Component {
-  state = {
-    prevY: 0,
-    y: 0,
+// --- APP START --- //
+class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.contentRef = React.createRef();
+
+    this.state = {
+      activeLink: 'home'
+    };
   }
 
-  handleClick = (eTarget) => {
-    const buttonTop = eTarget.getBoundingClientRect().top,
-      contentTop = this.props.getContentPosition();
-
-    let scrollNeeded;
-    if (this.props.scrollPercent === 0) { // If scroll not activated yet
-      scrollNeeded = (window.innerHeight / 1.3); // Bring up the below div halfway
-    } else {
-      scrollNeeded = contentTop - buttonTop + (((100 - this.props.scrollPercent) / 400 * window.innerHeight) - 50);
-      // offset between two + amount button will transform
-    }
-    window.scrollBy({
-      top: scrollNeeded,
-      left: 0,
-      behavior: "smooth"
-    });
+  getContentPosition = () => {
+    const currentRef = this.contentRef.current;
+    const positions = currentRef.getBoundingClientRect();
+    return positions.top;
   };
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.scrollPercent !== 0
-        && this.props.scrollPercent !== prevProps.scrollPercent) {
-      this.setState({ prevY: prevProps.scrollPercent / 4, y: this.props.scrollPercent / 4 })
-    }
-  }
-
   render() {
-    let { prevY, y } = this.state;
+    const {
+      scrollPercent,
+      updateActiveNav,
+      scrollY,
+      activeNavLink,
+      updateSectionHeight,
+      sectionHeights
+    } = this.props;
     return (
-      <>
-      <Spring
-        native
-        from={{ translateY: prevY }}
-        to={{translateY: y }}
-        config={{
-          tension: 0,
-          friction: 0,
-          mass: 1,
-          precision: .01,
-        }}
-        >
-          {props =>
-        <SectionHome style={{
-          transform: props.translateY.interpolate(translateY => `translate3d(0,-${translateY}%,0)`)
-        }}>
-        <Content />
-        </SectionHome>
-        }
-        </Spring>
+      <div className="main">
+        <Hero
+          getContentPosition={this.getContentPosition}
+          scrollPercent={scrollPercent}
+        />
 
-          </>
+        <MainSections ref={this.contentRef}>
+          <About
+            id="about"
+            title="about"
+            updateActiveNav={updateActiveNav}
+            scrollY={scrollY}
+            activeNavLink={activeNavLink}
+            updateSectionHeight={updateSectionHeight}
+            sectionHeights={sectionHeights}
+          />
+          <BackgroundSection
+            id="background"
+            title="background"
+            updateActiveNav={updateActiveNav}
+            scrollY={scrollY}
+            activeNavLink={activeNavLink}
+            updateSectionHeight={updateSectionHeight}
+            sectionHeights={sectionHeights}
+          />
+          <PortfolioSection
+            id="work"
+            updateActiveNav={updateActiveNav}
+            scrollY={scrollY}
+            activeNavLink={activeNavLink}
+            updateSectionHeight={updateSectionHeight}
+            sectionHeights={sectionHeights}
+          />
+          <Footer />
+        </MainSections>
+      </div>
     );
   }
 }
 
-function Content() {
-  return (
-    <div>
-    <Transition
-      native
-      force
-      items={{ item: true }}
-      from={{ opacity: 0 }}
-      enter={{ opacity: 1 }}
-      leave={{ opacity: 0 }}
-      config={{ ...config.molasses }}
-    >
-      {() => props => (
-        <animated.h1 style={props} children={"Ethan Marsh"} />
-      )}
-    </Transition>
-
-    <Transition
-      native
-      from={{ transform: "scaleX(3)", opacity: 0 }}
-      enter={{ transform: "scaleX(1)", opacity: 0.5 }}
-      leave={{ transform: "scaleX(0)", opacity: 0 }}
-      config={{ ...config.slow }}
-    >
-      {() => props => <animated.hr style={props} />}
-    </Transition>
-{
-    <Transition
-      native
-      from={{ transform: "translate3d(0,-2rem,0)", opacity: 0 }}
-      enter={{ transform: "translate3d(0,0,0)", opacity: 1 }}
-      leave={{ opacity: 0 }}
-      config={{ ...config.molasses }}
-      delay={1000}
-    >
-      {() => props => (
-        <StyledRow style={props} >
-          <h2>Web Developer  /  San Francisco</h2>
-          <Social />
-        </StyledRow>
-      )}
-    </Transition>
-}
-{
- <Transition
-      native
-      from={{ transform: "translate3d(0,3rem,0)", opacity: 0 }}
-      enter={{ transform: "translate3d(0,0,0)", opacity: 1 }}
-      leave={{ opacity: 0 }}
-      config={{ ...config.molasses }}
-      delay={1000}
-    >
-      {() => props => (
-          <ButtonScrollDown
-          style={props}
-          onClick={e => this.handleClick(e.currentTarget)}
-          >
-            <Icon name="arrowDown" width="2vh" strokeWidth="3" />
-          </ButtonScrollDown>
-        )}
-      </Transition>
-}
-    </div>
-  )
-}
+export default Home;

@@ -1,40 +1,25 @@
+import React from 'react';
 import styled from 'styled-components';
-import Grid from './Grid';
-import { mediaMax } from './utils';
+import Grid from '../styles/Grid';
+import { mediaMax } from '../styles/utils';
 
-const Section = styled(Grid).attrs({
+const StyledSectionWrapper = styled(Grid).attrs({
   as: 'section'
 })`
+  grid-column: span 12;
   padding: 10rem 0;
   font-size: 1.4rem;
   background-color: white;
   ${mediaMax.tablet`
     row-gap: 2rem;
     `}
-
-  grid-column: span 12;
 `;
-
-const StyledSection = styled(Grid).attrs({
-  as: 'section'
-})`
-  padding: 10rem 0;
-  font-size: 1.4rem;
-  background-color: white;
-  ${mediaMax.tablet`
-    row-gap: 2rem;
-    `}
-
-  grid-column: span 12;
-`;
-
-const SectionTitle = styled.div`
+const StyledSectionTitle = styled.div`
   grid-column: 2 / 5;
   ${mediaMax.tablet`
     grid-column: 2 / -2;
     grid-row: 1 / span 1;
     `}
-
   h3 {
     font-size: 2.2rem;
     text-transform: uppercase;
@@ -43,14 +28,12 @@ const SectionTitle = styled.div`
     }
   }
 `;
-
-const SectionContent = styled.div`
+const StyledSectionContent = styled.div`
   grid-column: 5 / -2;
   ${mediaMax.tablet`
       grid-column: 2 / -2;
       grid-row-start: 2;
       `}
-
   h5 {
     font-size: 1.4rem;
     line-height: 1.1em;
@@ -58,4 +41,13 @@ const SectionContent = styled.div`
   }
 `;
 
-export { Section, StyledSection, SectionTitle, SectionContent };
+const StyledSection = ({ children, measureRef, title, ...rest }) => (
+  <StyledSectionWrapper ref={measureRef} {...rest}>
+    <StyledSectionTitle>
+      <h3>{title}</h3>
+    </StyledSectionTitle>
+    <StyledSectionContent>{children}</StyledSectionContent>
+  </StyledSectionWrapper>
+);
+
+export default StyledSection;

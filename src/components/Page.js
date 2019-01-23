@@ -1,25 +1,9 @@
-import React, { Component } from "react";
-import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
-import Meta from "./Meta";
-import Header from "./Header";
-import {ScrollContext, themes, nav} from "./scroll-context";
-
-const theme = {
-  blue: "#005DB3",
-  black: "#000000",
-  white: "#FFFFFF",
-  grey: "#3A3A3A",
-  lightgrey: "#CCCCCC",
-  darkblue: "#02243C",
-  lightblue: "#5195CE",
-  offWhite: "#EDEDED",
-  maxWidth: "1440px",
-  fontPrimary: "'Helvetica Neue', 'Open Sans', sans-serif;",
-  fontDisplay: "'Raleway', sans-serif",
-  bs: "0 12px 24px 0 rgba(0, 0, 0, 0.09)",
-  fwNormal: "300",
-  background: '#FFFFFF',
-};
+import React, { Component } from 'react';
+import styled, { ThemeProvider } from 'styled-components';
+import Meta from './Meta';
+import Header from './Header';
+import GlobalStyle, { theme } from 'utils/global';
+import { ScrollContext, themes, nav } from './scroll-context';
 
 const StyledPage = styled.div`
   background: ${props => props.theme.white};
@@ -29,41 +13,6 @@ const StyledPage = styled.div`
 const Inner = styled.div`
   margin: 0 auto;
   padding: 0;
-`;
-
-const GlobalStyle = createGlobalStyle`
-  html {
-    box-sizing: border-box;
-    font-size: 62.5%;
-    scroll-behavior: smooth;
-  }
-  *, *:before, *:after {
-    box-sizing: inherit;
-    margin: 0;
-    padding: 0;
-  }
-  body {
-    height: 0;
-    overflow: scroll;
-    padding: 0;
-    margin: 0;
-    font-family: ${theme.fontPrimary};
-    font-weight: ${theme.fwNormal};
-    -webkit-font-smoothing: antialiased;
-  }
-  a {
-    text-decoration: none;
-    color: ${theme.white};
-  }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5 {
-    margin: 0;
-    padding: 0;
-    font-family: ${theme.fontDisplay};
-    font-weight: ${theme.fwNormal};
 `;
 
 class Page extends Component {
@@ -78,54 +27,46 @@ class Page extends Component {
       this.setState({
         scrollY,
         scrollYPosition,
-        theme:
-        scrollYPosition < 80
-        ? themes.scrolled
-        : themes.initial,
+        theme: scrollYPosition < 80 ? themes.scrolled : themes.initial,
         scrollPercent:
-          scrollYPosition > 0
-          ? ( Math.floor((scrollY / windowHeight) * 100))
-          : 0,
+          scrollYPosition > 0 ? Math.floor((scrollY / windowHeight) * 100) : 0
       });
     };
 
     this.toggleHeaderTheme = () => {
       this.setState(state => ({
-          theme:
-          state.theme === themes.initial
-          ? themes.scrolled
-          : themes.initial,
+        theme: state.theme === themes.initial ? themes.scrolled : themes.initial
       }));
     };
 
     this.updateActiveNav = activeNavLink => {
-      this.setState({ activeNavLink })
+      this.setState({ activeNavLink });
     };
 
     this.updateSectionHeight = (navIndex, height) => {
-      const sectionHeights = {...this.state.sectionHeights};
+      const sectionHeights = { ...this.state.sectionHeights };
       sectionHeights[navIndex] = height;
-      this.setState({ sectionHeights })
+      this.setState({ sectionHeights });
     };
 
     this.state = {
-        theme: themes.initial,
-        toggleTheme: this.toggleTheme,
-        scrollY: 0,
-        scrollYPosition: 0,
-        scrollPercent: 0,
-        nav: nav.links,
-        activeNavLink: nav.activeLink,
-        updateActiveNav: this.updateActiveNav,
-        updateSectionHeight: this.updateSectionHeight,
-        sectionHeights: [
-          window.innerHeight - 80, //hero - header
-          0, //about
-          0, //background
-          0, //work
-        ]
-      }
-  };
+      theme: themes.initial,
+      toggleTheme: this.toggleTheme,
+      scrollY: 0,
+      scrollYPosition: 0,
+      scrollPercent: 0,
+      nav: nav.links,
+      activeNavLink: nav.activeLink,
+      updateActiveNav: this.updateActiveNav,
+      updateSectionHeight: this.updateSectionHeight,
+      sectionHeights: [
+        window.innerHeight - 80, //hero - header
+        0, //about
+        0, //background
+        0 //work
+      ]
+    };
+  }
 
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll);
@@ -136,19 +77,17 @@ class Page extends Component {
 
   render() {
     const { children } = this.props;
-    const childrenWithProps = React.cloneElement(children, { ...this.state  });
+    const childrenWithProps = React.cloneElement(children, { ...this.state });
 
     return (
       <ThemeProvider theme={theme}>
         <StyledPage>
           <Meta />
           <GlobalStyle />
-          <ScrollContext.Provider value={ this.state }>
-              <Header />
+          <ScrollContext.Provider value={this.state}>
+            <Header />
           </ScrollContext.Provider>
-              <Inner>
-                { childrenWithProps }
-              </Inner>
+          <Inner>{childrenWithProps}</Inner>
         </StyledPage>
       </ThemeProvider>
     );

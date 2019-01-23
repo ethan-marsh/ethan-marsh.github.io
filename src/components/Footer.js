@@ -1,11 +1,11 @@
-import React from "react";
-import styled from "styled-components";
-import Grid from "./styles/Grid";
+import React from 'react';
+import styled from 'styled-components';
+import Grid from './styles/Grid';
 
-import Social from "./Social";
+import Social from './SocialLinks';
 
 const StyledFooter = styled(Grid).attrs({
-  as: "footer"
+  as: 'footer'
 })`
   padding: 3rem 0;
   background-color: #292929;
@@ -33,14 +33,20 @@ const FooterContent = styled.div`
   }
 `;
 
+const footerItems = [
+  '(925) 787 6250',
+  'ethancmarsh@yahoo.com',
+  `\u00A9 2019 Ethan Marsh`
+];
+
 const Footer = props => (
   <StyledFooter {...props}>
     <hr />
     <FooterContent>
       <div>
-        <p>+1 925 787 6250</p>
-        <p>ethancmarsh@yahoo.com</p>
-        <p>&copy; 2019 Ethan Marsh</p>
+        {footerItems.map((item, i) => (
+          <p key={i}>{item}</p>
+        ))}
       </div>
       <div>
         <Social />
@@ -50,30 +56,3 @@ const Footer = props => (
 );
 
 export default Footer;
-
-//  .social - item {
-//     &: not(: first - child) {
-//     margin - left: 1rem;
-//   }
-// }
-
-//   .social - link {
-//     &: link,
-//     &: visited {
-//     filter: brightness(190 %);
-//     transition: all 0.2s ease -in;
-//   }
-
-//     &: hover,
-//     &: active {
-//     filter: brightness(150 %);
-//   }
-
-//     & __icon {
-//     width: 3rem;
-//     height: 3rem;
-
-//     opacity: 0.9;
-//   }
-// }
-// }

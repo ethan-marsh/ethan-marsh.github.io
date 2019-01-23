@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import styled, { css } from "styled-components";
-import { absolute } from "./styles/utilities";
+import React, { Component } from 'react';
+import styled, { css } from 'styled-components';
+import { absolute } from './styles/utils';
 
 const StyledLogo = styled.div`
   grid-column: 2 / 6;
@@ -18,9 +18,9 @@ const LogoImage = styled.img`
 `;
 
 const LogoDark = styled(LogoImage).attrs({
-  src: "images/logo-dark.png",
-  alt: "Ethan",
-  title: "ethanmarsh.com"
+  src: 'images/logo-dark.png',
+  alt: 'Ethan',
+  title: 'ethanmarsh.com'
 })`
   @media only screen and (max-width: 1024px) {
     transform: translate3d(0, 0, 0);
@@ -33,17 +33,17 @@ const LogoDark = styled(LogoImage).attrs({
 
     ${props =>
       props.color === 'dark' &&
-        css`
-          transform: translate3d(0, 0, 0);
-          opacity: 1;
-        `}
+      css`
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+      `}
   }
 `;
 
 const LogoLight = styled(LogoImage).attrs({
-  src: "images/logo-light.png",
-  alt: "Ethan",
-  title: "ethanmarsh.com"
+  src: 'images/logo-light.png',
+  alt: 'Ethan',
+  title: 'ethanmarsh.com'
 })`
   @media only screen and (max-width: 1024px) {
     display: none;
@@ -54,17 +54,17 @@ const LogoLight = styled(LogoImage).attrs({
     display: block;
 
     ${props =>
-    props.color === 'dark' &&
-    css`
-      transform: translate3d(0, -4rem, 0);
-      opacity: 0;
-    `}
+      props.color === 'dark' &&
+      css`
+        transform: translate3d(0, -4rem, 0);
+        opacity: 0;
+      `}
   }
 `;
 
 export default class Logo extends Component {
   render() {
-    let color = this.props.color  === '#FFFFFF' ? 'light' : 'dark';
+    let color = this.props.color === '#FFFFFF' ? 'light' : 'dark';
     return (
       <StyledLogo>
         <a href="/">

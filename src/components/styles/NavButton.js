@@ -1,5 +1,5 @@
-import styled, {css} from 'styled-components'
-import {mediaMax, absolute} from './utilities'
+import styled, { css } from 'styled-components';
+import { mediaMax, absolute } from './utils';
 
 export const WrapperButton = styled.button`
 @media only screen and (min-width: 1024px) {
@@ -55,18 +55,17 @@ transform: translate3d(0, .5rem, 0);
 }
 
 ${props =>
-	props.on &&
-	css`
-		background-color: transparent;
+  props.on &&
+  css`
+    background-color: transparent;
 
-		&::before {
-			transform: rotate(45deg);
-			background-color: #666;
-		}
-		&::after {
-			transform: rotate(-45deg);
-			background-color: #666;
-		}
-	`}
+    &::before {
+      transform: rotate(45deg);
+      background-color: #666;
+    }
+    &::after {
+      transform: rotate(-45deg);
+      background-color: #666;
+    }
+  `}
 `;
-

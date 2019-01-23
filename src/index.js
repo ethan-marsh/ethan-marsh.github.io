@@ -1,5 +1,5 @@
-import React from "react";
-import { render } from "react-snapshot";
-import App from "./components/App"
+import React from 'react';
+import { render } from 'react-snapshot';
+import App from 'App';
 
-render(<App />, document.getElementById("root"));
+render(<App />, document.getElementById('root'));

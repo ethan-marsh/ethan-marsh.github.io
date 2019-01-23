@@ -1,64 +1,63 @@
-import React, { Component } from "react";
-import styled from "styled-components";
-import { Section, SectionContent, SectionTitle } from "./styles/Section";
-import { aboutText } from "Data";
+import React, { Component } from 'react';
+import AboutContent from './AboutContent';
+import { aboutText } from 'api';
+//import { Section, SectionContent, SectionTitle } from '../styles/Section';
 
-const SectionAbout = styled(Section)`
-  background-color: #fff
-  color: #555
+// const SectionAbout = styled(Section)`
+//   background-color: #fff
+//   color: #555
 
-  p {
-    margin-bottom: 3rem
-    line-height: 1.5em
+//   p {
+//     margin-bottom: 3rem
+//     line-height: 1.5em
 
-    :last-child {
-      margin-bottom: 3em
-    }
-  }
-`;
+//     :last-child {
+//       margin-bottom: 3em;
+//     }
+//   }
+// `;
 
-export default class About extends Component {
-  componentDidMount() {
-    this.props.updateSectionHeight(1, this.props.rectHeight)
-  }
+class AboutSection extends Component {
+  // componentDidMount() {
+  //   const { updateSectionHeight } = this.props;
+  //   updateSectionHeight(1, this.props.rectHeight);
+  // }
 
   componentDidUpdate(prevProps) {
-    if (this.props.rectHeight !== prevProps.rectHeight) {
-      this.props.updateSectionHeight(1, this.props.rectHeight);
+    const {
+      rectHeight,
+      updateSectionHeight,
+      activeNavLink,
+      scrollY,
+      sectionHeights,
+      updateActiveNav
+    } = this.props;
+    if (rectHeight !== prevProps.rectHeight) {
+      updateSectionHeight(1, rectHeight);
     }
-    if (this.props.activeNavLink !== 'about'
-        && this.props.scrollY > prevProps.scrollY) {
-          if (this.props.scrollY > (this.props.sectionHeights[0]/2 )
-              && this.props.scrollY < (this.props.sectionHeights[0] + this.props.sectionHeights[1])
-          ) {
-            this.props.updateActiveNav('about');
-          }
-        } else if (this.props.activeNavLink === 'about'
-                   && this.props.scrollY < prevProps.scrollY
-                   && this.props.scrollY < this.props.sectionHeights[0]
-                   ) {
-                     this.props.updateActiveNav('home')
-                  }
-        }
-
-
-  render() {
-    const { measureRef,...rest } = this.props;
-    return (
-        <SectionAbout ref={measureRef} {...rest} >
-        <SectionTitle>
-          <h3>{this.props.title}</h3>
-        </SectionTitle>
-          <SectionContent>
-            {Object.keys(aboutText).map(key => (
-              <p key={key}>{aboutText[key]}</p>
-              ))}
-          </SectionContent>
-        </SectionAbout>
-      )
+    if (activeNavLink !== 'about' && scrollY > prevProps.scrollY) {
+      if (
+        scrollY > sectionHeights[0] / 2 &&
+        scrollY < sectionHeights[0] + sectionHeights[1]
+      ) {
+        updateActiveNav('about');
+      }
+    } else if (
+      activeNavLink === 'about' &&
+      scrollY < prevProps.scrollY &&
+      scrollY < sectionHeights[0]
+    ) {
+      updateActiveNav('home');
     }
   }
 
+  render() {
+    const { ...props } = this.props;
+    return <AboutContent aboutText={aboutText} {...props} />;
+  }
+}
+
+export default AboutSection;
 
 /* <div className="about__bars bars">
             <div className="bars__bar-label">
