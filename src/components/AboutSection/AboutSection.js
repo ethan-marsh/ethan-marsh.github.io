@@ -3,33 +3,8 @@ import { aboutText } from 'api';
 import AboutContent from './AboutContent';
 
 class AboutSection extends Component {
-  // componentDidUpdate(prevProps) {
-  //   const {
-  //     rectHeight,
-  //     updateSectionHeight,
-  //     activeNavLink,
-  //     scrollY,
-  //     sectionHeights,
-  //     updateActiveNav,
-  //   } = this.props;
-  //   if (rectHeight !== prevProps.rectHeight) {
-  //     updateSectionHeight(1, rectHeight);
-  //   }
-  //   if (activeNavLink !== 'about' && scrollY > prevProps.scrollY) {
-  //     if (scrollY > sectionHeights[0] / 2 && scrollY < sectionHeights[0] + sectionHeights[1]) {
-  //       updateActiveNav('about');
-  //     }
-  //   } else if (
-  //     activeNavLink === 'about' &&
-  //     scrollY < prevProps.scrollY &&
-  //     scrollY < sectionHeights[0]
-  //   ) {
-  //     updateActiveNav('home');
-  //   }
-  // }
-
   render() {
-    return <AboutContent aboutText={aboutText} {...this.props} />;
+    return aboutText && <AboutContent aboutText={aboutText} {...this.props} />;
   }
 }
 

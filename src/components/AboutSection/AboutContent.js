@@ -7,7 +7,6 @@ import styled from 'styled-components';
 const AboutParagraphs = styled.p`
   margin-bottom: 3rem
     line-height: 1.5em
-
     :last-child {
     margin-bottom: 3em;
   }

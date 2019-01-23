@@ -15,10 +15,14 @@ class SectionWrapper extends Component {
       scrollY,
       sectionHeights,
       updateActiveNav,
+      sectionNum,
     } = this.props;
+
     if (rectHeight !== prevProps.rectHeight) {
-      updateSectionHeight(1, rectHeight);
+      updateSectionHeight(sectionNum, rectHeight);
+      // If the window is resized, let state know
     }
+
     if (activeNavLink !== 'about' && scrollY > prevProps.scrollY) {
       if (scrollY > sectionHeights[0] / 2 && scrollY < sectionHeights[0] + sectionHeights[1]) {
         updateActiveNav('about');

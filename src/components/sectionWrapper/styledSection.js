@@ -1,7 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Grid from '../styles/Grid';
-import { mediaMax } from '../styles/utils';
+import { mediaMax, absolute } from '../styles/utils';
+import experienceBg from 'assets/images/experience-bg@0,5x.jpg';
 
 const StyledSectionWrapper = styled(Grid).attrs({
   as: 'section',
@@ -12,6 +13,36 @@ const StyledSectionWrapper = styled(Grid).attrs({
   background-color: white;
   ${mediaMax.tablet`
     row-gap: 2rem;
+    `}
+
+  ${props =>
+    props.title === 'background' /* SPECIAL FOR BACKGROUND SECTION */ &&
+    css`
+      position: relative;
+      background-color: ${props => props.theme.grey};
+      color: #ddd;
+      z-index: -2;
+      ${mediaMax.tablet`
+      padding-top: 35vh;
+      `}
+
+      ::before {
+        ${mediaMax.biggest`${absolute({})}`}
+        content: "";
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+          url(${experienceBg});
+        background-size: cover;
+        filter: brightness(120%);
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 100%;
+        width: 45%;
+        ${mediaMax.tablet`
+      height: 25vh;
+      width: 100%;
+      `}
+        z-index: -1;
+      }
     `}
 `;
 const StyledSectionTitle = styled.div`
@@ -41,8 +72,8 @@ const StyledSectionContent = styled.div`
   }
 `;
 
-const StyledSection = ({ children, measureRef, title, ...rest }) => (
-  <StyledSectionWrapper ref={measureRef} {...rest}>
+const StyledSection = ({ children, measureRef, title, ...props }) => (
+  <StyledSectionWrapper ref={measureRef} title={title} {...props}>
     <StyledSectionTitle>
       <h3>{title}</h3>
     </StyledSectionTitle>

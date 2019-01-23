@@ -1,12 +1,8 @@
-import iconData from "./iconData";
-import { aboutText, aboutSkills } from "./aboutData";
-import { jobs } from "./backgroundData";
-import { projects } from "./projectData";
+import iconData from './iconData';
+import { aboutText, aboutSkills } from './aboutData';
+import { jobs } from './backgroundData';
+import { projects } from './projectData';
 
 export {
-	iconData,
-	aboutText,
-	aboutSkills,
-	jobs,
-	projects,
+  iconData, aboutText, aboutSkills, jobs, projects,
 };

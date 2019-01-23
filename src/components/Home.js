@@ -4,7 +4,7 @@ import styled from 'styled-components';
 //* COMPONENTS *//
 import Hero from './Hero';
 import AboutSection from './AboutSection';
-import Background from './Background';
+import BackgroundSection from './BackgroundSection';
 import Portfolio from './Portfolio';
 import Footer from './Footer';
 import measureSection from './measureSection';
@@ -28,7 +28,6 @@ const MainSections = styled(Grid)`
 `;
 
 const Section = measureSection(SectionWrapper); // renders children after decoration
-const BackgroundSection = measureSection(Background);
 const PortfolioSection = measureSection(Portfolio);
 
 // --- APP START --- //
@@ -68,24 +67,19 @@ class Home extends Component {
           >
             <AboutSection />
           </Section>
-          {/* <About
-            id="about"
-            title="about"
-            updateActiveNav={updateActiveNav}
-            scrollY={scrollY}
-            activeNavLink={activeNavLink}
-            updateSectionHeight={updateSectionHeight}
-            sectionHeights={sectionHeights}
-          /> */}
-          <BackgroundSection
+          <Section
             id="background"
             title="background"
+            sectionNum={2}
             updateActiveNav={updateActiveNav}
             scrollY={scrollY}
             activeNavLink={activeNavLink}
             updateSectionHeight={updateSectionHeight}
             sectionHeights={sectionHeights}
-          />
+          >
+            <BackgroundSection />
+          </Section>
+
           <PortfolioSection
             id="work"
             updateActiveNav={updateActiveNav}
