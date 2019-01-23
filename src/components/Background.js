@@ -17,11 +17,7 @@ const SectionBackground = styled(Section)`
   ::before {
     ${mediaMax.biggest`${absolute({})}`}
     content: "";
-    background-image: linear-gradient(
-        to right,
-        rgba(0, 0, 0, 0.6),
-        rgba(0, 0, 0, 0.6)
-      ),
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
       url(${experienceBg});
     background-size: cover;
     filter: brightness(120%);
@@ -65,9 +61,6 @@ const StyledJobItem = styled.li`
 `;
 
 class Background extends Component {
-  state = {
-    start: -1
-  };
   componentDidMount() {
     this.props.updateSectionHeight(2, this.props.rectHeight);
   }
@@ -80,15 +73,13 @@ class Background extends Component {
     if (
       this.props.activeNavLink === 'about' &&
       this.props.scrollY > prevProps.scrollY &&
-      this.props.scrollY >
-        this.props.sectionHeights[0] + this.props.sectionHeights[1]
+      this.props.scrollY > this.props.sectionHeights[0] + this.props.sectionHeights[1]
     ) {
       this.props.updateActiveNav('background');
     } else if (
       this.props.activeNavLink === 'background' &&
       this.props.scrollY < prevProps.scrollY && // scrolling up
-      this.props.scrollY <
-        this.props.sectionHeights[0] + this.props.sectionHeights[1]
+      this.props.scrollY < this.props.sectionHeights[0] + this.props.sectionHeights[1]
     ) {
       this.props.updateActiveNav('about');
     }
@@ -97,7 +88,7 @@ class Background extends Component {
   render() {
     const { measureRef, ...props } = this.props;
     return (
-      <SectionBackground {...props} ref={measureRef}>
+      <SectionBackground ref={measureRef} {...props}>
         <SectionTitle>
           <h3>{this.props.title}</h3>
         </SectionTitle>

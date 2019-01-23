@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import styled from "styled-components";
-import Project from "./Project";
-import { Section } from "./styles/Section";
-import { projects } from "api";
+import React, { Component } from 'react';
+import styled from 'styled-components';
+import Project from './Project';
+import { Section } from './styles/Section';
+import { projects } from 'api';
 
 const StyledCategories = styled.ul`
   grid-column: 2 / -2;
@@ -26,7 +26,7 @@ const StyledCategory = styled.button`
   background: none;
   border: none;
   outline: none;
-  opacity: ${props => props.selected ? '1' : '0.6'};
+  opacity: ${props => (props.selected ? '1' : '0.6')};
   transition: all 0.3s ease-out;
   &:hover {
     opacity: 1;
@@ -46,52 +46,63 @@ const ProjectsGrid = styled.div`
 
 const eachCategory = Object.values(projects).map(project => project.category),
   uniqueCategories = new Set(eachCategory),
-  categories = ["all", ...uniqueCategories];
+  categories = ['all', ...uniqueCategories];
 
 export default class Portfolio extends Component {
   state = {
-    category: "all",
+    category: 'all',
     projects: projects,
-  }
+  };
 
   handleClick = e => {
     const category = e.currentTarget.name;
-    if (category === "all") {
-      this.setState({ projects, category: 'all' })
+    if (category === 'all') {
+      this.setState({ projects, category: 'all' });
     } else {
       const filteredProjects = Object.values(projects).filter(
-        project => project.category === category
+        project => project.category === category,
       );
       this.setState({ category, projects: filteredProjects });
     }
-  }
+  };
 
   componentDidMount() {
-    this.props.updateSectionHeight(3, this.props.rectHeight)
+    let { updateSectionHeight, rectHeight } = this.props;
+    updateSectionHeight(3, rectHeight);
   }
 
   // sets nav at either about or background
   componentDidUpdate(prevProps) {
     if (this.props.rectHeight !== prevProps.rectHeight) {
-      this.props.updateSectionHeight(3, this.props.rectHeight)
+      this.props.updateSectionHeight(3, this.props.rectHeight);
     }
-    if (this.props.activeNavLink === 'background'
-      && this.props.scrollY > prevProps.scrollY // scrolling down
-      && this.props.scrollY > (this.props.sectionHeights[0] + this.props.sectionHeights[1] + this.props.sectionHeights[2] / 2)
+    if (
+      this.props.activeNavLink === 'background' &&
+      this.props.scrollY > prevProps.scrollY && // scrolling down
+      this.props.scrollY >
+        this.props.sectionHeights[0] +
+          this.props.sectionHeights[1] +
+          this.props.sectionHeights[2] / 2
     ) {
       this.props.updateActiveNav('work');
-    } else if (this.props.activeNavLink === 'work'
-      && this.props.scrollY < prevProps.scrollY) // scrolling up
-      if (this.props.scrollY < (this.props.sectionHeights[0] + this.props.sectionHeights[1] + (this.props.sectionHeights[2]))
-        && this.props.scrollY > (this.props.sectionHeights[0] + (this.props.sectionHeights[1] + this.props.sectionHeights[2] / 2))) {
-        this.props.updateActiveNav('background')
-
+    } else if (this.props.activeNavLink === 'work' && this.props.scrollY < prevProps.scrollY)
+      if (
+        this.props.scrollY <
+          this.props.sectionHeights[0] +
+            this.props.sectionHeights[1] +
+            this.props.sectionHeights[2] &&
+        this.props.scrollY >
+          this.props.sectionHeights[0] +
+            (this.props.sectionHeights[1] + this.props.sectionHeights[2] / 2)
+      ) {
+        // scrolling up
+        this.props.updateActiveNav('background');
       }
   }
 
   render() {
     const { measureRef, ...rest } = this.props;
-    const newProjects = { ...this.state.projects };
+    const newProjects = this.state.projects;
 
     return (
       <Section ref={measureRef} {...rest}>
@@ -112,8 +123,8 @@ export default class Portfolio extends Component {
             <Project
               key={key}
               title={newProjects[key].title}
-              rowSpan={newProjects[key].span["row"]}
-              colSpan={newProjects[key].span["col"]}
+              rowSpan={newProjects[key].span['row']}
+              colSpan={newProjects[key].span['col']}
               imgSrc={`images/${newProjects[key].img}`}
               link={newProjects[key].link}
               category={newProjects[key].category}

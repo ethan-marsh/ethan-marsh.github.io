@@ -28,14 +28,13 @@ class Page extends Component {
         scrollY,
         scrollYPosition,
         theme: scrollYPosition < 80 ? themes.scrolled : themes.initial,
-        scrollPercent:
-          scrollYPosition > 0 ? Math.floor((scrollY / windowHeight) * 100) : 0
+        scrollPercent: scrollYPosition > 0 ? Math.floor((scrollY / windowHeight) * 100) : 0,
       });
     };
 
     this.toggleHeaderTheme = () => {
       this.setState(state => ({
-        theme: state.theme === themes.initial ? themes.scrolled : themes.initial
+        theme: state.theme === themes.initial ? themes.scrolled : themes.initial,
       }));
     };
 
@@ -44,9 +43,9 @@ class Page extends Component {
     };
 
     this.updateSectionHeight = (navIndex, height) => {
-      const sectionHeights = { ...this.state.sectionHeights };
-      sectionHeights[navIndex] = height;
-      this.setState({ sectionHeights });
+      const sectionHeights = { ...this.state.sectionHeights }; // Copy state
+      sectionHeights[navIndex] = height; // Update the given section height
+      this.setState({ sectionHeights }); // Set it to state
     };
 
     this.state = {
@@ -60,11 +59,11 @@ class Page extends Component {
       updateActiveNav: this.updateActiveNav,
       updateSectionHeight: this.updateSectionHeight,
       sectionHeights: [
-        window.innerHeight - 80, //hero - header
-        0, //about
-        0, //background
-        0 //work
-      ]
+        window.innerHeight - 80, // (hero - header)[0]
+        0, // about[1]
+        0, // background[2]
+        0, // work[3]
+      ],
     };
   }
 

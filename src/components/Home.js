@@ -8,7 +8,7 @@ import Background from './Background';
 import Portfolio from './Portfolio';
 import Footer from './Footer';
 import measureSection from './measureSection';
-import sectionWrapper from 'components/sectionWrapper';
+import SectionWrapper from 'components/SectionWrapper';
 
 import Grid from './styles/Grid';
 import { mediaMax } from './styles/utils';
@@ -27,20 +27,13 @@ const MainSections = styled(Grid)`
   z-index: 99;
 `;
 
-const About = sectionWrapper(AboutSection);
+const Section = measureSection(SectionWrapper); // renders children after decoration
 const BackgroundSection = measureSection(Background);
 const PortfolioSection = measureSection(Portfolio);
 
 // --- APP START --- //
 class Home extends Component {
-  constructor(props) {
-    super(props);
-    this.contentRef = React.createRef();
-
-    this.state = {
-      activeLink: 'home'
-    };
-  }
+  contentRef = () => React.createRef();
 
   getContentPosition = () => {
     const currentRef = this.contentRef.current;
@@ -49,23 +42,33 @@ class Home extends Component {
   };
 
   render() {
-    const {
+    let {
       scrollPercent,
       updateActiveNav,
       scrollY,
       activeNavLink,
       updateSectionHeight,
-      sectionHeights
+      sectionHeights,
     } = this.props;
+
     return (
       <div className="main">
-        <Hero
-          getContentPosition={this.getContentPosition}
-          scrollPercent={scrollPercent}
-        />
+        <Hero getContentPosition={this.getContentPosition} scrollPercent={scrollPercent} />
 
         <MainSections ref={this.contentRef}>
-          <About
+          <Section
+            id="about"
+            title="about"
+            sectionNum={1}
+            scrollY={scrollY}
+            updateActiveNav={updateActiveNav}
+            activeNavLink={activeNavLink}
+            updateSectionHeight={updateSectionHeight}
+            sectionHeights={sectionHeights}
+          >
+            <AboutSection />
+          </Section>
+          {/* <About
             id="about"
             title="about"
             updateActiveNav={updateActiveNav}
@@ -73,7 +76,7 @@ class Home extends Component {
             activeNavLink={activeNavLink}
             updateSectionHeight={updateSectionHeight}
             sectionHeights={sectionHeights}
-          />
+          /> */}
           <BackgroundSection
             id="background"
             title="background"

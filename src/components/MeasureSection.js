@@ -4,25 +4,24 @@ import Measure from 'react-measure';
 const measureSection = SectionComponent =>
   class MeasureSection extends Component {
     state = {
-      fromTop: -1,
-      rectHeight: -1
+      rectHeight: -1,
+      handleResize: this.handleResize,
     };
 
     handleResize = contentRect => {
-      const { top, height } = contentRect.bounds;
+      const { height } = contentRect.bounds;
       this.setState({
-        fromTop: top,
-        rectHeight: height
+        rectHeight: height,
       });
     };
 
     render() {
-      const { ...state } = this.state;
-      const { handleResize, ...rest } = this.props;
+      const { rectHeight } = this.state;
+      const { ...props } = this.props;
       return (
-        <Measure bounds onResize={handleResize}>
+        <Measure bounds onResize={this.handleResize}>
           {({ measureRef }) => (
-            <SectionComponent measureRef={measureRef} {...rest} {...state} />
+            <SectionComponent measureRef={measureRef} rectHeight={rectHeight} {...props} />
           )}
         </Measure>
       );

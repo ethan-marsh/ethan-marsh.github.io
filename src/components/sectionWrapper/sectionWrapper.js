@@ -1,25 +1,40 @@
 import React, { Component } from 'react';
-import StyledSection from './styledSection';
-import measureSection from 'components/measureSection';
+import StyledSection from './StyledSection';
 
-const sectionWrapper = SectionComponent => {
-  class SectionWrapper extends Component {
-    componentDidMount() {
-      const { title, rectHeight, updateSectionHeight } = this.props;
-      updateSectionHeight(title, rectHeight); // Pass the section height so nav knows when active
+class SectionWrapper extends Component {
+  componentDidMount() {
+    const { updateSectionHeight, rectHeight, sectionNum } = this.props;
+    updateSectionHeight(sectionNum, rectHeight); // Pass the section height so nav knows when active
+  }
+
+  componentDidUpdate(prevProps) {
+    const {
+      rectHeight,
+      updateSectionHeight,
+      activeNavLink,
+      scrollY,
+      sectionHeights,
+      updateActiveNav,
+    } = this.props;
+    if (rectHeight !== prevProps.rectHeight) {
+      updateSectionHeight(1, rectHeight);
     }
-
-    render() {
-      const { measureRef, ...rest } = this.props;
-      return (
-        <SectionComponent>
-          <StyledSection measureRef={measureRef} {...rest} />;
-        </SectionComponent>
-      );
+    if (activeNavLink !== 'about' && scrollY > prevProps.scrollY) {
+      if (scrollY > sectionHeights[0] / 2 && scrollY < sectionHeights[0] + sectionHeights[1]) {
+        updateActiveNav('about');
+      }
+    } else if (
+      activeNavLink === 'about'
+      && scrollY < prevProps.scrollY
+      && scrollY < sectionHeights[0]
+    ) {
+      updateActiveNav('home');
     }
   }
 
-  return measureSection(SectionWrapper);
-};
+  render() {
+    return <StyledSection {...this.props} />;
+  }
+}
 
-export default sectionWrapper;
+export default SectionWrapper;

@@ -1,27 +1,24 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import styled from 'styled-components';
-import Section from 'components/Section';
 
-const StyledAboutSection = styled(Section)`
-  background-color: #fff
-  color: #555
+// background-color: #fff
+// color: #555
 
-  p {
-    margin-bottom: 3rem
+const AboutParagraphs = styled.p`
+  margin-bottom: 3rem
     line-height: 1.5em
 
     :last-child {
-      margin-bottom: 3em;
-    }
+    margin-bottom: 3em;
   }
 `;
 
 const AboutContent = ({ aboutText }) => (
-  <StyledAboutSection>
+  <Fragment>
     {Object.keys(aboutText).map(key => (
-      <p key={key}>{aboutText[key]}</p>
+      <AboutParagraphs key={key}>{aboutText[key]}</AboutParagraphs>
     ))}
-  </StyledAboutSection>
+  </Fragment>
 );
 
 export default AboutContent;

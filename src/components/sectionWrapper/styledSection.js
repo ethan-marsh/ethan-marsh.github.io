@@ -4,7 +4,7 @@ import Grid from '../styles/Grid';
 import { mediaMax } from '../styles/utils';
 
 const StyledSectionWrapper = styled(Grid).attrs({
-  as: 'section'
+  as: 'section',
 })`
   grid-column: span 12;
   padding: 10rem 0;
