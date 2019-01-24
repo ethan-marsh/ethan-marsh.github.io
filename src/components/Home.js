@@ -7,7 +7,7 @@ import AboutSection from 'components/AboutSection';
 import BackgroundSection from 'components/BackgroundSection';
 import Portfolio from 'components/Portfolio';
 import Footer from 'components/Footer';
-import measureSection from './measureSection';
+import measureSection from 'components/measureSection';
 import SectionWrapper from 'components/SectionWrapper';
 
 import Grid from './styles/Grid';
@@ -32,7 +32,10 @@ const PortfolioSection = measureSection(Portfolio);
 
 // --- APP START --- //
 class Home extends Component {
-  contentRef = () => React.createRef();
+  constructor(props) {
+    super(props);
+    this.contentRef = React.createContext();
+  }
 
   getContentPosition = () => {
     const currentRef = this.contentRef.current;

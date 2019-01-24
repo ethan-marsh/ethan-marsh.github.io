@@ -2,12 +2,12 @@ import React, { Fragment } from 'react';
 import styled from 'styled-components';
 
 // background-color: #fff
-// color: #555
 
 const AboutParagraphs = styled.p`
   margin-bottom: 3rem
-    line-height: 1.5em
-    :last-child {
+  line-height: 1.5em
+  color: #555
+:last-child {
     margin-bottom: 3em;
   }
 `;
