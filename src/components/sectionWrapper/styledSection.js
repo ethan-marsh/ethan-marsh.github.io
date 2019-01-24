@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import Portfolio from 'components/Portfolio';
 import Grid from '../styles/Grid';
 import { mediaMax, absolute } from '../styles/utils';
 import experienceBg from 'assets/images/experience-bg@0,5x.jpg';
@@ -72,13 +73,16 @@ const StyledSectionContent = styled.div`
   }
 `;
 
-const StyledSection = ({ children, measureRef, title, ...props }) => (
-  <StyledSectionWrapper ref={measureRef} title={title} {...props}>
-    <StyledSectionTitle>
-      <h3>{title}</h3>
-    </StyledSectionTitle>
-    <StyledSectionContent>{children}</StyledSectionContent>
-  </StyledSectionWrapper>
-);
+const StyledSection = ({ children, measureRef, title, isPortfolio, ...props }) =>
+  isPortfolio ? (
+    <Portfolio ref={measureRef}>{children}</Portfolio>
+  ) : (
+    <StyledSectionWrapper ref={measureRef} title={title} {...props}>
+      <StyledSectionTitle>
+        <h3>{title}</h3>
+      </StyledSectionTitle>
+      <StyledSectionContent>{children}</StyledSectionContent>
+    </StyledSectionWrapper>
+  );
 
 export default StyledSection;

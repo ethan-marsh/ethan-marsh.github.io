@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 //* COMPONENTS *//
-import Hero from './Hero';
-import AboutSection from './AboutSection';
-import BackgroundSection from './BackgroundSection';
-import Portfolio from './Portfolio';
-import Footer from './Footer';
+import Hero from 'components/Hero';
+import AboutSection from 'components/AboutSection';
+import BackgroundSection from 'components/BackgroundSection';
+import Portfolio from 'components/Portfolio';
+import Footer from 'components/Footer';
 import measureSection from './measureSection';
 import SectionWrapper from 'components/SectionWrapper';
 
@@ -80,14 +80,16 @@ class Home extends Component {
             <BackgroundSection />
           </Section>
 
-          <PortfolioSection
+          <Section
             id="work"
             updateActiveNav={updateActiveNav}
             scrollY={scrollY}
             activeNavLink={activeNavLink}
             updateSectionHeight={updateSectionHeight}
             sectionHeights={sectionHeights}
-          />
+          >
+            <Portfolio />
+          </Section>
           <Footer />
         </MainSections>
       </div>

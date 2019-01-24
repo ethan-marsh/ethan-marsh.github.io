@@ -42,7 +42,8 @@ class SectionWrapper extends Component {
   }
 
   render() {
-    return <StyledSection {...this.props} />;
+    const { ...props } = this.props;
+    return <StyledSection isPortfolio={props.title === 'portfolio'} {...props} />;
   }
 }
 

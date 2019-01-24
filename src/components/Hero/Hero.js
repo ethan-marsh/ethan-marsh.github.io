@@ -8,7 +8,7 @@ import { mediaMax } from '../styles/utils';
 import hero from 'assets/images/hero.jpg';
 
 const SectionHome = styled(Grid).attrs({
-  as: animated.section
+  as: animated.section,
 })`
   position: fixed;
   height: 100vh;
@@ -81,7 +81,7 @@ const ButtonScrollDown = styled(animated.button)`
 export default class Home extends Component {
   state = {
     prevY: 0,
-    y: 0
+    y: 0,
   };
 
   handleClick = eTarget => {
@@ -102,18 +102,15 @@ export default class Home extends Component {
     window.scrollBy({
       top: scrollNeeded,
       left: 0,
-      behavior: 'smooth'
+      behavior: 'smooth',
     });
   };
 
   componentDidUpdate(prevProps) {
-    if (
-      prevProps.scrollPercent !== 0 &&
-      this.props.scrollPercent !== prevProps.scrollPercent
-    ) {
+    if (prevProps.scrollPercent !== 0 && this.props.scrollPercent !== prevProps.scrollPercent) {
       this.setState({
         prevY: prevProps.scrollPercent / 4,
-        y: this.props.scrollPercent / 4
+        y: this.props.scrollPercent / 4,
       });
     }
   }
@@ -130,15 +127,15 @@ export default class Home extends Component {
             tension: 0,
             friction: 0,
             mass: 1,
-            precision: 0.01
+            precision: 0.01,
           }}
         >
           {props => (
             <SectionHome
               style={{
                 transform: props.translateY.interpolate(
-                  translateY => `translate3d(0,-${translateY}%,0)`
-                )
+                  translateY => `translate3d(0,-${translateY}%,0)`,
+                ),
               }}
             >
               <Content handleClick={this.handleClick} />
@@ -200,9 +197,7 @@ const Content = props => (
           config={{ ...config.molasses }}
           delay={1000}
         >
-          {() => props => (
-            <Icon style={props} name="arrowDown" width="5px" strokeWidth="1" />
-          )}
+          {() => props => <Icon style={props} name="arrowDown" width="5px" strokeWidth="1" />}
         </Transition>
       </ButtonScrollDown>
     }

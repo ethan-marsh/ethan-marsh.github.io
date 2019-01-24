@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import Project from './Project';
-import { Section } from './styles/Section';
+import Project from '../Project';
+import { Section } from '../styles/Section';
 import { projects } from 'api';
 
 const StyledCategories = styled.ul`
-  grid-column: 2 / -2;
+  grid-column: 1 / -1;
   grid-row: span 1;
   list-style-type: none;
   margin: 0;
-  padding: 2rem 0;
+  padding-bottom: 2rem;
   li {
     display: inline-block;
     :not(:first-child) {
@@ -34,7 +34,7 @@ const StyledCategory = styled.button`
   }
 `;
 const ProjectsGrid = styled.div`
-  grid-column: 2 / -2;
+  grid-column: 1 / -1;
   grid-row-start: 2;
   background-color: ${props => props.theme.white}
   display: grid;
@@ -66,46 +66,12 @@ export default class Portfolio extends Component {
     }
   };
 
-  componentDidMount() {
-    let { updateSectionHeight, rectHeight } = this.props;
-    updateSectionHeight(3, rectHeight);
-  }
-
-  // sets nav at either about or background
-  componentDidUpdate(prevProps) {
-    if (this.props.rectHeight !== prevProps.rectHeight) {
-      this.props.updateSectionHeight(3, this.props.rectHeight);
-    }
-    if (
-      this.props.activeNavLink === 'background' &&
-      this.props.scrollY > prevProps.scrollY && // scrolling down
-      this.props.scrollY >
-        this.props.sectionHeights[0] +
-          this.props.sectionHeights[1] +
-          this.props.sectionHeights[2] / 2
-    ) {
-      this.props.updateActiveNav('work');
-    } else if (this.props.activeNavLink === 'work' && this.props.scrollY < prevProps.scrollY)
-      if (
-        this.props.scrollY <
-          this.props.sectionHeights[0] +
-            this.props.sectionHeights[1] +
-            this.props.sectionHeights[2] &&
-        this.props.scrollY >
-          this.props.sectionHeights[0] +
-            (this.props.sectionHeights[1] + this.props.sectionHeights[2] / 2)
-      ) {
-        // scrolling up
-        this.props.updateActiveNav('background');
-      }
-  }
-
   render() {
     const { measureRef, ...rest } = this.props;
     const newProjects = this.state.projects;
 
     return (
-      <Section ref={measureRef} {...rest}>
+      <Section style={{ padding: '0' }} ref={measureRef} {...rest}>
         <StyledCategories>
           {categories.map(category => (
             <li key={category}>
