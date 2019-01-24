@@ -32,7 +32,10 @@ const PortfolioSection = measureSection(Portfolio);
 
 // --- APP START --- //
 class Home extends Component {
-  contentRef = () => React.createRef();
+  constructor(props) {
+    super(props);
+    this.contentRef = React.createRef();
+  }
 
   getContentPosition = () => {
     const currentRef = this.contentRef.current;
@@ -67,6 +70,7 @@ class Home extends Component {
           >
             <AboutSection />
           </Section>
+
           <Section
             id="background"
             title="background"
@@ -90,6 +94,7 @@ class Home extends Component {
           >
             <Portfolio />
           </Section>
+
           <Footer />
         </MainSections>
       </div>
