@@ -20,19 +20,24 @@ class SectionWrapper extends Component {
 
     if (rectHeight !== prevProps.rectHeight) {
       updateSectionHeight(sectionNum, rectHeight);
-      // If the window is resized, let state know
+      // If the window is resized and heights change, let state know
     }
 
-    if (activeNavLink !== 'about' && scrollY > prevProps.scrollY) {
-      if (scrollY > sectionHeights[0] / 2 && scrollY < sectionHeights[0] + sectionHeights[1]) {
+    const bp = [
+      sectionHeights[0],
+      sectionHeights[0] + sectionHeights[1],
+      sectionHeights[0] + sectionHeights[1] + sectionHeights[2],
+    ];
+    if (scrollY !== prevProps.scrollY) {
+      if (scrollY < bp[0] && activeNavLink !== 'home') {
+        updateActiveNav('home');
+      } else if (scrollY > bp[0] && scrollY < bp[1] && activeNavLink !== 'about') {
         updateActiveNav('about');
+      } else if (scrollY > bp[1] && scrollY < bp[2] && activeNavLink !== 'background') {
+        updateActiveNav('background');
+      } else if (scrollY > bp[2] && activeNavLink !== 'work') {
+        updateActiveNav('work');
       }
-    } else if (
-      activeNavLink === 'about'
-      && scrollY < prevProps.scrollY
-      && scrollY < sectionHeights[0]
-    ) {
-      updateActiveNav('home');
     }
   }
 

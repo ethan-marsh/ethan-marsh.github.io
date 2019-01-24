@@ -59,7 +59,7 @@ class Page extends Component {
       updateActiveNav: this.updateActiveNav,
       updateSectionHeight: this.updateSectionHeight,
       sectionHeights: [
-        window.innerHeight - 80, // (hero - header)[0]
+        window.innerHeight / 2, // (hero height & in middle of page)[0]
         0, // about[1]
         0, // background[2]
         0, // work[3]
@@ -70,6 +70,7 @@ class Page extends Component {
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll);
   }
+
   componentWillUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
   }
