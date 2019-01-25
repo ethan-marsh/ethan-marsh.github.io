@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Transition, animated, config, Spring } from 'react-spring';
-import Social from '../SocialLinks';
-import Icon from '../Icon';
+import SocialIcons from 'components/SocialIcons';
+import Icon from 'components/Icon';
 import Grid from '../styles/Grid';
 import { mediaMax } from '../styles/utils';
 import hero from 'assets/images/hero.jpg';
@@ -182,7 +182,7 @@ const Content = props => (
         {() => props => (
           <StyledRow style={props}>
             <h2>Front-end Developer / San Francisco</h2>
-            <Social />
+            <SocialIcons />
           </StyledRow>
         )}
       </Transition>

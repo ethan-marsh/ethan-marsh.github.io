@@ -17,6 +17,7 @@ export const themes = {
     accent: '#CCCCCC',
   },
 };
+
 export const nav = {
   links: ['home', 'about', 'background', 'work'],
   activeLink: 'home',

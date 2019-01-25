@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Project from '../Project';
 import { Section } from '../styles/Section';
-import { projects } from 'api';
+import { projects } from 'data';
 
 const StyledCategories = styled.ul`
   grid-column: 1 / -1;
@@ -22,7 +22,7 @@ const StyledCategory = styled.button`
   font-family: ${props => props.theme.fontDisplay};
   font-size: 1.25rem;
   font-weight: ${props => props.theme.fwNormal};
-  text-transform: capitalize;
+  text-transform: cdatatalize;
   background: none;
   border: none;
   outline: none;

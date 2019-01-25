@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { mediaMax, absolute } from './utils';
+import { mediaMax, absolute } from '../styles/utils';
 
 export const WrapperButton = styled.button`
 @media only screen and (min-width: 1024px) {
@@ -54,9 +54,8 @@ transform: translate3d(0, -.5rem, 0);
 transform: translate3d(0, .5rem, 0);
 }
 
-${props =>
-  props.on &&
-  css`
+${props => props.on
+  && css`
     background-color: transparent;
 
     &::before {

@@ -7,9 +7,8 @@ import AboutSection from 'components/AboutSection';
 import BackgroundSection from 'components/BackgroundSection';
 import Portfolio from 'components/Portfolio';
 import Footer from 'components/Footer';
-import measureSection from 'components/measureSection';
 import SectionWrapper from 'components/SectionWrapper';
-
+import measureItem from 'helpers/measureItem';
 import Grid from './styles/Grid';
 import { mediaMax } from './styles/utils';
 
@@ -27,19 +26,19 @@ const MainSections = styled(Grid)`
   z-index: 99;
 `;
 
-const Section = measureSection(SectionWrapper); // renders children after decoration
-const PortfolioSection = measureSection(Portfolio);
+const Section = measureItem(SectionWrapper); // returns styled children w/ measure
 
 // --- APP START --- //
 class Home extends Component {
   constructor(props) {
     super(props);
-    this.contentRef = React.createContext();
+    this.contentRef = React.createRef();
   }
 
   getContentPosition = () => {
     const currentRef = this.contentRef.current;
     const positions = currentRef.getBoundingClientRect();
+
     return positions.top;
   };
 
@@ -70,6 +69,7 @@ class Home extends Component {
           >
             <AboutSection />
           </Section>
+
           <Section
             id="background"
             title="background"
@@ -93,6 +93,7 @@ class Home extends Component {
           >
             <Portfolio />
           </Section>
+
           <Footer />
         </MainSections>
       </div>

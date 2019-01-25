@@ -1,11 +1,14 @@
-import React, { Component } from 'react';
-import { iconData } from 'api';
+import React, { PureComponent } from 'react';
+// eslint-disable-next-line
+import PropTypes from 'prop-types';
+import { iconData } from 'data';
 
-export default class Icon extends Component {
+export default class Icon extends PureComponent {
   render() {
-    const { viewBox, path } = iconData[this.props.name];
+    const { name } = this.props;
+    const { viewBox, path } = iconData[name];
 
-    switch (this.props.name) {
+    switch (name) {
       case 'arrowDown':
         return (
           <svg x="0" y="0" viewBox={viewBox}>

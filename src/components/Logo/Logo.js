@@ -1,11 +1,15 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
-import { absolute } from './styles/utils';
+import { mediaMax, mediaMin, absolute } from '../styles/utils';
 
 const StyledLogo = styled.div`
   grid-column: 2 / 6;
   ${absolute({})};
   top: 35%;
+
+  // MBPwk
+  display: none;
 `;
 
 const LogoImage = styled.img`
@@ -20,30 +24,31 @@ const LogoImage = styled.img`
 const LogoDark = styled(LogoImage).attrs({
   src: 'images/logo-dark.png',
   alt: 'Ethan',
-  title: 'ethanmarsh.com'
+  title: 'ethanmarsh.com',
 })`
-  @media only screen and (max-width: 1024px) {
+  ${mediaMax.tablet`
     transform: translate3d(0, 0, 0);
     width: 25vw;
-  }
+  `}
 
-  @media only screen and (min-width: 1024px) {
+  ${mediaMin.tablet`
     opacity: 0;
     transform: translate3d(0, 4rem, 0);
+  `};
 
-    ${props =>
-      props.color === 'dark' &&
-      css`
+  ${props => props.color === 'dark'
+    && css`
+      ${mediaMin.tablet`
         transform: translate3d(0, 0, 0);
         opacity: 1;
       `}
-  }
+    `}
 `;
 
 const LogoLight = styled(LogoImage).attrs({
   src: 'images/logo-light.png',
   alt: 'Ethan',
-  title: 'ethanmarsh.com'
+  title: 'ethanmarsh.com',
 })`
   @media only screen and (max-width: 1024px) {
     display: none;
@@ -53,25 +58,37 @@ const LogoLight = styled(LogoImage).attrs({
     opacity: 1;
     display: block;
 
-    ${props =>
-      props.color === 'dark' &&
-      css`
+    ${props => props.color === 'dark'
+      && css`
         transform: translate3d(0, -4rem, 0);
         opacity: 0;
       `}
   }
 `;
 
-export default class Logo extends Component {
+class Logo extends PureComponent {
   render() {
-    let color = this.props.color === '#FFFFFF' ? 'light' : 'dark';
+    const { color } = this.props;
+    const lightOrDark = color === '#FFFFFF' ? 'light' : 'dark';
+
     return (
       <StyledLogo>
         <a href="/">
-          <LogoLight color={color} />
-          <LogoDark color={color} />
+          <LogoLight color={lightOrDark} />
+          <LogoDark color={lightOrDark} />
         </a>
       </StyledLogo>
     );
   }
 }
+
+Logo.propTypes = {
+  color: PropTypes.string,
+};
+Logo.defaultProps = {
+  color: 'dark',
+};
+LogoLight.displayName = 'WhiteLogo';
+LogoDark.displayName = 'DarkLogo';
+
+export default Logo;

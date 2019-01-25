@@ -1,25 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import Icon from './Icon';
-
-const socialLinks = {
-  linkedin: {
-    href: 'https://www.linkedin.com/in/ethan-marsh-50687296',
-    icon: 'icon-linkedin.png'
-  },
-  github: {
-    href: 'https://github.com/ethan-marsh',
-    icon: 'icon-github.png'
-  }
-  // email: {
-  //   href: "mailto:ethancmarsh@yahoo.com?subject=Saw%20Your%20Site!",
-  //   icon: "icon-email.png"
-  // },
-  // phone: {
-  //   href: "tel:+19257876250",
-  //   icon: "icon-phone.png"
-  // }
-};
+import { socialLinksData as socialLinks } from 'data';
+import Icon from 'components/Icon';
 
 const IconList = styled.ul`
   list-style: none;
@@ -43,7 +25,7 @@ const StyledIconLink = styled.a`
   }
 `;
 
-const SocialLinks = () => (
+const SocialIcons = () => (
   <IconList>
     {Object.keys(socialLinks).map(key => (
       <li key={key}>
@@ -62,4 +44,4 @@ const SocialLinks = () => (
   </IconList>
 );
 
-export default SocialLinks;
+export default SocialIcons;

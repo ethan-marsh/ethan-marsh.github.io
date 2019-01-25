@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import Logo from './Logo';
-import Nav from './Navigation/Nav';
-import Grid from './styles/Grid';
-import { ScrollContext, themes } from './scroll-context';
-import { mediaMax } from './styles/utils';
+import { ScrollContext, themes } from 'contexts/scroll-context';
+import Logo from 'components/Logo';
+import Nav from 'components/Navigation/Nav';
+import Grid from '../styles/Grid';
+import { mediaMax } from '../styles/utils';
 
 const StyledHeader = styled(Grid).attrs({
-  as: 'header'
+  as: 'header',
 })`
   position: fixed;
   z-index: 100;
@@ -29,17 +29,9 @@ class Header extends Component {
     return (
       <ScrollContext.Consumer>
         {({ theme, scrollYPosition, activeNavLink }) => (
-          <StyledHeader
-            bg={theme.background}
-            color={theme.foreground}
-            borderColor={theme.accent}
-          >
+          <StyledHeader bg={theme.background} color={theme.foreground} borderColor={theme.accent}>
             <Logo color={theme.foreground} />
-            <Nav
-              {...this.props}
-              color={theme.foreground}
-              scrollYPosition={scrollYPosition}
-            />
+            <Nav {...this.props} color={theme.foreground} scrollYPosition={scrollYPosition} />
           </StyledHeader>
         )}
       </ScrollContext.Consumer>

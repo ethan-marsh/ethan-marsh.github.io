@@ -3,7 +3,7 @@ import { Keyframes, animated } from 'react-spring';
 import styled from 'styled-components';
 import { mediaMax } from '../styles/utils';
 import { LinkNav } from './NavLinks';
-import { ScrollContext, nav } from '../scroll-context';
+import { ScrollContext, nav } from 'contexts/scroll-context';
 
 const NavMobileUl = styled.ul`
   padding-left: 4.5rem;
@@ -46,10 +46,10 @@ const LinkNavMobile = styled(LinkNav)`
 const NavItems = Keyframes.Trail({
   peek: [
     { x: 0, opacity: 1, from: { x: 100, opacity: 0 }, delay: 600 },
-    { x: 0, opacity: 0, delay: 0 }
+    { x: 0, opacity: 0, delay: 0 },
   ],
   open: { x: 0, opacity: 1, delay: 100 },
-  close: { x: 100, opacity: 0, delay: 0 }
+  close: { x: 100, opacity: 0, delay: 0 },
 });
 
 export default class AnimatedMobileNav extends Component {
@@ -68,7 +68,7 @@ export default class AnimatedMobileNav extends Component {
             <animated.li
               style={{
                 transform: x.interpolate(x => `translate3d(${x}%,0,0)`),
-                ...props
+                ...props,
               }}
             >
               <ScrollContext.Consumer>

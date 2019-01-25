@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { aboutText } from 'api';
+import { aboutText } from 'data';
 import AboutContent from './AboutContent';
 
 class AboutSection extends Component {
