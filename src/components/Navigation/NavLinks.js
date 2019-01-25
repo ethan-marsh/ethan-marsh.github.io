@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
-import { ScrollContext } from '../scroll-context';
+import { ScrollContext } from 'contexts/scroll-context';
 import { mediaMax } from '../styles/utils';
 
 export const LinkNav = styled.a`
@@ -27,7 +27,7 @@ export const LinkNav = styled.a`
 const nav = ['home', 'about', 'background', 'work'];
 export default class NavLinks extends Component {
   state = {
-    active: 'home'
+    active: 'home',
   };
 
   render() {
@@ -41,9 +41,9 @@ export default class NavLinks extends Component {
                   {...this.props}
                   name={link}
                   href={link === 'home' ? '#' : `#${link}`}
-                  children={link}
                   active={link === activeNavLink}
                   onClick={e => this.setState({ active: e.currentTarget.name })}
+                  children={link}
                 />
               )}
             </ScrollContext.Consumer>
@@ -53,4 +53,3 @@ export default class NavLinks extends Component {
     );
   }
 }
-// active={link === activeNavLink || (link === this.state.active)

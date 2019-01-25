@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import styled, { css } from 'styled-components';
-import { WrapperButton, StyledNavButton } from '../styles/NavButton';
+import { WrapperButton, StyledNavButton } from './NavButton';
 import NavAnimation from './NavAnimation';
-import SocialLinks from '../SocialLinks';
+import SocialIcons from 'components/SocialIcons';
 import { mediaMin } from '../styles/utils';
 
 const NavWrapper = styled.aside`
@@ -48,12 +48,12 @@ const NavFooter = styled.div`
 
 class NavMobile extends Component {
   state = {
-    on: false
+    on: false,
   };
 
   toggle = () => {
     this.setState(prevState => ({
-      on: !prevState.on
+      on: !prevState.on,
     }));
   };
 
@@ -68,7 +68,7 @@ class NavMobile extends Component {
           <NavInner>
             <NavAnimation on={on} />
             <NavFooter>
-              <SocialLinks />
+              <SocialIcons />
               <p>&copy; 2019 Ethan Marsh</p>
             </NavFooter>
           </NavInner>

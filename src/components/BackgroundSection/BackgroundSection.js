@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import BackgroundContent from './BackgroundContent';
-import { jobs } from 'api';
+import { jobs } from 'data';
 
 class Background extends Component {
   render() {

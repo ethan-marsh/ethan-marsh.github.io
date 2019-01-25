@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import Measure from 'react-measure';
 
-const measureSection = SectionComponent =>
-  class MeasureSection extends Component {
+// Decorates passed in component with a prop for its height
+const measureItem = MeasuredComponent => {
+  class MeasureItem extends Component {
     state = {
       rectHeight: -1,
-      handleResize: this.handleResize,
     };
 
     handleResize = contentRect => {
@@ -21,11 +21,14 @@ const measureSection = SectionComponent =>
       return (
         <Measure bounds onResize={this.handleResize}>
           {({ measureRef }) => (
-            <SectionComponent measureRef={measureRef} rectHeight={rectHeight} {...props} />
+            <MeasuredComponent measureRef={measureRef} rectHeight={rectHeight} {...props} />
           )}
         </Measure>
       );
     }
-  };
+  }
 
-export default measureSection;
+  return MeasureItem;
+};
+
+export default measureItem;

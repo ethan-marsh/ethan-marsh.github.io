@@ -1,11 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import Grid from './styles/Grid';
-
-import Social from './SocialLinks';
+import SocialIcons from 'components/SocialIcons';
+import Grid from '../styles/Grid';
 
 const StyledFooter = styled(Grid).attrs({
-  as: 'footer'
+  as: 'footer',
 })`
   padding: 3rem 0;
   background-color: #292929;
@@ -33,11 +32,7 @@ const FooterContent = styled.div`
   }
 `;
 
-const footerItems = [
-  '(925) 787 6250',
-  'ethancmarsh@yahoo.com',
-  `\u00A9 2019 Ethan Marsh`
-];
+const footerItems = ['(925) 787 6250', 'ethancmarsh@yahoo.com', '\u00A9 2019 Ethan Marsh'];
 
 const Footer = props => (
   <StyledFooter {...props}>
@@ -49,7 +44,7 @@ const Footer = props => (
         ))}
       </div>
       <div>
-        <Social />
+        <SocialIcons />
       </div>
     </FooterContent>
   </StyledFooter>

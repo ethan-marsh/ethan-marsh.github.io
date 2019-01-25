@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import Meta from './Meta';
-import Header from './Header';
-import GlobalStyle, { theme } from 'utils/global';
-import { ScrollContext, themes, nav } from './scroll-context';
+import Header from 'components/Header';
+import { GlobalStyle, theme } from 'utils/styles';
+import { ScrollContext, themes, nav } from 'contexts/scroll-context';
 
 const StyledPage = styled.div`
   background: ${props => props.theme.white};
