@@ -19,17 +19,25 @@ class Page extends Component {
   constructor(props) {
     super(props);
 
-    this.handleScroll = e => {
-      const windowHeight = e.currentTarget.innerHeight, //client height
-        scrollY = e.currentTarget.scrollY, // scrollY
-        scrollYPosition = Math.floor(windowHeight - scrollY); // scroll relative to client height
+    this.handleScroll = () => {
+      let timeout;
 
-      this.setState({
-        scrollY,
-        scrollYPosition,
-        theme: scrollYPosition < 80 ? themes.scrolled : themes.initial,
-        scrollPercent: scrollYPosition > 0 ? Math.floor((scrollY / windowHeight) * 100) : 0,
-      });
+      // reset the timer
+      clearTimeout(timeout);
+
+      // reset it again
+      timeout = setTimeout(() => {
+        const windowHeight = window.innerHeight; //client height
+        const scrollY = window.scrollY; // scrollY
+        const scrollYPosition = Math.floor(windowHeight - scrollY); // scroll relative to client height
+
+        this.setState({
+          scrollY,
+          scrollYPosition,
+          theme: scrollYPosition < 80 ? themes.scrolled : themes.initial,
+          scrollPercent: scrollYPosition > 0 ? Math.floor((scrollY / windowHeight) * 100) : 0,
+        });
+      }, 50); // only fire 30fps
     };
 
     this.toggleHeaderTheme = () => {
