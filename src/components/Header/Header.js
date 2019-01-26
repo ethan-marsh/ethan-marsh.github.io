@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { ScrollContext, themes } from 'contexts/scroll-context';
-import Logo from 'components/Logo';
-import Nav from 'components/Navigation/Nav';
+import Logo from 'components/Logo/';
+import Nav from 'components/Navigation/';
 import Grid from '../styles/Grid';
 import { mediaMax } from '../styles/utils';
 
@@ -28,7 +28,7 @@ class Header extends Component {
   render() {
     return (
       <ScrollContext.Consumer>
-        {({ theme, scrollYPosition, activeNavLink }) => (
+        {({ theme, scrollYPosition }) => (
           <StyledHeader bg={theme.background} color={theme.foreground} borderColor={theme.accent}>
             <Logo color={theme.foreground} />
             <Nav {...this.props} color={theme.foreground} scrollYPosition={scrollYPosition} />
