@@ -6,6 +6,7 @@ const measureItem = MeasuredComponent => {
   class MeasureItem extends Component {
     state = {
       rectHeight: -1,
+      fromTop: -1,
     };
 
     handleResize = contentRect => {
@@ -15,13 +16,25 @@ const measureItem = MeasuredComponent => {
       });
     };
 
+    handleScroll = contentRect => {
+      const { top } = contentRect.top;
+      this.setState({
+        fromTop: top,
+      });
+    };
+
     render() {
-      const { rectHeight } = this.state;
+      const { rectHeight, fromTop } = this.state;
       const { ...props } = this.props;
       return (
-        <Measure bounds onResize={this.handleResize}>
+        <Measure bounds onResize={this.handleResize} onScroll={this.handleScroll}>
           {({ measureRef }) => (
-            <MeasuredComponent measureRef={measureRef} rectHeight={rectHeight} {...props} />
+            <MeasuredComponent
+              measureRef={measureRef}
+              rectHeight={rectHeight}
+              fromTop={fromTop}
+              {...props}
+            />
           )}
         </Measure>
       );
