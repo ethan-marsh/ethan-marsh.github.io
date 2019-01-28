@@ -1,10 +1,10 @@
 import React from 'react';
-import { Page } from 'components';
-import { Home } from 'components';
+import Page from 'components/Page';
+import Home from 'components/Home';
 
-const HomePage = props => (
+const HomePage = () => (
   <Page>
-    <Home {...props} />
+    <Home />
   </Page>
 );
 

@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
-const theme = {
+export const theme = {
   blue: '#005DB3',
   black: '#000000',
   white: '#FFFFFF',
@@ -17,7 +17,7 @@ const theme = {
   background: '#FFFFFF',
 };
 
-const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
   html {
     box-sizing: border-box;
     font-size: 62.5%;
@@ -51,5 +51,3 @@ const GlobalStyle = createGlobalStyle`
     font-family: ${theme.fontDisplay};
     font-weight: ${theme.fwNormal};
 `;
-
-export { GlobalStyle, theme };

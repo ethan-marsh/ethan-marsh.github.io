@@ -1,9 +1,9 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import Portfolio from 'components/Portfolio';
+import experienceBg from 'assets/images/experience-bg@0,5x.jpg';
 import Grid from '../styles/Grid';
 import { mediaMax, absolute } from '../styles/utils';
-import experienceBg from 'assets/images/experience-bg@0,5x.jpg';
 
 const StyledSectionWrapper = styled(Grid).attrs({
   as: 'section',
@@ -16,9 +16,8 @@ const StyledSectionWrapper = styled(Grid).attrs({
     row-gap: 2rem;
     `}
 
-  ${props =>
-    props.title === 'background' /* SPECIAL FOR BACKGROUND SECTION */ &&
-    css`
+  ${props => props.title === 'background'
+  /* SPECIAL FOR BACKGROUND SECTION */ && css`
       position: relative;
       background-color: ${props => props.theme.grey};
       color: #ddd;
@@ -73,10 +72,13 @@ const StyledSectionContent = styled.div`
   }
 `;
 
-const StyledSection = ({ children, measureRef, title, isPortfolio, ...props }) =>
-  isPortfolio ? (
-    <Portfolio ref={measureRef}>{children}</Portfolio>
-  ) : (
+const StyledSection = ({
+  children, measureRef, title, isPortfolio, ...props
+}) => {
+  if (isPortfolio) {
+    return <Portfolio measureRef={measureRef} />;
+  }
+  return (
     <StyledSectionWrapper ref={measureRef} title={title} {...props}>
       <StyledSectionTitle>
         <h3>{title}</h3>
@@ -84,5 +86,6 @@ const StyledSection = ({ children, measureRef, title, isPortfolio, ...props }) =
       <StyledSectionContent>{children}</StyledSectionContent>
     </StyledSectionWrapper>
   );
+};
 
 export default StyledSection;

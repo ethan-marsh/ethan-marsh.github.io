@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 // background-color: #fff
@@ -19,5 +20,12 @@ const AboutContent = ({ aboutText }) => (
     ))}
   </Fragment>
 );
+
+AboutContent.propTypes = {
+  aboutText: PropTypes.objectOf(PropTypes.string),
+};
+AboutContent.defaultProps = {
+  aboutText: '',
+};
 
 export default AboutContent;

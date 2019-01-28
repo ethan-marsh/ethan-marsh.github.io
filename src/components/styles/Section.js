@@ -3,7 +3,7 @@ import Grid from './Grid';
 import { mediaMax } from './utils';
 
 const Section = styled(Grid).attrs({
-  as: 'section'
+  as: 'section',
 })`
   padding: 10rem 0;
   font-size: 1.4rem;
@@ -16,7 +16,7 @@ const Section = styled(Grid).attrs({
 `;
 
 const StyledSection = styled(Grid).attrs({
-  as: 'section'
+  as: 'section',
 })`
   padding: 10rem 0;
   font-size: 1.4rem;
@@ -58,4 +58,6 @@ const SectionContent = styled.div`
   }
 `;
 
-export { Section, StyledSection, SectionTitle, SectionContent };
+export {
+  Section, StyledSection, SectionTitle, SectionContent,
+};

@@ -2,24 +2,17 @@ import React, { Component } from 'react';
 import Measure from 'react-measure';
 
 // Decorates passed in component with a prop for its height
-const measureItem = MeasuredComponent => {
+const measureItem = (MeasuredComponent) => {
   class MeasureItem extends Component {
     state = {
       rectHeight: -1,
       fromTop: -1,
     };
 
-    handleResize = contentRect => {
+    handleResize = (contentRect) => {
       const { height } = contentRect.bounds;
       this.setState({
         rectHeight: height,
-      });
-    };
-
-    handleScroll = contentRect => {
-      const { top } = contentRect.top;
-      this.setState({
-        fromTop: top,
       });
     };
 
@@ -27,7 +20,7 @@ const measureItem = MeasuredComponent => {
       const { rectHeight, fromTop } = this.state;
       const { ...props } = this.props;
       return (
-        <Measure bounds onResize={this.handleResize} onScroll={this.handleScroll}>
+        <Measure bounds onResize={this.handleResize}>
           {({ measureRef }) => (
             <MeasuredComponent
               measureRef={measureRef}

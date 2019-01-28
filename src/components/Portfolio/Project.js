@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import { Transition, animated, config } from "react-spring";
+import React, { PureComponent } from 'react';
+import styled from 'styled-components';
+import { Transition, animated, config } from 'react-spring';
 
 const ProjectContainer = styled.a`
   display: grid;
@@ -17,11 +17,12 @@ const ProjectContainer = styled.a`
     width: 100%;
     height: 100%;
     object-fit: cover;
-  backface-visibility: hidden;
+    backface-visibility: hidden;
 
     transition: transform 0.5s ease-in;
   }
-  &:hover img, &:active img {
+  &:hover img,
+  &:active img {
     transform: scale(1.5);
   }
 `;
@@ -47,7 +48,8 @@ const ProjectOverlay = styled.div`
   opacity: 0;
   transition: opacity 0.5s ease-out;
 
-  :hover, :active {
+  :hover,
+  :active {
     opacity: 1;
   }
   h6 {
@@ -64,34 +66,37 @@ const ProjectOverlay = styled.div`
   }
 `;
 
-class Project extends React.Component {
+class Project extends PureComponent {
   render() {
+    const {
+      link, rowSpan, colSpan, category, imgSrc, title, desc,
+    } = this.props;
     return (
       <Transition
         native
-        initial={{ opacity: .2, transform: 'translate3d(0, 3rem, 0)' }}
+        initial={{ opacity: 0.2, transform: 'translate3d(0, 3rem, 0)' }}
         from={{ opacity: 0, transform: 'translate3d(0, 15rem, 0)' }}
         enter={{ opacity: 1, transform: 'translate3d(0,0,0)' }}
-        leave={{ opacity: .2, transform: 'translate3d(0, -15rem, 0)' }}
+        leave={{ opacity: 0.2, transform: 'translate3d(0, -15rem, 0)' }}
         config={{ ...config.slow }}
       >
         {() => props => (
           <AnimatedContainer
             style={props}
-            href={this.props.link}
-            rowSpan={this.props.rowSpan}
-            colSpan={this.props.colSpan}
-            category={this.props.category}
+            href={link}
+            rowSpan={rowSpan}
+            colSpan={colSpan}
+            category={category}
           >
-            <img src={this.props.imgSrc} alt={this.props.title} />
+            <img src={imgSrc} alt={title} />
             <ProjectOverlay>
-              <h6>{this.props.title}</h6>
-              <p>{this.props.desc}</p>
+              <h6>{title}</h6>
+              <p>{desc}</p>
             </ProjectOverlay>
           </AnimatedContainer>
         )}
       </Transition>
-    )
+    );
   }
 }
 
