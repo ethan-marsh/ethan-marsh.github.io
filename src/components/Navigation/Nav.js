@@ -21,12 +21,12 @@ const StyledNavLinksUl = styled.ul`
   }
 `;
 
-const Nav = () => (
+const Nav = ({ on }) => (
   <>
     <NavMobile />
     <StyledNav>
       <StyledNavLinksUl>
-        <NavLinks />
+        <NavLinks on={on} />
       </StyledNavLinksUl>
     </StyledNav>
   </>

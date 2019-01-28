@@ -21,6 +21,7 @@ const LinkNavMobile = styled(LinkNav)`
 
     letter-spacing: 1.5px;
     position: relative;
+    color: #FFFFFF;
     opacity: ${props => (props.active ? '1' : '0.6')};
 
     &::after {

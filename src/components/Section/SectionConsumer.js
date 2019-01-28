@@ -5,7 +5,7 @@ import SectionWrapper from './SectionWrapper';
 
 const SectionConsumer = ({ ...passThroughProps }) => (
   <ClientContext.Consumer>
-    {scrollY => (
+    {({ scrollY }) => (
       <NavContext.Consumer>
         {({
           activeNavLink, updateActiveNavLink, sectionHeights, updateSectionHeight,
@@ -13,7 +13,7 @@ const SectionConsumer = ({ ...passThroughProps }) => (
           <SectionWrapper
             scrollY={scrollY}
             activeNavLink={activeNavLink}
-            updateActiveNav={updateActiveNavLink}
+            updateActiveNavLink={updateActiveNavLink}
             sectionHeights={sectionHeights}
             updateSectionHeight={updateSectionHeight}
             {...passThroughProps}

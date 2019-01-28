@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { NavContext } from './nav-context';
+import { NavContext, nav } from './nav-context';
 
 const NavContextProvider = (ComposedComponent) => {
   class NavProvider extends Component {
@@ -22,7 +22,7 @@ const NavContextProvider = (ComposedComponent) => {
       };
 
       this.state = {
-        nav: ['home', 'about', 'background', 'work'],
+        nav,
         activeNavLink: 'home',
         sectionHeights: [window.innerHeight - 80, 0, 0, 0],
         updateActiveNavLink: this.updateActiveNavLink,

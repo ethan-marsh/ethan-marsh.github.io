@@ -13,7 +13,7 @@ export const LinkNav = styled.a`
     text-decoration: none;
     font-weight: 400;
     transition: opacity 0.2s ease-out;
-    color: ${props => props.color};
+    color: ${props => (props.on ? '#000000' : '#FFFFFF')};
     opacity: ${props => (props.active ? '1' : '0.6')};
   }
   ${mediaMax.tablet`
@@ -30,6 +30,7 @@ export default class NavLinks extends Component {
   };
 
   render() {
+    const { on } = this.props;
     return (
       <Fragment>
         {nav.map(link => (
@@ -37,6 +38,7 @@ export default class NavLinks extends Component {
             <NavContext.Consumer>
               {({ activeNavLink }) => (
                 <LinkNav
+                  on={on}
                   name={link}
                   href={link === 'home' ? '#' : `#${link}`}
                   active={link === activeNavLink}

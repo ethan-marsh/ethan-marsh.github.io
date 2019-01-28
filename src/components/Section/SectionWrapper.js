@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import { nav } from 'contexts/NavContext';
 import StyledSection from './StyledSection';
 
 class SectionWrapper extends Component {
   componentDidMount() {
-    const { rectHeight, sectionNum, updateSectionHeight } = this.props;
-    updateSectionHeight(sectionNum, rectHeight);
+    const { rectHeight, index, updateSectionHeight } = this.props;
+    updateSectionHeight(index, rectHeight);
     // Pass the section height so nav knows when active
   }
 
@@ -16,11 +17,11 @@ class SectionWrapper extends Component {
       scrollY,
       sectionHeights,
       updateActiveNavLink,
-      sectionNum,
+      index,
     } = this.props;
 
     if (rectHeight !== prevProps.rectHeight) {
-      updateSectionHeight(sectionNum, rectHeight);
+      updateSectionHeight(index, rectHeight);
       // If the window is resized and heights change, let state know
     }
 
@@ -32,14 +33,14 @@ class SectionWrapper extends Component {
     ];
     // Compare the scroll & set nav link to the right section
     if (scrollY !== prevProps.scrollY) {
-      if (scrollY < bp[0] && activeNavLink !== 'home') {
-        updateActiveNavLink('home');
-      } else if (scrollY > bp[0] && scrollY < bp[1] && activeNavLink !== 'about') {
-        updateActiveNavLink('about');
-      } else if (scrollY > bp[1] && scrollY < bp[2] && activeNavLink !== 'background') {
-        updateActiveNavLink('background');
-      } else if (scrollY > bp[2] && activeNavLink !== 'work') {
-        updateActiveNavLink('work');
+      if (scrollY < bp[0] && activeNavLink !== nav[0]) {
+        updateActiveNavLink(nav[0]);
+      } else if (scrollY > bp[0] && scrollY < bp[1] && activeNavLink !== nav[1]) {
+        updateActiveNavLink(nav[1]);
+      } else if (scrollY > bp[1] && scrollY < bp[2] && activeNavLink !== nav[2]) {
+        updateActiveNavLink(nav[2]);
+      } else if (scrollY > bp[2] && activeNavLink !== nav[13]) {
+        updateActiveNavLink(nav[3]);
       }
     }
   }
