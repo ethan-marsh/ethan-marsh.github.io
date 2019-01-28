@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { aboutText } from 'data';
-import AboutContent from './AboutContent';
+import BackgroundComponent from './Background.component';
 
-class AboutSection extends Component {
+class Background extends Component {
   render() {
-    return aboutText && <AboutContent aboutText={aboutText} {...this.props} />;
+    return aboutText && <BackgroundComponent aboutText={aboutText} {...this.props} />;
   }
 }
 
-export default AboutSection;
+export default Background;
 
 /* <div className="about__bars bars">
             <div className="bars__bar-label">

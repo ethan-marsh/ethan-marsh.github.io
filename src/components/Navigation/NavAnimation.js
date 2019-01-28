@@ -1,9 +1,10 @@
+/* eslint react/prefer-stateless-function: 0 */
 import React, { Component } from 'react';
 import { Keyframes, animated } from 'react-spring';
 import styled from 'styled-components';
+import { NavContext, nav } from 'contexts/NavContext';
 import { mediaMax } from '../styles/utils';
 import { LinkNav } from './NavLinks';
-import { ScrollContext, nav } from 'contexts/scroll-context';
 
 const NavMobileUl = styled.ul`
   padding-left: 4.5rem;
@@ -20,13 +21,13 @@ const LinkNavMobile = styled(LinkNav)`
 
     letter-spacing: 1.5px;
     position: relative;
-    opacity: ${props => (props.active ? `1` : `0.6`)};
+    opacity: ${props => (props.active ? '1' : '0.6')};
 
     &::after {
         content: "";
         width: 2rem;
         height: 2px;
-        background-color: ${props => (props.active ? `#FFF` : `#111`)};
+        background-color: ${props => (props.active ? '#FFF' : '#111')};
         opacity: 1;
         position: absolute;
         bottom: 40%;
@@ -45,7 +46,12 @@ const LinkNavMobile = styled(LinkNav)`
 
 const NavItems = Keyframes.Trail({
   peek: [
-    { x: 0, opacity: 1, from: { x: 100, opacity: 0 }, delay: 600 },
+    {
+      x: 0,
+      opacity: 1,
+      from: { x: 100, opacity: 0 },
+      delay: 600,
+    },
     { x: 0, opacity: 0, delay: 0 },
   ],
   open: { x: 0, opacity: 1, delay: 100 },
@@ -54,13 +60,13 @@ const NavItems = Keyframes.Trail({
 
 export default class AnimatedMobileNav extends Component {
   render() {
-    let on = this.props.on === null ? 'peek' : this.props.on ? 'open' : 'close';
+    const on = this.props.on === null ? 'peek' : this.props.on ? 'open' : 'close';
     return (
       <NavMobileUl>
         <NavItems
           native
-          items={nav.links}
-          keys={nav.links.map((_, i) => i)}
+          items={nav}
+          keys={nav.map((_, i) => i)}
           reverse={!this.props.on}
           state={on}
         >
@@ -71,7 +77,7 @@ export default class AnimatedMobileNav extends Component {
                 ...props,
               }}
             >
-              <ScrollContext.Consumer>
+              <NavContext.Consumer>
                 {({ activeNavLink }) => (
                   <LinkNavMobile
                     {...this.props}
@@ -82,7 +88,7 @@ export default class AnimatedMobileNav extends Component {
                     {item}
                   </LinkNavMobile>
                 )}
-              </ScrollContext.Consumer>
+              </NavContext.Consumer>
             </animated.li>
           )}
         </NavItems>

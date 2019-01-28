@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
-import { ScrollContext } from 'contexts/scroll-context';
+import { NavContext, nav } from 'contexts/NavContext';
 import { mediaMax } from '../styles/utils';
 
 export const LinkNav = styled.a`
@@ -14,7 +14,7 @@ export const LinkNav = styled.a`
     font-weight: 400;
     transition: opacity 0.2s ease-out;
     color: ${props => props.color};
-    opacity: ${props => (props.active ? `1` : `0.6`)};
+    opacity: ${props => (props.active ? '1' : '0.6')};
   }
   ${mediaMax.tablet`
     &:hover,
@@ -24,7 +24,6 @@ export const LinkNav = styled.a`
     `}
 `;
 
-const nav = ['home', 'about', 'background', 'work'];
 export default class NavLinks extends Component {
   state = {
     active: 'home',
@@ -35,10 +34,9 @@ export default class NavLinks extends Component {
       <Fragment>
         {nav.map(link => (
           <li key={link}>
-            <ScrollContext.Consumer>
+            <NavContext.Consumer>
               {({ activeNavLink }) => (
                 <LinkNav
-                  {...this.props}
                   name={link}
                   href={link === 'home' ? '#' : `#${link}`}
                   active={link === activeNavLink}
@@ -46,7 +44,7 @@ export default class NavLinks extends Component {
                   children={link}
                 />
               )}
-            </ScrollContext.Consumer>
+            </NavContext.Consumer>
           </li>
         ))}
       </Fragment>

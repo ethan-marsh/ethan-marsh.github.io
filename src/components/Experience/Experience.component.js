@@ -28,7 +28,7 @@ const StyledJobItem = styled.li`
   }
 `;
 
-const BackgroundContent = ({ jobs }) => (
+const ExperienceComponent = ({ jobs }) => (
   <ul style={{ listStyle: 'none' }}>
     {Object.keys(jobs).map(key => (
       <StyledJobItem key={key}>
@@ -45,4 +45,4 @@ const BackgroundContent = ({ jobs }) => (
   </ul>
 );
 
-export default BackgroundContent;
+export default ExperienceComponent;

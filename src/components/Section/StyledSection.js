@@ -16,8 +16,8 @@ const StyledSectionWrapper = styled(Grid).attrs({
     row-gap: 2rem;
     `}
 
-  ${props => props.title === 'background'
-  /* SPECIAL FOR BACKGROUND SECTION */ && css`
+  ${props => props.title === 'experience'
+  /* SPECIAL SECTION */ && css`
       position: relative;
       background-color: ${props => props.theme.grey};
       color: #ddd;

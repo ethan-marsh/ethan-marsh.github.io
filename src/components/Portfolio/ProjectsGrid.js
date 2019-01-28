@@ -5,6 +5,7 @@ import Project from './Project';
 
 export const StyledFolioSection = styled(Grid).attrs({
   as: 'section',
+  id: 'portfolio',
 })`
   padding: 10rem 0;
   font-size: 1.4rem;

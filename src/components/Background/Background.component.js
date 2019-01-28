@@ -2,9 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-// background-color: #fff
-
-const AboutParagraphs = styled.p`
+const Paragraphs = styled.p`
   margin-bottom: 3rem
   line-height: 1.5em
   color: #555
@@ -13,19 +11,19 @@ const AboutParagraphs = styled.p`
   }
 `;
 
-const AboutContent = ({ aboutText }) => (
+const BackgroundComponent = ({ aboutText }) => (
   <Fragment>
     {Object.keys(aboutText).map(key => (
-      <AboutParagraphs key={key}>{aboutText[key]}</AboutParagraphs>
+      <Paragraphs key={key}>{aboutText[key]}</Paragraphs>
     ))}
   </Fragment>
 );
 
-AboutContent.propTypes = {
+BackgroundComponent.propTypes = {
   aboutText: PropTypes.objectOf(PropTypes.string),
 };
-AboutContent.defaultProps = {
+BackgroundComponent.defaultProps = {
   aboutText: '',
 };
 
-export default AboutContent;
+export default BackgroundComponent;

@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import AboutSection from 'components/About';
-import BackgroundSection from 'components/Background';
-import Portfolio from 'components/Portfolio';
 import SectionConsumer from 'components/Section';
+import Background from 'components/Background';
+import Experience from 'components/Experience';
+import Portfolio from 'components/Portfolio';
 import measureItem from 'helpers/measureItem';
 import Grid from '../styles/Grid';
 import { mediaMax } from '../styles/utils';
@@ -27,12 +27,12 @@ const Section = measureItem(SectionConsumer);
 
 const Sections = ({ forwardedRef, children, props }) => (
   <StyledSections ref={forwardedRef} {...props}>
-    <Section id="about" title="about" index={1}>
-      <AboutSection />
+    <Section id="background" title="background" index={1}>
+      <Background />
     </Section>
 
-    <Section id="background" title="background" index={2}>
-      <BackgroundSection />
+    <Section id="experience" title="experience" index={2}>
+      <Experience />
     </Section>
 
     <Section id="portfolio" title="portfolio" index={3}>
