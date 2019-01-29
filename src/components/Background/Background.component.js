@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Skillset from './Skillset';
 
 const Paragraphs = styled.p`
   margin-bottom: 3rem
@@ -11,19 +12,24 @@ const Paragraphs = styled.p`
   }
 `;
 
-const BackgroundComponent = ({ aboutText }) => (
+const BackgroundComponent = ({ intro, skills }) => (
   <Fragment>
-    {Object.keys(aboutText).map(key => (
-      <Paragraphs key={key}>{aboutText[key]}</Paragraphs>
-    ))}
+    <div>
+      {Object.keys(intro).map(key => (
+        <Paragraphs key={key}>{intro[key]}</Paragraphs>
+      ))}
+    </div>
+    <Skillset skills={skills} />
   </Fragment>
 );
 
 BackgroundComponent.propTypes = {
-  aboutText: PropTypes.objectOf(PropTypes.string),
+  into: PropTypes.objectOf(PropTypes.string),
+  skills: PropTypes.objectOf(PropTypes.string),
 };
 BackgroundComponent.defaultProps = {
-  aboutText: '',
+  into: '',
+  skills: {},
 };
 
 export default BackgroundComponent;

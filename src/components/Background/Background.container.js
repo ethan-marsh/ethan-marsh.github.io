@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import { aboutText } from 'data';
+import { aboutText, aboutSkills } from 'data';
 import BackgroundComponent from './Background.component';
 
 class Background extends Component {
   render() {
-    return aboutText && <BackgroundComponent aboutText={aboutText} {...this.props} />;
+    return (
+      aboutText && <BackgroundComponent intro={aboutText} skills={aboutSkills} {...this.props} />
+    );
   }
 }
 
