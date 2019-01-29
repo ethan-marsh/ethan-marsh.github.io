@@ -18,17 +18,17 @@ const StyledHeader = styled(Grid).attrs({
   color: #555;
   border-bottom: 1px solid transparent;
   background-color: transparent;
-  transition: background-color ease-in-out;
-
-  ${mediaMax.tablet`
-    background-color: #ffffff;
-      border-color: #cccccc;`};
+  transition: background-color 0.3s ease;
 
   ${props => props.on
     && css`
       background-color: #ffffff;
       border-color: #cccccc;
     `}
+
+  ${mediaMax.tablet`
+    background-color: #ffffff;
+    border-color: #cccccc;`};
 `;
 
 const HeaderComponent = ({ on, mobile }) => (
