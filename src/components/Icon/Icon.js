@@ -6,7 +6,7 @@ import { iconData } from 'data';
 export default class Icon extends PureComponent {
   render() {
     const { name } = this.props;
-    const { viewBox, path } = iconData[name];
+    const { viewBox, path } = iconData[name] || '';
 
     switch (name) {
       case 'arrowDown':
@@ -20,6 +20,25 @@ export default class Icon extends PureComponent {
               stroke={this.props.stroke || 'currentColor'}
               strokeWidth={this.props.strokeWidth || 'initial'}
               strokeLinecap={this.props.strokeLinecap || 'initial'}
+            />
+          </svg>
+        );
+      case 'checkmark':
+        return (
+          <svg xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox={viewBox}>
+            <circle
+              cx="6"
+              cy="6"
+              r="5"
+              width={this.props.width || '100%'}
+              height={this.props.height || '100%'}
+              fill={this.props.fill || 'currentColor'}
+            />
+            <path
+              width={this.props.width || '100%'}
+              height={this.props.height || '100%'}
+              fillCheck={this.props.fillCheck}
+              d={path}
             />
           </svg>
         );
