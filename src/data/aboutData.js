@@ -21,15 +21,7 @@ const aboutSkills = {
     'git',
     'CLI: bash/zsh',
   ],
-  libraries: [
-    'React.js',
-    'Redux',
-    'Testing: Jest/Enzyme',
-    'Gulp',
-    'jQuery',
-    'Sass || Stylus',
-    'Bootstrap',
-  ],
+  libraries: ['React.js', 'Redux', 'Jest/Enzyme', 'Gulp', 'jQuery', 'Sass || Stylus', 'Bootstrap'],
   other: ['Excel VBA ', 'C (basic)', 'MySQL', 'Sketch', 'Adobe PS + AI'],
 };
 
