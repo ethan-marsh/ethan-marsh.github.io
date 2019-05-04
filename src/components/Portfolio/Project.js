@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Transition, animated, config } from 'react-spring';
 
@@ -67,6 +68,16 @@ const ProjectOverlay = styled.div`
 `;
 
 class Project extends PureComponent {
+  static propTypes = {
+    title: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+    imgSrc: PropTypes.string.isRequired,
+    colSpan: PropTypes.number.isRequired,
+    rowSpan: PropTypes.number.isRequired,
+    link: PropTypes.string.isRequired,
+    desc: PropTypes.string.isRequired,
+  };
+
   render() {
     const {
       link, rowSpan, colSpan, category, imgSrc, title, desc,

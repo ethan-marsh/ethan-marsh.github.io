@@ -2,7 +2,7 @@
   "extends": "airbnb",
   "parser": "babel-eslint",
   "parserOptions": {
-    "ecmaVersion": 6,
+    "ecmaVersion": 8,
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
@@ -17,6 +17,7 @@
   "rules": {
     "react/react-in-jsx-scope": 0,
     "react/jsx-filename-extension": 0,
-    "import/prefer-default-export": 0
+    "import/prefer-default-export": 0,
+    "import/no-unresolved": 0
   }
 }

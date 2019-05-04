@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from 'components/styles/Grid';
 import Project from './Project';
@@ -17,29 +18,40 @@ export const StyledFolioSection = styled(Grid).attrs({
 const ProjectGrid = styled.div`
   grid-column: 2 / -2;
   grid-row-start: 2;
-  background-color: ${props => props.theme.white}
+  background-color: ${props => props.theme.white};
   display: grid;
   grid-template-columns: repeat(5, 2fr);
   grid-auto-rows: 10vw;
   grid-auto-flow: dense;
-  }
 `;
 
-const ProjectsGrid = ({ newProjects }) => (
+const ProjectsGrid = ({ projects }) => (
   <ProjectGrid>
-    {Object.keys(newProjects).map(key => (
+    {Object.keys(projects).map(key => (
       <Project
         key={key}
-        title={newProjects[key].title}
-        rowSpan={newProjects[key].span.row}
-        colSpan={newProjects[key].span.col}
-        imgSrc={`images/${newProjects[key].img}`}
-        link={newProjects[key].link}
-        category={newProjects[key].category}
-        desc={newProjects[key].desc}
+        title={projects[key].title}
+        rowSpan={projects[key].span.row}
+        colSpan={projects[key].span.col}
+        imgSrc={`images/${projects[key].img}`}
+        link={projects[key].link}
+        category={projects[key].category}
+        desc={projects[key].desc}
       />
     ))}
   </ProjectGrid>
 );
+ProjectsGrid.propTypes = {
+  projects: PropTypes.objectOf(
+    PropTypes.shape({
+      title: PropTypes.string,
+      category: PropTypes.string,
+      img: PropTypes.string,
+      span: PropTypes.shape({ col: PropTypes.number, row: PropTypes.number }),
+      link: PropTypes.string,
+      desc: PropTypes.string,
+    }),
+  ).isRequired,
+};
 
 export default ProjectsGrid;

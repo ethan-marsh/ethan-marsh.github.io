@@ -28,13 +28,12 @@ export default class Portfolio extends Component {
 
   render() {
     const { measureRef, ...rest } = this.props;
-    const newProjects = this.state.projects;
-    const category = this.state.category;
+    const { projects: filteredProjects, category } = this.state;
 
     return (
       <StyledFolioSection ref={measureRef} {...rest}>
         <Categories categories={categories} handleClick={this.handleClick} catSt={category} />
-        <ProjectsGrid newProjects={newProjects} />
+        <ProjectsGrid projects={filteredProjects} />
       </StyledFolioSection>
     );
   }

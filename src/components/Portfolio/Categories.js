@@ -36,12 +36,9 @@ const Categories = ({ categories, handleClick, catSt }) => (
   <StyledCategories>
     {categories.map(category => (
       <li key={category}>
-        <StyledCategory
-          name={category}
-          onClick={handleClick}
-          selected={category === catSt}
-          children={category}
-        />
+        <StyledCategory name={category} onClick={handleClick} selected={category === catSt}>
+          {category}
+        </StyledCategory>
       </li>
     ))}
   </StyledCategories>
