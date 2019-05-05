@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import styled, { css } from 'styled-components';
+import SocialIcons from 'components/SocialIcons';
 import { WrapperButton, StyledNavButton } from './NavButton';
 import NavAnimation from './NavAnimation';
-import SocialIcons from 'components/SocialIcons';
 import { mediaMin } from '../styles/utils';
 
 const NavWrapper = styled.aside`
@@ -17,9 +17,8 @@ const NavWrapper = styled.aside`
   transition: all 0.5s cubic-bezier(0.86, 0, 0.07, 1);
   overflow: hidden;
 
-  ${props =>
-    props.on &&
-    css`
+  ${props => props.on
+    && css`
       transform: translate3d(0, 0, 0);
     `}
 
@@ -69,7 +68,7 @@ class NavMobile extends Component {
             <NavAnimation on={on} />
             <NavFooter>
               <SocialIcons />
-              <p>&copy; 2019 Ethan Marsh</p>
+              <p>&copy; 2018 Ethan Marsh</p>
             </NavFooter>
           </NavInner>
         </NavWrapper>

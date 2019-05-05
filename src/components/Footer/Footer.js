@@ -32,7 +32,7 @@ const FooterContent = styled.div`
   }
 `;
 
-const footerItems = ['(925) 787 6250', 'ethancmarsh@yahoo.com', '\u00A9 2019 Ethan Marsh'];
+const footerItems = ['(925) 787 6250', 'emarsh55@gmail.com', '\u00A9 2018 Ethan Marsh'];
 
 const Footer = props => (
   <StyledFooter {...props}>

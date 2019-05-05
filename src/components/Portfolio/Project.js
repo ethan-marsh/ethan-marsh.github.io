@@ -60,6 +60,7 @@ const ProjectOverlay = styled.div`
     font-weight: ${props => props.theme.fwNormal};
     margin-bottom: 1rem;
     letter-spacing: 1px;
+    text-transform: uppercase;
   }
   p {
     font-size: 0.8em;

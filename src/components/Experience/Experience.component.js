@@ -26,6 +26,10 @@ const StyledJobItem = styled.li`
   div:last-child {
     flex: 1 1 40%;
   }
+
+  a {
+    text-decoration: underline;
+  }
 `;
 
 const ExperienceComponent = ({ jobs }) => (
@@ -33,15 +37,30 @@ const ExperienceComponent = ({ jobs }) => (
     {Object.keys(jobs).map(key => (
       <StyledJobItem key={key}>
         <div>
-          <h5>{jobs[key].years < 2000 ? ' Years' : ''}</h5>
+          <h5>
+            {jobs[key].years < 2000
+              ? `${jobs[key].years} Year${jobs[key].years > 1 ? 's' : ''}`
+              : jobs[key].years}
+          </h5>
           <p>{jobs[key].yearSpan}</p>
         </div>
         <div>
           <h5>{jobs[key].title}</h5>
-          <p>{jobs[key].description}</p>
+          <p style={{fontStyle: key === `job2` ? `italic` : `none`}}>{jobs[key].description}</p>
+          {key === `job2` && (<p>-- Annual Performance Review</p>)}
         </div>
       </StyledJobItem>
     ))}
+      <StyledJobItem>
+        <div>
+          <h5 />
+          <p />
+        </div>
+        <div>
+          <h5>Resume</h5>
+          <a href="https://docs.google.com/document/d/1vlSZztThpXMG4ahei63d9ALQT7wwoIUF-NIWN6EYGmM/">View Full Resume</a>
+        </div>
+      </StyledJobItem>
   </ul>
 );
 

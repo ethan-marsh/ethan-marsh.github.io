@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { heroData as heroText } from 'data';
-import bgurl from 'assets/bg-keyboard.jpg';
+import bgurl from 'assets/images/hero-alt.jpg';
 import AnimatedWrapper from './Hero.animated';
 
 class Hero extends Component {
@@ -12,7 +12,6 @@ class Hero extends Component {
   componentDidUpdate(prevProps) {
     const { wHeight, scrollY } = this.props;
     const scrollPct = (scrollY / (wHeight * 4)) * 100;
-    // const scrollpx = scrollY / 4;
 
     if (scrollY < wHeight && scrollY !== prevProps.scrollY) {
       this.setState({ y: scrollPct });

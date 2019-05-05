@@ -18,10 +18,10 @@ const StyledSection = styled(Grid).attrs({
     top: 6rem;
     height: 95vh;
   `}
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)),
     url(${props => props.bgurl});
   background-size: cover;
-  background-position: top center;
+  background-position: top left;
   color: ${props => props.theme.white};
   backface-visibility: hidden;
 
